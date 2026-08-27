@@ -14,7 +14,7 @@ const collection = {
   description: "This archive collects Khmer kinship terms, the different way people address their relatives, which are important for understanding family relationships and social structures in Cambodian culture.",
 
   // Who is building this archive? Your name, as you want it shown.
-  curator: "Mr. Suos Sovanrith",
+  curator: "MR. SUOS SOVANRITH",
 
   // Where does your knowledge come from? A person, a place, a community.
   source: "Grandparents, parents, relatives, and other family members",
