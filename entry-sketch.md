@@ -1,12 +1,11 @@
-# Entry Sketch — Khmer Kinship Terms Archive
+# Entry Sketch: Khmer Kinship Terms Archive
 
 This file defines the **content model**: the fields every kinship-term entry
 needs, and blank templates to fill in with real interview data.
 
 This is the *content* shape only. Account/ownership/review fields
 (`owner_id`, `status`, `reviewed_by`, `submitted_at`, `published_at`) are
-app-managed and get added when the database is built in Sprint 1 — don't
-worry about those here.
+app-managed and get added when the database is built in Sprint 1.
 
 ---
 
@@ -58,10 +57,6 @@ Pick one per entry:
 - Children's & grandchildren's generation
 - Non-relative honorific (a kin term used to address people you're not related to)
 
-*(Fictive-kinship terms like `thoa`/adoptive-kin or `khloeu`/blood-brother are
-culturally real but out of scope unless approved as a stretch feature —
-don't build a category for them yet.)*
-
 ---
 
 ## Sample entry (illustration only — NOT one of your 5 real gathered entries)
@@ -78,16 +73,16 @@ relation_described: Older sister, or an older female cousin addressed the same w
 side_of_family: Not applicable
 relative_age: Older
 gender: Female
-also_used_for_non_relatives: Yes — commonly used for any woman somewhat older than the speaker, related or not
+also_used_for_non_relatives: Yes, commonly used for any woman somewhat older than the speaker, related or not
 formality: Both
 example_sentence_khmer: [TO FILL FROM INTERVIEW]
 example_sentence_translation: [TO FILL FROM INTERVIEW]
 usage_notes: Said directly before the person's name; a younger sibling or cousin would never use this toward someone younger than themselves
 usage_status_today: Common
-generational_note: [TO FILL FROM INTERVIEW — is this one actually fading, or still solid?]
+generational_note: [TO FILL FROM INTERVIEW, is this one actually fading, or still solid?]
 region_or_family_variation: [TO FILL FROM INTERVIEW]
 tags: sibling, elder-address, common
-source_name: [REPLACE — real interview needed]
+source_name: [REPLACE, real interview needed]
 source_relation_to_contributor: [REPLACE]
 source_location: [REPLACE]
 interview_date: [REPLACE]
@@ -98,7 +93,7 @@ photo_credit: [REPLACE]
 
 ---
 
-## Your entries (fill in from real interviews — need 5 for the pitch)
+## Entries 
 
 ### Entry 1
 ```
@@ -108,7 +103,7 @@ term_romanized: Bong
 pronunciation: bong
 category: Same generation
 relation_described: Generic term for an older sibling or older cousin (gender-neutral; can be specified as Bong Proh for male or Bong Srey for female)
-also_used_for_non_relatives: Yes — one of the most common polite ways to address anyone perceived as somewhat older than you, related or not
+also_used_for_non_relatives: Yes, one of the most common polite ways to address anyone perceived as somewhat older than you, related or not
 usage_notes: Placed directly before a name, or used alone as direct address; never used toward someone younger than the speaker
 usage_status_today: Common
 generational_note: PLACEHOLDER
@@ -131,7 +126,7 @@ term_romanized: Oun
 pronunciation: oun
 category: Same generation
 relation_described: Generic term for a younger sibling or younger cousin; also widely used as an affectionate term between romantic partners regardless of relation
-also_used_for_non_relatives: Yes — used for anyone perceived younger, and notably as a term of endearment between partners
+also_used_for_non_relatives: Yes, used for anyone perceived younger, and notably as a term of endearment between partners
 usage_notes: Used as direct address or before a name; the romantic-partner usage is a separate, very common register from the sibling usage
 usage_status_today: Common
 generational_note: PLACEHOLDER
@@ -154,10 +149,10 @@ term_romanized: Ming
 pronunciation: ming
 category: Parents' generation
 relation_described: Father's or mother's younger sister; Central Khmer usage typically doesn't distinguish which parent's side
-also_used_for_non_relatives: Yes — a common, polite way to address a woman roughly a parent's age or a bit younger
+also_used_for_non_relatives: Yes, a common, polite way to address a woman roughly a parent's age or a bit younger
 usage_notes: Used as direct address, often before a first name; considered warm/respectful rather than overly formal
 usage_status_today: Common
-generational_note: PLACEHOLDER — worth asking your source directly whether younger relatives still use this or default to something else
+generational_note: PLACEHOLDER
 region_or_family_variation: PLACEHOLDER
 tags: aunt, parents-generation, non-relative-address
 source_name: PLACEHOLDER
@@ -177,7 +172,7 @@ term_romanized: Pou
 pronunciation: pou
 category: Parents' generation
 relation_described: Father's or mother's younger brother
-also_used_for_non_relatives: Yes — commonly used to address a man somewhat younger than one's parents, e.g. a shopkeeper or driver
+also_used_for_non_relatives: Yes, commonly used to address a man somewhat younger than one's parents, e.g. a shopkeeper or driver
 usage_notes: Used as direct address, often before a name; carries a friendly, respectful tone
 usage_status_today: Common
 generational_note: PLACEHOLDER
@@ -200,10 +195,10 @@ term_romanized: Om
 pronunciation: om
 category: Parents' generation
 relation_described: Parent's older sibling, gender-neutral on its own; also the default generic term for "uncle/aunt" when exact relation isn't being specified
-also_used_for_non_relatives: Yes — extremely common, general-purpose respectful address for any adult roughly a parent's age or older
+also_used_for_non_relatives: Yes, extremely common, general-purpose respectful address for any adult roughly a parent's age or older
 usage_notes: Used alone or before a name; one of the most frequently heard kinship-derived address terms in daily life, related or not
 usage_status_today: Common
-generational_note: PLACEHOLDER — good one to probe for whether it's actually holding steady or getting replaced by borrowed terms
+generational_note: PLACEHOLDER
 region_or_family_variation: PLACEHOLDER
 tags: uncle, aunt, parents-generation, generic, non-relative-address
 source_name: PLACEHOLDER

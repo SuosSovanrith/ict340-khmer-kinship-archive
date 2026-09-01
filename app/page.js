@@ -1,5 +1,5 @@
 import collection from "../collection.config.js";
-import EntryCard from "../components/EntryCard.js";
+import EntryCard from "../components/entrycard/EntryCard.js";
 import { colors, fonts } from "../lib/theme.js";
 
 // Mock entries from entry-sketch.md (Entry 1 & Entry 2).
@@ -13,7 +13,7 @@ const mockEntries = [
     category: "Same generation",
     relation_described:
       "Generic term for an older sibling or older cousin (gender-neutral; can be specified as Bong Proh for male or Bong Srey for female)",
-    also_used_for_non_relatives: "Yes — one of the most common polite ways to address anyone perceived as somewhat older than you, related or not",
+    also_used_for_non_relatives: "Yes, one of the most common polite ways to address anyone perceived as somewhat older than you, related or not",
     usage_notes:
       "Placed directly before a name, or used alone as direct address; never used toward someone younger than the speaker",
     usage_status_today: "Common",
@@ -37,7 +37,7 @@ const mockEntries = [
     relation_described:
       "Generic term for a younger sibling or younger cousin; also widely used as an affectionate term between romantic partners regardless of relation",
     also_used_for_non_relatives:
-      "Yes — used for anyone perceived younger, and notably as a term of endearment between partners",
+      "Yes, used for anyone perceived younger, and notably as a term of endearment between partners",
     usage_notes:
       "Used as direct address or before a name; the romantic-partner usage is a separate, very common register from the sibling usage",
     usage_status_today: "Common",
