@@ -28,3 +28,9 @@ One student's Khmer Living Archive, built in ICT 340 at AUPP. Every student buil
 - For anything beyond a one-file change, state a short plan before writing code.
 - Explain changes plainly. The student must be able to defend every line in a code review; write code and explanations that make that possible.
 - The student reviews and approves every diff. Expect rejections and make them easy: small steps, clear boundaries.
+
+**Read `PROJECT_CONTEXT.md` first.** It covers this specific archive's
+collection, the design decisions already made and why, and what's real
+data vs. placeholder. This file only covers coding rules that apply
+regardless of any of that — it doesn't change as the project evolves;
+`PROJECT_CONTEXT.md` does.

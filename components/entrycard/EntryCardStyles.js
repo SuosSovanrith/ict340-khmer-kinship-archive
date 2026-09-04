@@ -13,7 +13,7 @@ export const styles = {
     marginBottom: 20,
   },
   termKhmer: {
-    fontFamily: fonts.serif,
+    fontFamily: fonts.khmer,
     fontSize: 42,
     fontWeight: 700,
     color: colors.gold,
@@ -78,27 +78,84 @@ export const styles = {
     color: colors.text,
     margin: "0 0 20px",
   },
-  genNote: {
+  genExplorer: {
     margin: "0 0 20px",
-    padding: "16px 20px",
+    padding: "18px 20px",
     backgroundColor: colors.surfaceAlt,
+    borderRadius: 6,
     borderLeft: `3px solid ${colors.gold}`,
-    borderRadius: 4,
   },
-  genNoteLabel: {
+  genExplorerLabel: {
     fontFamily: fonts.mono,
     fontSize: 11,
     color: colors.gold,
     textTransform: "uppercase",
     letterSpacing: 0.8,
-    margin: 0,
+    margin: "0 0 12px",
+  },
+  genTabs: {
+    display: "flex",
+    gap: 8,
+    marginBottom: 16,
+  },
+  genTab: {
+    fontFamily: fonts.sans,
+    fontSize: 13,
+    padding: "6px 12px",
+    borderRadius: 999,
+    border: `1px solid ${colors.border}`,
+    backgroundColor: "transparent",
+    color: colors.muted,
+    cursor: "pointer",
+  },
+ genTabActive: {
+    border: `1px solid ${colors.gold}`,
+    color: colors.gold,
+    backgroundColor: "rgba(212, 175, 55, 0.1)",
+  },
+  genPanel: {
+    transition: "opacity 200ms ease, transform 200ms ease",
+  },
+  genStatusRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    marginBottom: 10,
+  },
+  genStatusTrack: {
+    flex: 1,
+    height: 6,
+    borderRadius: 999,
+    backgroundColor: colors.border,
+    overflow: "hidden",
+  },
+  genStatusFill: {
+    height: "100%",
+    borderRadius: 999,
+    transition: "width 200ms ease, background-color 200ms ease",
+  },
+  genStatusLabel: {
+    fontFamily: fonts.mono,
+    fontSize: 12,
+    letterSpacing: 0.5,
+    whiteSpace: "nowrap",
+  },
+  genAlternate: {
+    fontSize: 14,
+    color: colors.goldSoft,
+    margin: "0 0 8px",
   },
   genNoteText: {
     fontSize: 15,
     lineHeight: 1.6,
     color: colors.text,
-    margin: "6px 0 0",
+    margin: "0 0 8px",
     fontStyle: "italic",
+  },
+  genSource: {
+    fontSize: 13,
+    color: colors.muted,
+    margin: 0,
   },
   example: {
     margin: "0 0 20px",
@@ -107,7 +164,7 @@ export const styles = {
     borderRadius: 6,
   },
   exampleKhmer: {
-    fontFamily: fonts.serif,
+    fontFamily: fonts.khmer,
     fontSize: 18,
     color: colors.goldSoft,
     margin: 0,
@@ -133,16 +190,21 @@ export const styles = {
     fontSize: 12,
     fontFamily: fonts.mono,
   },
-  source: {
-    paddingTop: 16,
-    borderTop: `1px solid ${colors.border}`,
+  photoFigure: {
+    margin: "0 0 20px",
+  },
+  photoImage: {
+    width: "100%",
+    maxHeight: 280,
+    objectFit: "cover",
+    borderRadius: 8,
+    display: "block",
+    border: `1px solid ${colors.border}`,
+  },
+  photoCaption: {
     fontSize: 13,
     color: colors.muted,
-  },
-  sourceName: {
-    color: colors.text,
-  },
-  sourceDot: {
-    color: colors.faint,
+    marginTop: 8,
+    fontStyle: "italic",
   },
 };
