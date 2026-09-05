@@ -19,10 +19,10 @@ const mockEntries = [
       "Placed directly before a name, or used alone as direct address; never used toward someone younger than the speaker",
     region_or_family_variation: "",
     tags: ["sibling", "elder-address", "common", "gender-neutral"],
-    photo_url: "",
+    photo_url: "/photos/bong.png",
     photo_caption:
-      "PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term (a place, an object, the script itself), never an identifiable person",
-    photo_credit: "PLACEHOLDER",
+      "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script",
+    photo_credit: "ChatGPT, 2024-06-05, PLACEHOLDER generated image",
     generations: {
       elder: {
         still_used: "Same",
@@ -134,7 +134,7 @@ const mockEntries = [
     usage_notes:
       "Used as direct address, often before a name; carries a friendly, respectful tone",
     region_or_family_variation:
-      "Some in the city now use the more formal 'Lok Pou' instead of plain 'Pou' (per Mom, from Kampong Chhnang, contrasting her own village usage). Separately, some Khmer-Chinese families use different aunt/uncle terms entirely at home (per Sister, Phnom Penh) — framed by her as a family/ethnic variation, not a generational shift.",
+      "Some in the city now use the more formal \"Lok Pou\" instead of plain \"Pou\" (per Mom, from Kampong Chhnang, contrasting her own village usage). Separately, some Khmer-Chinese families use different aunt/uncle terms entirely at home (per Sister, Phnom Penh) — framed by her as a family/ethnic variation, not a generational shift.",
     tags: ["uncle", "parents-generation", "non-relative-address", "region-variation"],
     photo_url: "",
     photo_caption:

@@ -51,8 +51,8 @@ export const styles = {
   },
   facts: {
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gap: "12px 24px",
+    gridTemplateColumns: "auto 1fr",
+    gap: "12px 16px",
     margin: "0 0 20px",
     padding: 0,
   },
@@ -71,6 +71,8 @@ export const styles = {
     fontSize: 15,
     color: colors.text,
     margin: "4px 0 0",
+    paddingLeft: 10,
+    borderLeft: `1px solid ${colors.border}`,
   },
   usageNotes: {
     fontSize: 15,

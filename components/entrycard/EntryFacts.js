@@ -5,10 +5,12 @@ export default function EntryFacts({ entry }) {
   return (
     <dl style={styles.facts}>
       <Fact label="Relation" value={entry.relation_described} />
-      {entry.relative_age && <Fact label="Relative age" value={entry.relative_age} />}
-      {entry.gender && <Fact label="Gender" value={entry.gender} />}
-      {entry.formality && <Fact label="Formality" value={entry.formality} />}
-      {entry.side_of_family && <Fact label="Side of family" value={entry.side_of_family} />}
+      {entry.also_used_for_non_relatives && (
+        <Fact label="Non-relatives usage" value={entry.also_used_for_non_relatives} />
+      )}
+      {entry.region_or_family_variation && (
+        <Fact label="Regional/family variation" value={entry.region_or_family_variation} />
+      )}
     </dl>
   );
 }
