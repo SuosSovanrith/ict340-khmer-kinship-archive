@@ -17,8 +17,8 @@ export const entries = [
     tags: ["sibling", "elder-address", "common", "gender-neutral"],
     photo_url: "/photos/bong.png",
     photo_caption:
-      "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script",
-    photo_credit: "ChatGPT, 2024-06-05, generated image",
+      "A real text writing of the word Bong in Khmer",
+    photo_credit: "N/A",
     generations: {
       elder: {
         still_used: "Same",
@@ -56,8 +56,8 @@ export const entries = [
     tags: ["sibling", "younger-address", "common", "romantic-usage"],
     photo_url: "/photos/oun.png",
     photo_caption:
-      "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script",
-    photo_credit: "ChatGPT, 2024-06-05, generated image",
+      "A real hand writing of the word Oun in Khmer",
+    photo_credit: "N/A",
     generations: {
       elder: {
         still_used: "Same",
@@ -95,8 +95,8 @@ export const entries = [
     tags: ["aunt", "parents-generation", "non-relative-address"],
     photo_url: "/photos/ming.png",
     photo_caption:
-      "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script",
-    photo_credit: "ChatGPT, 2024-06-05, generated image",
+      "A real photo of a local market stall",
+    photo_credit: "Adventure of Jellie",
     generations: {
       elder: {
         still_used: "Same",
@@ -173,8 +173,8 @@ export const entries = [
     tags: ["uncle", "aunt", "parents-generation", "generic", "non-relative-address"],
     photo_url: "/photos/om.png",
     photo_caption:
-      "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script",
-    photo_credit: "ChatGPT, 2024-06-05, generated image",
+      "A photo of an ancestral spirit altar",
+    photo_credit: "wondersofcambodia.com",
     generations: {
       elder: {
         still_used: "Same",
