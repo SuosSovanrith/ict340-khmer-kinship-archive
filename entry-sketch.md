@@ -206,9 +206,9 @@ also_used_for_non_relatives: Yes, one of the most common polite ways to address 
 usage_notes: Placed directly before a name, or used alone as direct address; never used toward someone younger than the speaker
 region_or_family_variation:
 tags: sibling, elder-address, common, gender-neutral
-photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term (a place, an object, the script itself), never an identifiable person
-photo_credit: PLACEHOLDER
+photo_url: /photos/bong.png
+photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
+photo_credit: ChatGPT, 2024-06-05, generated image
 
 generations.elder.still_used: Same
 generations.elder.note: Uses Bong daily for anyone older in her age-group — older siblings, cousins, or close neighbors — and traditionally for a husband, as a normal term of closeness and respect for a Khmer wife. Says the word "never go out of style" across her lifetime; the only change she's seen is couples now texting "Bong"/"Oun" on Facebook instead of writing letters.
@@ -234,9 +234,9 @@ also_used_for_non_relatives: Yes, used for anyone perceived younger, and notably
 usage_notes: Used as direct address or before a name; the romantic-partner usage is a separate, very common register from the sibling usage
 region_or_family_variation:
 tags: sibling, younger-address, common, romantic-usage
-photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_url: /photos/oun.png
+photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
+photo_credit: ChatGPT, 2024-06-05, generated image
 
 generations.elder.still_used: Same
 generations.elder.note: Uses Oun the same way throughout her life, for anyone younger in her circle — younger siblings, cousins, neighbors, or her household helper — and as an affectionate term for a younger husband. Says this hasn't changed, "only now they do it through Facebook message instead of letter."
@@ -261,9 +261,9 @@ also_used_for_non_relatives: Yes, a common, polite way to address a woman roughl
 usage_notes: Used as direct address, often before a first name; considered warm/respectful rather than overly formal
 region_or_family_variation:
 tags: aunt, parents-generation, non-relative-address
-photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_url: /photos/ming.png
+photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
+photo_credit: ChatGPT, 2024-06-05, generated image
 
 generations.elder.still_used: Same
 generations.elder.note: Still correctly uses Ming for her mother's or father's younger sister, or any woman roughly her parents' age. Observes — without it affecting her own usage — that some younger people now mix up Ming and Om, default to English "Aunty," or just say "Bong" to avoid judging someone's age.
@@ -289,9 +289,9 @@ also_used_for_non_relatives: Yes, commonly used to address a man somewhat younge
 usage_notes: Used as direct address, often before a name; carries a friendly, respectful tone
 region_or_family_variation: Some in the city now use the more formal "Lok Pou" instead of plain "Pou" (per Mom, from Kampong Chhnang, contrasting her own village usage). Separately, some Khmer-Chinese families use different aunt/uncle terms entirely at home (per Sister, Phnom Penh) — framed by her as a family/ethnic variation, not a generational shift.
 tags: uncle, parents-generation, non-relative-address, region-variation
-photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_url: /photos/pou.png
+photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
+photo_credit: ChatGPT, 2024-06-05, generated image
 
 generations.elder.still_used: Same
 generations.elder.note: Still uses Pou for her father's or mother's younger brother, or any man in that generation, related or not — credits her own Pou with teaching her to fish as a child. Says the word itself is "still strong," though she's noticed some younger people default to "Bong" for adult men rather than judging their age.
@@ -317,9 +317,9 @@ also_used_for_non_relatives: Yes, extremely common, general-purpose respectful a
 usage_notes: Used alone or before a name; one of the most frequently heard kinship-derived address terms in daily life, related or not
 region_or_family_variation:
 tags: uncle, aunt, parents-generation, generic, non-relative-address
-photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_url: /photos/om.png
+photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
+photo_credit: ChatGPT, 2024-06-05, generated image
 
 generations.elder.still_used: Same
 generations.elder.note: Still correctly distinguishes Om (older than her own parents, closer to grandparent age, e.g. her father's oldest brother) from Ming/Pou. At 80 she's now mostly addressed as "Yay" (grandmother) herself. Describes a real decline in precision among younger, especially town, children — some now say "Uncle"/"Auntie" in English, or default to Bong for everyone: "old way slowly disappearing I think."
