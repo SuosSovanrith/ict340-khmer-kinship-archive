@@ -1,5 +1,5 @@
+import Link from "next/link";
 import collection from "../collection.config.js";
-import EntryCard from "../components/entrycard/EntryCard.js";
 import { colors, fonts } from "../lib/theme.js";
 
 const styles = {
@@ -46,23 +46,12 @@ const styles = {
     color: colors.text,
     margin: "6px 0 0",
   },
-  count: {
-    fontFamily: fonts.mono,
-    fontSize: 14,
-    color: colors.emerald,
+  browseLink: {
+    display: "inline-block",
     marginTop: 48,
-  },
-  entriesHeading: {
     fontFamily: fonts.serif,
-    fontSize: 28,
-    fontWeight: 700,
+    fontSize: 18,
     color: colors.gold,
-    margin: "48px 0 8px",
-  },
-  entriesSub: {
-    fontSize: 15,
-    color: colors.muted,
-    margin: "0 0 24px",
   },
   footer: {
     marginTop: 64,
@@ -89,19 +78,9 @@ export default function Home() {
         <p style={styles.cardValue}>{collection.source}</p>
       </div>
 
-      <p style={styles.count}>
-        entries in the archive: {mockEntries.length} (mock data — more to come)
-      </p>
-
-      <h2 style={styles.entriesHeading}>Browse the terms</h2>
-      <p style={styles.entriesSub}>
-        Each card is one kinship term. Use the tabs to see how it's used
-        across generations.
-      </p>
-
-      {mockEntries.map((entry) => (
-        <EntryCard key={entry.id} entry={entry} />
-      ))}
+      <Link style={styles.browseLink} href="/entries">
+        Browse the terms →
+      </Link>
 
       <footer style={styles.footer}>
         Built in ICT 340 — Vibe Coding, American University of Phnom Penh, Fall

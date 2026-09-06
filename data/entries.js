@@ -134,8 +134,8 @@ export const entries = [
     tags: ["uncle", "parents-generation", "non-relative-address", "region-variation"],
     photo_url: "/photos/pou.png",
     photo_caption:
-      "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script",
-    photo_credit: "ChatGPT, 2024-06-05, generated image",
+      "An image of the Kampong Chhnang province in Cambodia, reflecting the region's cultural and linguistic heritage",
+    photo_credit: "Kampuchea Thmey Daily",
     generations: {
       elder: {
         still_used: "Same",
