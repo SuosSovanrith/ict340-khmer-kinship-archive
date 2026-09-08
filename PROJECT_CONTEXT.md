@@ -24,7 +24,7 @@ way it does below.
 
 | # | Feature | Sprint | Status |
 |---|---|---|---|
-| 1 | Browse & search | 1 | **In progress.** Entries moved to `data/entries.js`; browse view live at `/entries` via `components/EntryList.js`, a 2-column responsive grid. Search not yet built. |
+| 1 | Browse & search | 1 | **Done.** Browse view live at `/entries` via `components/EntryList.js` (2-column responsive grid); **search complete too** — client-side filter in `lib/searchEntries.js` (`term_romanized`, `term_khmer`, `relation_described`, `category`, `tags`), with Khmer-safe match highlighting via `HighlightText.js`. |
 | 2 | Contributor accounts | 2 | Not started |
 | 3 | Ownership (edit/delete own entries only) | 2 | Not started |
 | 4 | Review workflow (submitted → reviewed → published) | 3 | Not started |
@@ -117,6 +117,12 @@ generations: {
   `styled-jsx` media query, the one deliberate exception to this
   codebase's usual plain-inline-style-object pattern, since inline
   React styles can't express media queries on their own.
+- **Highlighting never splits a Khmer grapheme cluster.** `HighlightText.js`
+  uses `Intl.Segmenter` (built into JS — no package) so a match whose edge
+  lands mid-cluster renders plain rather than a broken dotted-circle glyph.
+  An earlier version read `seg.start` instead of the correct `seg.index`,
+  which silently disabled ALL highlighting; that was caught by reproducing
+  the logic in Node, not by visual inspection alone.
 
 ## Current status: what's real vs. placeholder
 
@@ -151,11 +157,16 @@ no approval.
 | `data/entries.js` | The real entry data, moved out of `app/page.js` |
 | `app/entries/page.js` | The browse page — the actual archive; `/` is a short landing page only |
 | `components/EntryList.js` | Renders entries in a responsive grid (2 columns desktop, 1 on narrow screens) |
+| `components/EntryListStyles.js` | Style tokens (search input + empty state) for the browse view |
+| `components/EntrySearchInput.js` | The single search input above the grid (controlled `value`/`onChange`) |
+| `components/EntrySearchEmptyState.js` | On-theme "nothing matches" block shown for a search that returns no entries |
+| `components/HighlightText.js` | Renders each match highlighted (`<mark>`); grapheme-safe for Khmer |
 | `collection.config.js` | Archive identity (name/description/curator/source) |
 | `sources.config.js` | The three standing interview sources by age cohort |
 | `entry-sketch.md` | Full content schema + the gathered terms |
 | `lib/theme.js` | Colors + font stacks, including the Khmer font token |
 | `lib/generations.js` | Cohort order/labels, status→color/width map, source-resolution helper |
+| `lib/searchEntries.js` | Case-insensitive match logic across the five searchable fields |
 | `components/entrycard/EntryCard.js` | Composes one entry's card from the sub-components below |
 | `components/entrycard/EntryHeader.js`, `EntryFacts.js`, `EntryUsageNotes.js`, `EntryExample.js`, `EntryTags.js`, `EntryPhoto.js`, `Fact.js` | Individual card sections |
 | `components/entrycard/GenerationExplorer.js` | Client component: the tab UI + fade-transition state machine |
@@ -176,8 +187,9 @@ no approval.
 
 ## Sprint 1 progress notes
 
-Browse is done (`/entries`, `EntryList.js`). Search is the remaining
-piece — read `entry-sketch.md`'s field reference first; searchable
-fields should map onto ones that already exist (`term_romanized`,
-`term_khmer`, `relation_described`, `category`, `tags`), not new ones
-invented for search alone.
+Both browse and search are done — `/entries` renders the grid via
+`EntryList.js`, and the client-side filter lives in `lib/searchEntries.js`
+with Khmer-safe highlighting in `HighlightText.js`. The searchable fields
+map onto ones that already exist (`term_romanized`, `term_khmer`,
+`relation_described`, `category`, `tags`), not new ones invented for search
+alone.

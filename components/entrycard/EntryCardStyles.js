@@ -209,4 +209,11 @@ export const styles = {
     marginTop: 8,
     fontStyle: "italic",
   },
+  highlightMark: {
+    backgroundColor: colors.gold,
+    color: colors.surface,
+    padding: "0 3px",
+    borderRadius: 3,
+    fontWeight: 700,
+  },
 };
