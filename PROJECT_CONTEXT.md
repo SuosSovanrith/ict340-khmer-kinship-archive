@@ -24,7 +24,7 @@ way it does below.
 
 | # | Feature | Sprint | Status |
 |---|---|---|---|
-| 1 | Browse & search | 1 | **Not started.** Everything below is pre-Sprint-1 groundwork: the content model and the entry card, not the browse/search UI itself. |
+| 1 | Browse & search | 1 | **In progress.** Entries moved to `data/entries.js`; browse view live at `/entries` via `components/EntryList.js`, a 2-column responsive grid. Search not yet built. |
 | 2 | Contributor accounts | 2 | Not started |
 | 3 | Ownership (edit/delete own entries only) | 2 | Not started |
 | 4 | Review workflow (submitted → reviewed → published) | 3 | Not started |
@@ -109,6 +109,14 @@ generations: {
   `EntryPhoto.js`, which was quietly dead code after the generations
   redesign — it referenced entry-level source fields
   (`entry.source_name`, etc.) that no longer exist anywhere.
+- **`/` and `/entries` are separate routes, not one page.** `/` stays
+  a short landing page (collection name/description/curator/source);
+  `/entries` is where the actual collection lives and where search will
+  go. `EntryList.js` handles the grid layout — fixed at exactly 2
+  columns on desktop, collapsing to 1 column under 700px via a
+  `styled-jsx` media query, the one deliberate exception to this
+  codebase's usual plain-inline-style-object pattern, since inline
+  React styles can't express media queries on their own.
 
 ## Current status: what's real vs. placeholder
 
@@ -140,6 +148,9 @@ no approval.
 
 | File | Job |
 |---|---|
+| `data/entries.js` | The real entry data, moved out of `app/page.js` |
+| `app/entries/page.js` | The browse page — the actual archive; `/` is a short landing page only |
+| `components/EntryList.js` | Renders entries in a responsive grid (2 columns desktop, 1 on narrow screens) |
 | `collection.config.js` | Archive identity (name/description/curator/source) |
 | `sources.config.js` | The three standing interview sources by age cohort |
 | `entry-sketch.md` | Full content schema + the gathered terms |
@@ -163,11 +174,10 @@ no approval.
 - Multi-language UI toggle, comments/discussion, crowd voting on entries
 - A visual family-tree diagram
 
-## If you're about to start Sprint 1 (browse & search)
+## Sprint 1 progress notes
 
-Read `entry-sketch.md`'s field reference and the `mockEntries` shape in
-`app/page.js` first — search/filter fields should map onto fields that
-already exist (`category`, `tags`, `also_used_for_non_relatives`, and
-derived generation-trend logic), not new ones invented ad hoc. Deciding on
-a dedicated `/entries/[id]` route is a natural part of this sprint's design,
-not a prerequisite for it.
+Browse is done (`/entries`, `EntryList.js`). Search is the remaining
+piece — read `entry-sketch.md`'s field reference first; searchable
+fields should map onto ones that already exist (`term_romanized`,
+`term_khmer`, `relation_described`, `category`, `tags`), not new ones
+invented for search alone.
