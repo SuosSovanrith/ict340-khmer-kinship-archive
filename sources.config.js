@@ -21,21 +21,21 @@
 
 const sources = {
   elder: {
-    name: "Ny",
+    name: "Chea Channy",
     relationToContributor: "My grandmother",
     location: "Battambang",
     interviewDate: "2026-09-02",
     consentToCredit: true,
   },
   middle: {
-    name: "Thy",
+    name: "Chea Sotheavy",
     relationToContributor: "My mother",
     location: "Kampong Chhnang",
     interviewDate: "2026-09-02",
     consentToCredit: true,
   },
   peer: {
-    name: "Sur",
+    name: "Suos Sopheasur",
     relationToContributor: "My older sister",
     location: "Phnom Penh",
     interviewDate: "2026-09-02",
