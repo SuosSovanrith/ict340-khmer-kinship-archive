@@ -127,7 +127,7 @@ generations: {
 ## Current status: what's real vs. placeholder
 
 Entry *content* (the definitions, categories, usage notes for `bong`,
-`oun`, `ming`, `pou`, `om`) is accurate, common Khmer vocabulary — safe to
+`oun`, `ming`, `pou`, `om`, `ta`, `yay`, `chao`, `puk`, `mak`, and so on) is accurate, common Khmer vocabulary — safe to
 treat as real.
 
 Everything tied to actual interviews — `sources.config.js` names/consent,

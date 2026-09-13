@@ -3,6 +3,15 @@ import { colors, fonts } from "../lib/theme.js";
 
 export const styles = {
   searchWrap: { marginBottom: 32 },
+  // Live count of matching entries, reusing the app's mono + emerald label
+  // look (same as the "KHMER LIVING ARCHIVE" kicker in the page headers).
+  entryCount: {
+    fontFamily: fonts.mono,
+    color: colors.emerald,
+    fontSize: 12,
+    letterSpacing: 1,
+    margin: "0 0 10px",
+  },
   searchInput: {
     width: "100%",
     padding: "14px 16px",

@@ -5,6 +5,7 @@ import EntryCard from "./entrycard/EntryCard.js";
 import { entryMatches } from "../lib/searchEntries.js";
 import EntrySearchInput from "./EntrySearchInput.js";
 import EntrySearchEmptyState from "./EntrySearchEmptyState.js";
+import { styles } from "./EntryListStyles.js";
 
 // Orchestrates the /entries browse view. Owns the search `query` state, filters
 // the `entries` prop in the browser, and composes the search input against the
@@ -21,6 +22,9 @@ export default function EntryList({ entries }) {
 
   return (
     <>
+      <p style={styles.entryCount}>
+        {visible.length} of {entries.length} entries
+      </p>
       <EntrySearchInput value={query} onChange={(e) => setQuery(e.target.value)} />
 
       {visible.length === 0 ? (
