@@ -9,7 +9,7 @@ export default function EntrySearchInput({ value, onChange }) {
         type="search"
         value={value}
         onChange={onChange}
-        placeholder="Search a term, a relation, a tag…"
+        placeholder="Search a term, a relation, a category, a tag…"
         aria-label="Search Khmer kinship terms"
         style={styles.searchInput}
       />
