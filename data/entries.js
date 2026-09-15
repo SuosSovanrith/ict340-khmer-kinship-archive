@@ -15,10 +15,9 @@ export const entries = [
       "Placed directly before a name, or used alone as direct address; never used toward someone younger than the speaker",
     region_or_family_variation: "",
     tags: ["sibling", "elder-address", "common", "gender-neutral"],
-    photo_url: "photos/bong.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_url: "/photos/bong.png",
+    photo_caption: "A hand-written of the word Bong/បង in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Same",
@@ -55,9 +54,8 @@ export const entries = [
     region_or_family_variation: "",
     tags: ["sibling", "younger-address", "common", "romantic-usage"],
     photo_url: "/photos/oun.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Oun/អូន in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Same",
@@ -94,9 +92,8 @@ export const entries = [
     region_or_family_variation: "",
     tags: ["aunt", "parents-generation", "non-relative-address"],
     photo_url: "/photos/ming.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Same",
@@ -133,9 +130,8 @@ export const entries = [
       "Some in the city now use the more formal \"Lok Pou\" instead of plain \"Pou\" (per Mom, from Kampong Chhnang, contrasting her own village usage). Separately, some Khmer-Chinese families use different aunt/uncle terms entirely at home (per Sister, Phnom Penh) — framed by her as a family/ethnic variation, not a generational shift.",
     tags: ["uncle", "parents-generation", "non-relative-address", "region-variation"],
     photo_url: "/photos/pou.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Same",
@@ -172,9 +168,8 @@ export const entries = [
     region_or_family_variation: "",
     tags: ["uncle", "aunt", "parents-generation", "generic", "non-relative-address"],
     photo_url: "/photos/om.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Same",
@@ -211,9 +206,8 @@ export const entries = [
       "No different word found across any source — all three independently describe Ta as essentially uniform nationwide. Only accent-level variation reported: husband's relatives from Kampot draw it out ('taaa') per Mom; Kampong Chhnang relatives speak it with a flatter tone per Sister.",
     tags: ["grandparent", "elder-address", "common", "non-relative-address"],
     photo_url: "/photos/ta.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Ta/តា in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Same",
@@ -250,9 +244,8 @@ export const entries = [
       "No different base word found. Mom's cousin's in-laws (Battambang) sometimes say 'yay tuek' or append a name (e.g. 'Yay Sok') to tell apart multiple grandmothers in one household — a disambiguation habit, not a different word. Separately, Sister's father's-side relatives (also Battambang) occasionally still use a genuinely different, rarer word, 'chreay,' reserved for a great-grandmother-level elder, mostly among older speakers.",
     tags: ["grandparent", "elder-address", "common", "non-relative-address", "region-variation"],
     photo_url: "/photos/yay.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Yay/យាយ in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Same",
@@ -290,9 +283,8 @@ export const entries = [
       "No different base word found — Elder's sister's family in Siem Reap uses Chao the same way for both grandchildren and nieces/nephews. Mother separately notes some Khmer-Chinese families in her area use their own Chinese-language term for grandchild at home instead — framed as language-mixing, not a Khmer regional variant, the same pattern already noted for Pou.",
     tags: ["grandchild", "niece-nephew", "junior-generation", "common"],
     photo_url: "/photos/chao.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Chao/ចៅ in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Changed",
@@ -330,9 +322,8 @@ export const entries = [
       "Elder notes a Phnom Penh-style short form, 'Me,' contrasted with Battambang's fuller 'Mak'; her husband's family from deeper countryside says 'Mae' instead, which she frames as accent, not a different word. Separately, and independently, both Mother's husband's relatives near the Vietnamese border and Sister's husband's family from Svay Rieng report a genuinely distinct, Vietnamese-influenced form — 'mé'/'má' — a real cross-border variant, not just accent.",
     tags: ["mother", "parents-generation", "region-variation"],
     photo_url: "/photos/mak.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Mak/ម៉ាក់ in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Changed",
@@ -370,9 +361,8 @@ export const entries = [
       "Elder and Mother independently offer the same folk explanation for a third variant, 'Ba' — that it comes from French 'Papa' shortened over time — used by more educated or city families; both frame their own household as holding to the more traditional 'Puk.' Sister adds that even within one family, formality can already vary by sibling: her own father's family (Kampot) had some older siblings calling their own father the more formal 'euv' more often than 'puk.'",
     tags: ["father", "parents-generation", "region-variation"],
     photo_url: "/photos/puk.png",
-    photo_caption:
-      "",
-    photo_credit: "",
+    photo_caption: "A hand-written of the word Puk/ពុក in Khmer Carved Script (អក្សរឆ្លាក់)",
+    photo_credit: "ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង",
     generations: {
       elder: {
         still_used: "Changed",

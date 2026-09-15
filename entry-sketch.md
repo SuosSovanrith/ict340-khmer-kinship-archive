@@ -207,8 +207,8 @@ usage_notes: Placed directly before a name, or used alone as direct address; nev
 region_or_family_variation:
 tags: sibling, elder-address, common, gender-neutral
 photo_url: /photos/bong.png
-photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
-photo_credit: ChatGPT, 2024-06-05, generated image
+photo_caption: "A hand-written of the word Bong/បង in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
 generations.elder.note: Uses Bong daily for anyone older in her age-group — older siblings, cousins, or close neighbors — and traditionally for a husband, as a normal term of closeness and respect for a Khmer wife. Says the word "never go out of style" across her lifetime; the only change she's seen is couples now texting "Bong"/"Oun" on Facebook instead of writing letters.
@@ -235,8 +235,8 @@ usage_notes: Used as direct address or before a name; the romantic-partner usage
 region_or_family_variation:
 tags: sibling, younger-address, common, romantic-usage
 photo_url: /photos/oun.png
-photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
-photo_credit: ChatGPT, 2024-06-05, generated image
+photo_caption: "A hand-written of the word Oun/អូន in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
 generations.elder.note: Uses Oun the same way throughout her life, for anyone younger in her circle — younger siblings, cousins, neighbors, or her household helper — and as an affectionate term for a younger husband. Says this hasn't changed, "only now they do it through Facebook message instead of letter."
@@ -262,8 +262,8 @@ usage_notes: Used as direct address, often before a first name; considered warm/
 region_or_family_variation:
 tags: aunt, parents-generation, non-relative-address
 photo_url: /photos/ming.png
-photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
-photo_credit: ChatGPT, 2024-06-05, generated image
+photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
 generations.elder.note: Still correctly uses Ming for her mother's or father's younger sister, or any woman roughly her parents' age. Observes — without it affecting her own usage — that some younger people now mix up Ming and Om, default to English "Aunty," or just say "Bong" to avoid judging someone's age.
@@ -290,8 +290,8 @@ usage_notes: Used as direct address, often before a name; carries a friendly, re
 region_or_family_variation: Some in the city now use the more formal "Lok Pou" instead of plain "Pou" (per Mom, from Kampong Chhnang, contrasting her own village usage). Separately, some Khmer-Chinese families use different aunt/uncle terms entirely at home (per Sister, Phnom Penh) — framed by her as a family/ethnic variation, not a generational shift.
 tags: uncle, parents-generation, non-relative-address, region-variation
 photo_url: /photos/pou.png
-photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
-photo_credit: ChatGPT, 2024-06-05, generated image
+photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
 generations.elder.note: Still uses Pou for her father's or mother's younger brother, or any man in that generation, related or not — credits her own Pou with teaching her to fish as a child. Says the word itself is "still strong," though she's noticed some younger people default to "Bong" for adult men rather than judging their age.
@@ -318,8 +318,8 @@ usage_notes: Used alone or before a name; one of the most frequently heard kinsh
 region_or_family_variation:
 tags: uncle, aunt, parents-generation, generic, non-relative-address
 photo_url: /photos/om.png
-photo_caption: "A weathered Khmer inscription carved into an ancient sandstone temple wall, evoking the elegance of traditional Khmer script"
-photo_credit: ChatGPT, 2024-06-05, generated image
+photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
 generations.elder.note: Still correctly distinguishes Om (older than her own parents, closer to grandparent age, e.g. her father's oldest brother) from Ming/Pou. At 80 she's now mostly addressed as "Yay" (grandmother) herself. Describes a real decline in precision among younger, especially town, children — some now say "Uncle"/"Auntie" in English, or default to Bong for everyone: "old way slowly disappearing I think."
@@ -344,9 +344,9 @@ also_used_for_non_relatives: Yes, extremely common — used for any elderly man 
 usage_notes: Used directly as address, often alone; considered a basic, universal term unlikely to sound rude even toward an elderly stranger
 region_or_family_variation: No different word found across any source — all three independently describe Ta as essentially uniform nationwide. Only accent-level variation reported: husband's relatives from Kampot draw it out ("taaa") per Mom; Kampong Chhnang relatives speak it with a flatter tone per Sister.
 tags: grandparent, elder-address, common, non-relative-address
-photo_url:
-photo_caption:
-photo_credit:
+photo_url: /photos/ta.png
+photo_caption: "A hand-written of the word Ta/តា in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
 generations.elder.note: Uses plain Ta for her own grandfather growing up, and now for any old man, family or stranger — "Ta is Ta, very simple, very old word, everybody know." Says it hasn't changed for her personally, though she's noticed some younger people now add "Lok Ta" for a stranger to sound more formal.
@@ -371,9 +371,9 @@ also_used_for_non_relatives: Yes, extremely common — used for any elderly woma
 usage_notes: Used directly as address, often alone; carries the same warmth and universality as Ta, for elderly women
 region_or_family_variation: No different base word found. Mom's cousin's in-laws (Battambang) sometimes say "yay tuek" or append a name (e.g. "Yay Sok") to tell apart multiple grandmothers in one household — a disambiguation habit, not a different word. Separately, Sister's father's-side relatives (also Battambang) occasionally still use a genuinely different, rarer word, "chreay," reserved for a great-grandmother-level elder, mostly among older speakers.
 tags: grandparent, elder-address, common, non-relative-address, region-variation
-photo_url:
-photo_caption:
-photo_credit:
+photo_url: /photos/yay.png
+photo_caption: "A hand-written of the word Yay/យាយ in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
 generations.elder.note: Uses Yay for her own grandmother growing up and, now that she's elderly herself, is called Yay by her own grandchildren even over the phone from Phnom Penh — "that one never change, thank goodness." Notes some younger people add "Lok Yay" for an elderly female stranger, but doesn't describe this as her own habit.
@@ -398,9 +398,9 @@ also_used_for_non_relatives: Yes — used loosely for any small child, related o
 usage_notes: Often used in third person to describe the relationship ("this is my Chao") rather than as constant direct address; for a very young baby, a nickname or the word "koun" is commonly used instead until the child is a bit older
 region_or_family_variation: No different base word found — Elder's sister's family in Siem Reap uses Chao the same way for both grandchildren and nieces/nephews. Mother separately notes some Khmer-Chinese families in her area use their own Chinese-language term for grandchild at home instead — framed as language-mixing, not a Khmer regional variant, the same pattern already noted for Pou.
 tags: grandchild, niece-nephew, junior-generation, common
-photo_url:
-photo_caption:
-photo_credit:
+photo_url: /photos/chao.png
+photo_caption: "A hand-written of the word Chao/ចៅ in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Changed
 generations.elder.note: Uses Chao for grandchildren, nieces, and nephews, and introduces them to others as "my Chao" — but for a very young baby still, personally uses "koun" (little one) or just a nickname, saving Chao for once the child is a bit older or for talking about them to someone else.
@@ -425,9 +425,9 @@ also_used_for_non_relatives: Occasionally extended to a mother-in-law, or a very
 usage_notes: Used as both direct address and everyday reference to one's own mother; the formal counterpart "Mday" is reserved for writing or very polite/literary speech, not daily conversation
 region_or_family_variation: Elder notes a Phnom Penh-style short form, "Me," contrasted with Battambang's fuller "Mak"; her husband's family from deeper countryside says "Mae" instead, which she frames as accent, not a different word. Separately, and independently, both Mother's husband's relatives near the Vietnamese border and Sister's husband's family from Svay Rieng report a genuinely distinct, Vietnamese-influenced form — "mé"/"má" — a real cross-border variant, not just accent.
 tags: mother, parents-generation, region-variation
-photo_url:
-photo_caption:
-photo_credit:
+photo_url: /photos/mak.png
+photo_caption: "A hand-written of the word Mak/ម៉ាក់ in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Changed
 generations.elder.note: Calls her own mother Mak every day, as her own children call her — but personally uses the more formal "Mday" in writing or very polite speech. Notes a Phnom Penh-style short form "Me" as different from Battambang's fuller "Mak," and that her husband's countryside relatives say "Mae," which she frames as just a village accent difference, not a different word.
@@ -452,9 +452,9 @@ also_used_for_non_relatives: Occasionally extended to a father-in-law, or a clos
 usage_notes: Used as both direct address and everyday reference to one's own father; the formal counterpart "Ov"/"Aupuk" is reserved for writing or speaking to a monk, not daily conversation
 region_or_family_variation: Elder and Mother independently offer the same folk explanation for a third variant, "Ba" — that it comes from French "Papa" shortened over time — used by more educated or city families; both frame their own household as holding to the more traditional "Puk." Sister adds that even within one family, formality can already vary by sibling: her own father's family (Kampot) had some older siblings calling their own father the more formal "euv" more often than "puk."
 tags: father, parents-generation, region-variation
-photo_url:
-photo_caption:
-photo_credit:
+photo_url: /photos/puk.png
+photo_caption: "A hand-written of the word Puk/ពុក in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Changed
 generations.elder.note: Calls her own father Puk, and her children called their father (her late husband) Puk too — but personally uses the more formal "Ov" or written "Aupuk" for writing or speaking to a monk. Notes some of her husband's countryside relatives say "Ba" instead, which she guesses comes from French "Papa" shortened, but says her own side of town holds to the more traditional "Puk."
