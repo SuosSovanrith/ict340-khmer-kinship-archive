@@ -171,7 +171,7 @@ no approval.
 | `components/entrycard/EntryHeader.js`, `EntryFacts.js`, `EntryUsageNotes.js`, `EntryExample.js`, `EntryTags.js`, `EntryPhoto.js`, `Fact.js` | Individual card sections |
 | `components/entrycard/GenerationExplorer.js` | Client component: the tab UI + fade-transition state machine |
 | `components/entrycard/GenerationPanel.js` | Renders one cohort's answer (status bar, note, credited source) |
-| `app/page.js` | Currently the whole site: renders collection info + all mock entries inline |
+| `app/page.js` | Short landing page — collection identity only, from `collection.config.js` (name/description/curator/source), links to `/entries` |
 | `app/layout.js` | Root HTML shell; loads the Khmer web font |
 | `AGENTS.md` | Rules for AI coding agents (and students) working in this repo |
 | `README.md` | Lab 1 setup instructions |

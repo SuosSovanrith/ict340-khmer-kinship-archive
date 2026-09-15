@@ -345,8 +345,8 @@ usage_notes: Used directly as address, often alone; considered a basic, universa
 region_or_family_variation: No different word found across any source — all three independently describe Ta as essentially uniform nationwide. Only accent-level variation reported: husband's relatives from Kampot draw it out ("taaa") per Mom; Kampong Chhnang relatives speak it with a flatter tone per Sister.
 tags: grandparent, elder-address, common, non-relative-address
 photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_caption:
+photo_credit:
 
 generations.elder.still_used: Same
 generations.elder.note: Uses plain Ta for her own grandfather growing up, and now for any old man, family or stranger — "Ta is Ta, very simple, very old word, everybody know." Says it hasn't changed for her personally, though she's noticed some younger people now add "Lok Ta" for a stranger to sound more formal.
@@ -372,8 +372,8 @@ usage_notes: Used directly as address, often alone; carries the same warmth and 
 region_or_family_variation: No different base word found. Mom's cousin's in-laws (Battambang) sometimes say "yay tuek" or append a name (e.g. "Yay Sok") to tell apart multiple grandmothers in one household — a disambiguation habit, not a different word. Separately, Sister's father's-side relatives (also Battambang) occasionally still use a genuinely different, rarer word, "chreay," reserved for a great-grandmother-level elder, mostly among older speakers.
 tags: grandparent, elder-address, common, non-relative-address, region-variation
 photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_caption:
+photo_credit:
 
 generations.elder.still_used: Same
 generations.elder.note: Uses Yay for her own grandmother growing up and, now that she's elderly herself, is called Yay by her own grandchildren even over the phone from Phnom Penh — "that one never change, thank goodness." Notes some younger people add "Lok Yay" for an elderly female stranger, but doesn't describe this as her own habit.
@@ -399,8 +399,8 @@ usage_notes: Often used in third person to describe the relationship ("this is m
 region_or_family_variation: No different base word found — Elder's sister's family in Siem Reap uses Chao the same way for both grandchildren and nieces/nephews. Mother separately notes some Khmer-Chinese families in her area use their own Chinese-language term for grandchild at home instead — framed as language-mixing, not a Khmer regional variant, the same pattern already noted for Pou.
 tags: grandchild, niece-nephew, junior-generation, common
 photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_caption:
+photo_credit:
 
 generations.elder.still_used: Changed
 generations.elder.note: Uses Chao for grandchildren, nieces, and nephews, and introduces them to others as "my Chao" — but for a very young baby still, personally uses "koun" (little one) or just a nickname, saving Chao for once the child is a bit older or for talking about them to someone else.
@@ -426,8 +426,8 @@ usage_notes: Used as both direct address and everyday reference to one's own mot
 region_or_family_variation: Elder notes a Phnom Penh-style short form, "Me," contrasted with Battambang's fuller "Mak"; her husband's family from deeper countryside says "Mae" instead, which she frames as accent, not a different word. Separately, and independently, both Mother's husband's relatives near the Vietnamese border and Sister's husband's family from Svay Rieng report a genuinely distinct, Vietnamese-influenced form — "mé"/"má" — a real cross-border variant, not just accent.
 tags: mother, parents-generation, region-variation
 photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_caption:
+photo_credit:
 
 generations.elder.still_used: Changed
 generations.elder.note: Calls her own mother Mak every day, as her own children call her — but personally uses the more formal "Mday" in writing or very polite speech. Notes a Phnom Penh-style short form "Me" as different from Battambang's fuller "Mak," and that her husband's countryside relatives say "Mae," which she frames as just a village accent difference, not a different word.
@@ -453,8 +453,8 @@ usage_notes: Used as both direct address and everyday reference to one's own fat
 region_or_family_variation: Elder and Mother independently offer the same folk explanation for a third variant, "Ba" — that it comes from French "Papa" shortened over time — used by more educated or city families; both frame their own household as holding to the more traditional "Puk." Sister adds that even within one family, formality can already vary by sibling: her own father's family (Kampot) had some older siblings calling their own father the more formal "euv" more often than "puk."
 tags: father, parents-generation, region-variation
 photo_url:
-photo_caption: PLACEHOLDER — no photo taken yet. Should be a real, non-portrait photo tied to this term, never an identifiable person
-photo_credit: PLACEHOLDER
+photo_caption:
+photo_credit:
 
 generations.elder.still_used: Changed
 generations.elder.note: Calls her own father Puk, and her children called their father (her late husband) Puk too — but personally uses the more formal "Ov" or written "Aupuk" for writing or speaking to a monk. Notes some of her husband's countryside relatives say "Ba" instead, which she guesses comes from French "Papa" shortened, but says her own side of town holds to the more traditional "Puk."
