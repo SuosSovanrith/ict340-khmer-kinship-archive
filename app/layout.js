@@ -1,4 +1,18 @@
 import collection from "../collection.config.js";
+import { colors } from "../lib/theme.js";
+import AuthStatus from "../components/AuthStatus.js";
+
+const styles = {
+  header: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: 12,
+    padding: "12px 24px",
+    borderBottom: `1px solid ${colors.border}`,
+    backgroundColor: colors.surface,
+  },
+};
 
 export const metadata = {
   title: `${collection.name} — Khmer Living Archive`,
@@ -30,6 +44,9 @@ export default function RootLayout({ children }) {
           minHeight: "100vh",
         }}
       >
+        <header style={styles.header}>
+          <AuthStatus />
+        </header>
         {children}
       </body>
     </html>
