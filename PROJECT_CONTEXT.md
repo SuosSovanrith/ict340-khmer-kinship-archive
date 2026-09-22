@@ -25,7 +25,7 @@ way it does below.
 | # | Feature | Sprint | Status |
 |---|---|---|---|
 | 1 | Browse & search | 1 | **Done.** Browse view live at `/entries` via `components/EntryList.js` (2-column responsive grid); **search complete too** — client-side filter in `lib/searchEntries.js` (`term_romanized`, `term_khmer`, `relation_described`, `category`, `tags`), with Khmer-safe match highlighting via `HighlightText.js`. |
-| 2 | Contributor accounts | 2 | Not started |
+| 2 | Contributor accounts | 2 | **Done.** Signup, login, and logout are live via Supabase (`/signup`, `/login`, and `AuthStatus` in the header) — email/password auth through `@supabase/ssr`. |
 | 3 | Ownership (edit/delete own entries only) | 2 | Not started |
 | 4 | Review workflow (submitted → reviewed → published) | 3 | Not started |
 
@@ -167,6 +167,11 @@ no approval.
 | `lib/theme.js` | Colors + font stacks, including the Khmer font token |
 | `lib/generations.js` | Cohort order/labels, status→color/width map, source-resolution helper |
 | `lib/searchEntries.js` | Case-insensitive match logic across the five searchable fields |
+| `lib/supabase/client.js` | Browser Supabase client (`@supabase/ssr`) — used by the auth pages and `AuthStatus` |
+| `lib/supabase/server.js` | Server Supabase client, wired to `next/headers` `cookies()` |
+| `app/login/page.js` | Login page — generic "Invalid email or password" error on any auth failure (no enumeration) |
+| `app/signup/page.js` | Signup page — generic error on failure |
+| `components/AuthStatus.js` | Header status — email + logout when signed in, `/login` + `/signup` links when signed out; mounted in `app/layout.js` so it shows on every route |
 | `components/entrycard/EntryCard.js` | Composes one entry's card from the sub-components below |
 | `components/entrycard/EntryHeader.js`, `EntryFacts.js`, `EntryUsageNotes.js`, `EntryExample.js`, `EntryTags.js`, `EntryPhoto.js`, `Fact.js` | Individual card sections |
 | `components/entrycard/GenerationExplorer.js` | Client component: the tab UI + fade-transition state machine |
@@ -193,3 +198,16 @@ with Khmer-safe highlighting in `HighlightText.js`. The searchable fields
 map onto ones that already exist (`term_romanized`, `term_khmer`,
 `relation_described`, `category`, `tags`), not new ones invented for search
 alone.
+
+## Sprint 2 progress notes
+
+Supabase auth is wired in via `@supabase/ssr` (one of the two packages
+approved in AGENTS.md's Sprint 2 amendment), with signup and login working
+against the browser client in `lib/supabase/client.js`. Both forms surface a
+single generic error — login always shows "Invalid email or password" whether
+the failure was a wrong password or a nonexistent email, so an attacker can't
+enumerate which accounts exist. On success each form redirects to `/`.
+`components/AuthStatus`, mounted in `app/layout.js`, shows the signed-in user's
+email and a logout button on every route, or `/login` and `/signup` links when
+signed out. Ownership (editing and deleting only your own entries) has not
+started yet — that's the remaining half of Sprint 2.
