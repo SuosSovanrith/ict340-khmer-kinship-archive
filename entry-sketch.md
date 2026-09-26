@@ -51,7 +51,12 @@ entry instead of changing `sources.config.js`.
 
 ## Field reference
 
-### Entry-level required fields
+`NOT NULL` below means the database enforces it — an entry genuinely can't
+exist without it. Everything else is nullable: real when gathered, `NULL`
+(not a placeholder string) until then. A contributor's entry is theirs to
+finish; the schema shouldn't block them from saving a real, partial entry.
+
+### Entry-level required fields (`NOT NULL`)
 
 | Field | Type | Description | Example |
 |---|---|---|---|
@@ -60,12 +65,6 @@ entry instead of changing `sources.config.js`.
 | `term_romanized` | text | Latin transliteration, so it's searchable without Khmer script | Bong Srey |
 | `category` | enum | See controlled vocabulary below | Same generation |
 | `relation_described` | text | Plain-language relationship this term names — phrase it so age/gender/side are implied, e.g. "father's younger brother," not just "uncle" | Older sister, or an older female cousin addressed the same way |
-| `also_used_for_non_relatives` | bool + note | Whether this term is also used to politely address strangers/acquaintances by perceived age | Yes — used for any woman a bit older than you, related or not |
-| `usage_notes` | text | The *general* meaning/usage, true across generations — generation-specific differences go in `generations`, not here | Said directly before the person's name; never used toward someone younger than the speaker |
-| `tags` | list | Freeform keywords for search/browse | sibling, elder-address, common |
-| `photo_caption` | text | What the photo shows (never an identifiable person — see photo policy below) | A village home near the river, Battambang |
-| `photo_credit` | text | Who took/owns the photo | Photo by contributor |
-| `photo_url` | text | Path/URL to the actual image file, e.g. `/photos/pou-fishing-spot.jpg` once saved under `public/photos/` | `/photos/bong-village.jpg` |
 | `generations.elder.still_used` | enum | See controlled vocabulary below | Same |
 | `generations.elder.note` | text | What this source actually said about this word | "I've used this my whole life for anyone older, related or not." |
 | `generations.middle.still_used` | enum | — | Same |
@@ -73,10 +72,21 @@ entry instead of changing `sources.config.js`.
 | `generations.peer.still_used` | enum | — | Changed |
 | `generations.peer.note` | text | — | — |
 
-### Optional fields
+The pitch was the cross-generational comparison, not a glossary — so the
+`generations` block is the one thing here that isn't optional. Everything
+below is real, valuable, and welcome at creation time, but an entry missing
+it is still a complete entry, just a thinner one.
+
+### Optional fields (nullable — real data added over time, not placeholders)
 
 | Field | Type | Description | Keep if... |
 |---|---|---|---|
+| `also_used_for_non_relatives` | text | Whether and how this term is also used to politely address strangers/acquaintances by perceived age, in the source's own words — kept as one field since every entry already carries the yes/no and the explanation together, and some answers (e.g. `mak`, `puk`) are genuinely neither a clean yes nor no | Almost always worth asking, but `NULL` is fine if it wasn't covered in the interview yet |
+| `usage_notes` | text | The *general* meaning/usage, true across generations — generation-specific differences go in `generations`, not here | Almost always worth having, not required to save the entry |
+| `tags` | list | Freeform keywords for search/browse | Addable anytime — search already works off the required fields above |
+| `photo_caption` | text | What the photo shows (never an identifiable person — see photo policy below) | Once a photo exists for this entry |
+| `photo_credit` | text | Who took/owns the photo | Once a photo exists for this entry |
+| `photo_url` | text | Path/URL to the actual image file, e.g. `/photos/pou.jpg` once saved under `public/photos/` | Once a photo exists for this entry — see photo policy: a photo is not required at all |
 | `pronunciation` | text | Short phonetic guide (not audio — see note below) | Easy to add, low cost either way |
 | `region_or_family_variation` | text | Note when another province or family uses a different word or usage rule for the *same* relationship | You're interviewing sources from more than one province/family |
 | `example_sentence_khmer` / `example_sentence_translation` | text | A real sentence using the term, + translation | You have time for polish |
@@ -132,10 +142,20 @@ entries end up this way.
 
 ### Photo policy
 
-Every entry needs a real photo (skeleton requirement), but this archive
-**never photographs identifiable people** — no portraits, ever, by default.
-Photos are of a place, an object, or the script itself: a village, a
-fishing spot mentioned in an interview, a written word, a family kitchen.
+A photo is **not required** to publish an entry — confirmed with the
+professor. These entries are words, not places or people, so an entry
+without a photo yet is still a complete, real entry, just a thinner one.
+
+When there is a photo, this archive **never photographs identifiable
+people** — no portraits, ever, by default. The default worth reaching for
+first is a photo of **the written word itself** — the term in Khmer
+script, e.g. hand-written, capturing the shape and feel of Khmer
+typography rather than illustrating the relationship. `bong`'s entry
+already does this. A place, an object, or a scene (a village, a fishing
+spot mentioned in an interview, a family kitchen) is also fine when it
+suits the term better — the point is never a person's face, not that it
+has to be the word every time.
+
 This is why there's no per-source photo-consent field in
 `sources.config.js` — the question doesn't come up under this policy.
 `consentToCredit` (being named and quoted) is the only per-source consent
