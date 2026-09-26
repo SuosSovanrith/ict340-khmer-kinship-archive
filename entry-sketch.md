@@ -310,7 +310,7 @@ usage_notes: Used as direct address, often before a name; carries a friendly, re
 region_or_family_variation: Some in the city now use the more formal "Lok Pou" instead of plain "Pou" (per Mom, from Kampong Chhnang, contrasting her own village usage). Separately, some Khmer-Chinese families use different aunt/uncle terms entirely at home (per Sister, Phnom Penh) — framed by her as a family/ethnic variation, not a generational shift.
 tags: uncle, parents-generation, non-relative-address, region-variation
 photo_url: /photos/pou.png
-photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_caption: "A hand-written of the word Pou/ពូ in Khmer Carved Script (អក្សរឆ្លាក់)"
 photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
@@ -338,7 +338,7 @@ usage_notes: Used alone or before a name; one of the most frequently heard kinsh
 region_or_family_variation:
 tags: uncle, aunt, parents-generation, generic, non-relative-address
 photo_url: /photos/om.png
-photo_caption: "A hand-written of the word Ming/មីង in Khmer Carved Script (អក្សរឆ្លាក់)"
+photo_caption: "A hand-written of the word Om/អ៊ំ in Khmer Carved Script (អក្សរឆ្លាក់)"
 photo_credit: ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង
 
 generations.elder.still_used: Same
