@@ -38,6 +38,13 @@ the "Explicitly out of scope" section below.
 Full field-by-field reference lives in `entry-sketch.md` — this is just the
 shape, so you know what to go read.
 
+- **the `entries` table in Supabase** — entry data itself now lives in a
+  Postgres `entries` table in Supabase (not `data/entries.js`, which has
+  been deleted), with columns matching `entry-sketch.md`'s field reference.
+  `owner` (uuid, references `auth.users`) and four RLS policies (anyone can
+  read; only an entry's owner can insert/update/delete) were added in Lab 6.
+  `generations` is stored as a single `jsonb` column, not a separate table.
+- **`collection.config.js`** — the archive's identity (name, description,
 - **`collection.config.js`** — the archive's identity (name, description,
   curator, source). Set once in Lab 1, read everywhere, never hard-coded.
 - **`sources.config.js`** — the contributor's three *standing* interview
@@ -100,8 +107,9 @@ generations: {
   expand in place is a Sprint 1 design decision, not something to guess at
   before search exists. Currently everything renders inline on `/`.
 - **Photos never depict identifiable people, by policy — not per-source
-  consent.** Every entry needs a real photo (skeleton requirement), but
-  it's always of a place, object, or the script itself, never a portrait.
+  consent.** A photo is now optional, confirmed with the professor, since
+  entries are words, not places or people, but it's always of a place,
+  object, or the script itself, never a portrait.
   This removes the need for a separate photo-consent field entirely;
   `consentToCredit` (naming/quoting) is the only per-source consent
   tracked. `components/entrycard/EntryPhoto.js` renders it (an `<img>`,
@@ -125,6 +133,14 @@ generations: {
   the logic in Node, not by visual inspection alone.
 
 ## Current status: what's real vs. placeholder
+
+Since Lab 6, the actual entry content — all 10 terms — lives in the
+Supabase `entries` table, not in `data/entries.js` (deleted) or
+`entry-sketch.md`. For ungathered optional fields the database uses a
+real SQL `NULL`, not the literal string `"PLACEHOLDER"` — that convention
+(`"PLACEHOLDER"`, `consentToCredit: false`) now applies only to
+`entry-sketch.md` and `sources.config.js` as reference/planning docs,
+never to the live `entries` table.
 
 Entry *content* (the definitions, categories, usage notes for `bong`,
 `oun`, `ming`, `pou`, `om`, `ta`, `yay`, `chao`, `puk`, `mak`, and so on) is accurate, common Khmer vocabulary — safe to
@@ -154,8 +170,8 @@ no approval.
 
 | File | Job |
 |---|---|
-| `data/entries.js` | The real entry data, moved out of `app/page.js` |
-| `app/entries/page.js` | The browse page — the actual archive; `/` is a short landing page only |
+| `app/entries/page.js` | An async Server Component that queries the Supabase `entries` table directly (select all, newest first) — reads live from Supabase, no data-file import; on-theme fallback block for zero rows or a query error |
+| `app/entries/loading.js` | Loading state shown automatically by Next while the `/entries` query runs |
 | `components/EntryList.js` | Renders entries in a responsive grid (2 columns desktop, 1 on narrow screens) |
 | `components/EntryListStyles.js` | Style tokens (search input + empty state) for the browse view |
 | `components/EntrySearchInput.js` | The single search input above the grid (controlled `value`/`onChange`) |
@@ -211,3 +227,8 @@ enumerate which accounts exist. On success each form redirects to `/`.
 email and a logout button on every route, or `/login` and `/signup` links when
 signed out. Ownership (editing and deleting only your own entries) has not
 started yet — that's the remaining half of Sprint 2.
+
+The `entries` table and its four RLS policies are live, Sprint 1's 10
+entries are migrated with the student's own account as owner, and `/entries`
+reads from Supabase instead of the retired data file. Ownership (editing and
+deleting only your own entries) is still the remaining piece of Sprint 2.
