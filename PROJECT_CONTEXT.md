@@ -45,7 +45,6 @@ shape, so you know what to go read.
   read; only an entry's owner can insert/update/delete) were added in Lab 6.
   `generations` is stored as a single `jsonb` column, not a separate table.
 - **`collection.config.js`** — the archive's identity (name, description,
-- **`collection.config.js`** — the archive's identity (name, description,
   curator, source). Set once in Lab 1, read everywhere, never hard-coded.
 - **`sources.config.js`** — the contributor's three *standing* interview
   sources, one per age cohort (`elder`, `middle`, `peer`). Most entries cite
@@ -105,16 +104,18 @@ generations: {
 - **No dedicated per-entry route (`app/entries/[id]/page.js`) yet.**
   Deliberately deferred — whether search results link to a detail page or
   expand in place is a Sprint 1 design decision, not something to guess at
-  before search exists. Currently everything renders inline on `/`.
+  before search exists. Currently everything renders inline on `/entries`.
 - **Photos never depict identifiable people, by policy — not per-source
   consent.** A photo is now optional, confirmed with the professor, since
   entries are words, not places or people, but it's always of a place,
   object, or the script itself, never a portrait.
+  The default photo is a hand-written image of the word itself in Khmer
+  script, and a photo appears only when the contributor supplies one.
   This removes the need for a separate photo-consent field entirely;
   `consentToCredit` (naming/quoting) is the only per-source consent
   tracked. `components/entrycard/EntryPhoto.js` renders it (an `<img>`,
   gated on `entry.photo_url` being set) and replaces the old
-  `EntryPhoto.js`, which was quietly dead code after the generations
+  `EntrySource.js`, which was quietly dead code after the generations
   redesign — it referenced entry-level source fields
   (`entry.source_name`, etc.) that no longer exist anywhere.
 - **`/` and `/entries` are separate routes, not one page.** `/` stays
@@ -146,13 +147,19 @@ Entry *content* (the definitions, categories, usage notes for `bong`,
 `oun`, `ming`, `pou`, `om`, `ta`, `yay`, `chao`, `puk`, `mak`, and so on) is accurate, common Khmer vocabulary — safe to
 treat as real.
 
-Everything tied to actual interviews — `sources.config.js` names/consent,
-every `generations.*.still_used`/`.note`/`.alternate_term`, and each
-entry's `photo_caption`/`photo_credit`/`region_or_family_variation` —
-starts out as a literal `"PLACEHOLDER"` string or `consentToCredit: false`,
-and gets replaced field by field as real interviews happen. That list
-changes too often to keep accurate here, so don't trust a status written
-in this doc — check the live files instead:
+In entry-sketch.md and sources.config.js, uncollected interview details
+(sources.config.js names/consent, generations.*.still_used/.note/
+.alternate_term, photo_caption/photo_credit/region_or_family_variation)
+start as the literal string "PLACEHOLDER" or consentToCredit: false and
+are replaced field by field as interviews happen.
+
+In the live Supabase `entries` table, those same not-yet-gathered fields
+are real SQL NULL. Besides the auto-generated uuid `id`, only five columns
+are NOT NULL: term_khmer, term_romanized, category, relation_described,
+generations.
+
+The two grep commands below check only the two planning files; NULLs in
+the live table are checked in the Supabase dashboard, not by grep.
 
 ```bash
 grep -rn "PLACEHOLDER" entry-sketch.md sources.config.js
@@ -184,7 +191,8 @@ no approval.
 | `lib/generations.js` | Cohort order/labels, status→color/width map, source-resolution helper |
 | `lib/searchEntries.js` | Case-insensitive match logic across the five searchable fields |
 | `lib/supabase/client.js` | Browser Supabase client (`@supabase/ssr`) — used by the auth pages and `AuthStatus` |
-| `lib/supabase/server.js` | Server Supabase client, wired to `next/headers` `cookies()` |
+| `lib/supabase/server.js` | Server Supabase client — `createClient()` is async and awaits `cookies()`, so callers must `await createClient()` |
+| `middleware.js` (repo root) | Refreshes the Supabase auth session cookies on every non-asset request (getClaims, plus Supabase's cache headers on the response); no redirects, no route protection. |
 | `app/login/page.js` | Login page — generic "Invalid email or password" error on any auth failure (no enumeration) |
 | `app/signup/page.js` | Signup page — generic error on failure |
 | `components/AuthStatus.js` | Header status — email + logout when signed in, `/login` + `/signup` links when signed out; mounted in `app/layout.js` so it shows on every route |
@@ -232,3 +240,15 @@ The `entries` table and its four RLS policies are live, Sprint 1's 10
 entries are migrated with the student's own account as owner, and `/entries`
 reads from Supabase instead of the retired data file. Ownership (editing and
 deleting only your own entries) is still the remaining piece of Sprint 2.
+
+Creating the `entries` table via raw SQL skipped the table-level GRANTs
+that the Supabase Dashboard adds automatically, so RLS policies alone were
+not enough; fixed with `grant select on public.entries to anon,
+authenticated;` and `grant insert, update, delete on public.entries to
+authenticated;`. Postgres error 42501 "permission denied for table" with a
+GRANT hint means this, and it fires before RLS is even evaluated.
+`lib/supabase/server.js`'s `createClient` is now async (awaits `cookies()`,
+the Next 15 pattern) and `app/entries/page.js` awaits it. A root
+`middleware.js` now refreshes session cookies so Server Components, which
+can't write cookies, see a valid session. Ownership (edit/delete only your
+own entries) is still the remaining Sprint 2 feature.
