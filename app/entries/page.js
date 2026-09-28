@@ -60,7 +60,7 @@ const styles = {
 };
 
 export default async function Entries() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // Fetch every column, newest first. A query error and an empty result both
   // mean the grid has nothing to show — send both down the same path.
