@@ -5,9 +5,10 @@ needs, and the entries gathered so far. Read this before touching the code
 in `components/entrycard/` — the components are a direct rendering of the
 shape described here.
 
-This is the *content* shape only. Account/ownership/review fields
-(`owner_id`, `status`, `reviewed_by`, `submitted_at`, `published_at`) are
-app-managed and get added when the database is built in Sprint 1.
+This is the *content* shape only. Ownership is stored in an `owner` column
+(uuid, references auth.users) added in Sprint 2 when the database was built;
+the review-workflow fields (`status`, `reviewed_by`, `submitted_at`,
+`published_at`) are planned for Sprint 3 and are not built yet.
 
 ## The pitch, and why the schema looks like this
 
@@ -56,11 +57,16 @@ exist without it. Everything else is nullable: real when gathered, `NULL`
 (not a placeholder string) until then. A contributor's entry is theirs to
 finish; the schema shouldn't block them from saving a real, partial entry.
 
+Every row in the live table also has an auto-generated uuid `id` primary key
+and the `owner` column, both app-managed and not content fields; the short
+slug used as `id:` in the sample entry blocks below (`bong`, `bong-srey`) was
+a planning identifier only, is not stored in the database, and nothing routes
+on it.
+
 ### Entry-level required fields (`NOT NULL`)
 
 | Field | Type | Description | Example |
 |---|---|---|---|
-| `id` | slug | Short unique identifier, lowercase, hyphenated | `bong-srey` |
 | `term_khmer` | text | The term in Khmer script | បងស្រី |
 | `term_romanized` | text | Latin transliteration, so it's searchable without Khmer script | Bong Srey |
 | `category` | enum | See controlled vocabulary below | Same generation |
@@ -510,6 +516,7 @@ generations.peer.note: Calls her father Puk, not the "too textbook" formal "ov"/
   `EntrySource.js`, which read entry-level source fields that no longer
   exist on any entry.
 
-If you change a field name here, update the matching code files to match —
-nothing enforces the connection automatically until there's a real database
-and validation in a later sprint.
+If you change a field name here, update the matching code files and the
+Supabase `entries` column too — the database enforces only the NOT NULL
+columns, and nothing keeps this file, the code, and the table in sync
+automatically.

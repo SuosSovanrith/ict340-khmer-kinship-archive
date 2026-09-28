@@ -1,10 +1,10 @@
 import { styles } from "./EntryCardStyles.js";
 
-// Renders the entry's required photo (skeleton: text + at least one photo
-// per entry). Per this archive's policy (see entry-sketch.md), the photo
-// is always of a place, object, or the script itself — never an
-// identifiable portrait — so there's no per-photo consent to check here.
-// Renders nothing until a real photo_url is set.
+// Renders the entry's photo if it has one; a photo is optional (confirmed
+// with the professor); per this archive's policy (see entry-sketch.md) it is
+// never an identifiable portrait — the default is a hand-written image of
+// the word itself in Khmer script — so there is no per-photo consent to
+// check here; renders nothing when photo_url is empty.
 export default function EntryPhoto({ entry }) {
   if (!entry.photo_url) return null;
 
