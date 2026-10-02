@@ -3,7 +3,6 @@ import EntryHeader from "./EntryHeader.js";
 import EntryFacts from "./EntryFacts.js";
 import EntryUsageNotes from "./EntryUsageNotes.js";
 import GenerationExplorer from "./GenerationExplorer.js";
-import EntryExample from "./EntryExample.js";
 import EntryTags from "./EntryTags.js";
 import EntryPhoto from "./EntryPhoto.js";
 
@@ -18,7 +17,6 @@ export default function EntryCard({ entry, query = "" }) {
       <EntryFacts entry={entry} query={query} />
       <EntryUsageNotes entry={entry} />
       <GenerationExplorer entry={entry} />
-      <EntryExample entry={entry} />
       <EntryTags entry={entry} query={query} />
       <EntryPhoto entry={entry} />
     </article>

@@ -159,24 +159,6 @@ export const styles = {
     color: colors.muted,
     margin: 0,
   },
-  example: {
-    margin: "0 0 20px",
-    padding: "14px 18px",
-    backgroundColor: colors.surfaceAlt,
-    borderRadius: 6,
-  },
-  exampleKhmer: {
-    fontFamily: fonts.khmer,
-    fontSize: 18,
-    color: colors.goldSoft,
-    margin: 0,
-  },
-  exampleTrans: {
-    fontSize: 14,
-    color: colors.muted,
-    margin: "6px 0 0",
-    fontStyle: "italic",
-  },
   tags: {
     display: "flex",
     flexWrap: "wrap",

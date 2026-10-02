@@ -95,7 +95,6 @@ it is still a complete entry, just a thinner one.
 | `photo_url` | text | Path/URL to the actual image file, e.g. `/photos/pou.jpg` once saved under `public/photos/` | Once a photo exists for this entry — see photo policy: a photo is not required at all |
 | `pronunciation` | text | Short phonetic guide (not audio — see note below) | Easy to add, low cost either way |
 | `region_or_family_variation` | text | Note when another province or family uses a different word or usage rule for the *same* relationship | You're interviewing sources from more than one province/family |
-| `example_sentence_khmer` / `example_sentence_translation` | text | A real sentence using the term, + translation | You have time for polish |
 | `generations.<cohort>.alternate_term` | text | The different word this cohort uses instead, if `still_used` is "Replaced" | Only when relevant |
 | `generations.<cohort>.source_override` | text | Short description of who answered for this *specific* term, if not your standing source for that cohort, e.g. "Neighbor, elder-age, interviewed at the market — consent: yes" | Only when this term's source differs from `sources.config.js` |
 
@@ -196,8 +195,6 @@ relation_described: Older sister, or an older female cousin addressed the same w
 also_used_for_non_relatives: Yes — commonly used for any woman somewhat older than the speaker, related or not
 usage_notes: Said directly before the person's name; a younger sibling or cousin would never use this toward someone younger than themselves
 region_or_family_variation: [TO FILL FROM INTERVIEW]
-example_sentence_khmer: [OPTIONAL]
-example_sentence_translation: [OPTIONAL]
 tags: sibling, elder-address, common
 photo_url: [REPLACE]
 photo_caption: [REPLACE]

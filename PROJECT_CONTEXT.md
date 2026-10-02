@@ -197,7 +197,7 @@ no approval.
 | `app/signup/page.js` | Signup page — generic error on failure |
 | `components/AuthStatus.js` | Header status — email + logout when signed in, `/login` + `/signup` links when signed out; mounted in `app/layout.js` so it shows on every route |
 | `components/entrycard/EntryCard.js` | Composes one entry's card from the sub-components below |
-| `components/entrycard/EntryHeader.js`, `EntryFacts.js`, `EntryUsageNotes.js`, `EntryExample.js`, `EntryTags.js`, `EntryPhoto.js`, `Fact.js` | Individual card sections |
+| `components/entrycard/EntryHeader.js`, `EntryFacts.js`, `EntryUsageNotes.js`, `EntryTags.js`, `EntryPhoto.js`, `Fact.js` | Individual card sections |
 | `components/entrycard/GenerationExplorer.js` | Client component: the tab UI + fade-transition state machine |
 | `components/entrycard/GenerationPanel.js` | Renders one cohort's answer (status bar, note, credited source) |
 | `app/page.js` | Short landing page — collection identity only, from `collection.config.js` (name/description/curator/source), links to `/entries` |
