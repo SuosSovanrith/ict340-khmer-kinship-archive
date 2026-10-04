@@ -155,7 +155,7 @@ export default function ContributeForm() {
             value={form.category}
             onChange={(e) => setField("category", e.target.value)}
           >
-            <option value="">Choose a generation…</option>
+            <option value="">Choose a category…</option>
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
                 {c}

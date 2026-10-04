@@ -1,8 +1,8 @@
 import Link from "next/link";
-import collection from "../collection.config.js";
-import { createClient } from "../lib/supabase/server.js";
-import ContributeForm from "../components/contribute/ContributeForm.js";
-import { styles } from "../components/contribute/ContributeStyles.js";
+import collection from "../../collection.config.js";
+import { createClient } from "../../lib/supabase/server.js";
+import ContributeForm from "../../components/contribute/ContributeForm.js";
+import { styles } from "../../components/contribute/ContributeStyles.js";
 
 export const metadata = {
   title: `Contribute — ${collection.name}`,
