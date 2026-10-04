@@ -8,13 +8,13 @@
 import FormField from "./FormField.js";
 import { styles } from "./ContributeStyles.js";
 
-export default function PhotoFields({ form, errors, onChange, onPhotoFile }) {
+export default function PhotoFields({ form, errors, onChange, onPhotoFile, required = true }) {
   return (
     <div style={styles.section}>
       <p style={styles.sectionLabel}>Photo</p>
       <div style={styles.field}>
         <label style={styles.label} htmlFor="photo">
-          PHOTO <span style={styles.required}>*</span>
+          PHOTO {required ? <span style={styles.required}>*</span> : <span style={styles.hint}>(optional, keep current unless you pick a new one)</span>}
         </label>
         <input
           id="photo"

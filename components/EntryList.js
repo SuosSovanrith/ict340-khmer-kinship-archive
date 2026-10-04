@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EntryCard from "./entrycard/EntryCard.js";
 import { entryMatches } from "../lib/searchEntries.js";
 import EntrySearchInput from "./EntrySearchInput.js";
 import EntrySearchEmptyState from "./EntrySearchEmptyState.js";
+import { createClient } from "../lib/supabase/client.js";
 import { styles } from "./EntryListStyles.js";
 
 // Orchestrates the /entries browse view. Owns the search `query` state, filters
@@ -15,7 +16,22 @@ import { styles } from "./EntryListStyles.js";
 // rather than an inline style object — inline styles have no media queries.
 export default function EntryList({ entries }) {
   const [query, setQuery] = useState("");
+  const [currentUserId, setCurrentUserId] = useState(null);
   const q = query.trim().toLowerCase();
+
+  // The current user's id drives the owner-only Edit/Delete buttons. No session
+  // (logged out) → null → no buttons; RLS remains the real enforcement.
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const { data } = await createClient().auth.getUser();
+        setCurrentUserId(data.user ? data.user.id : null);
+      } catch {
+        setCurrentUserId(null);
+      }
+    };
+    load();
+  }, []);
 
   // Empty (or whitespace-only) search shows every entry — no minimum length gate.
   const visible = q === "" ? entries : entries.filter((e) => entryMatches(e, q));
@@ -33,7 +49,12 @@ export default function EntryList({ entries }) {
         // Grid markup and CSS are untouched — only which cards render changes.
         <div className="entry-grid">
           {visible.map((entry) => (
-            <EntryCard key={entry.id} entry={entry} query={query} />
+            <EntryCard
+              key={entry.id}
+              entry={entry}
+              query={query}
+              currentUserId={currentUserId}
+            />
           ))}
         </div>
       )}
