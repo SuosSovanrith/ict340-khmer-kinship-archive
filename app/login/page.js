@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { createClient } from "../../lib/supabase/client.js";
+import BackLink from "../../components/BackLink.js";
 import { colors, fonts } from "../../lib/theme.js";
 
 const styles = {
@@ -103,6 +104,7 @@ export default function Login() {
 
   return (
     <main style={styles.wrap}>
+      <BackLink href="/" label="Home" />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Log in</h1>
       <p style={styles.sub}>Sign in to manage your contributed terms.</p>

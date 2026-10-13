@@ -1,4 +1,5 @@
 import EntryList from "../../components/EntryList.js";
+import BackLink from "../../components/BackLink.js";
 import { createClient } from "../../lib/supabase/server.js";
 import { colors, fonts } from "../../lib/theme.js";
 
@@ -84,6 +85,7 @@ export default async function Entries() {
 
   return (
     <main style={styles.wrap}>
+      <BackLink href="/" label="Home" />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Browse the terms</h1>
       <p style={styles.sub}>

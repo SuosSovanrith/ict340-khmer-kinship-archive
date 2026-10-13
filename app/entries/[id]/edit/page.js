@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import collection from "../../../../collection.config.js";
 import { createClient } from "../../../../lib/supabase/server.js";
 import ContributeForm from "../../../../components/contribute/ContributeForm.js";
+import BackLink from "../../../../components/BackLink.js";
 import { styles } from "../../../../components/contribute/ContributeStyles.js";
 
 export const metadata = {
@@ -30,6 +31,7 @@ export default async function EditEntryPage({ params }) {
 
   return (
     <main style={styles.wrap}>
+      <BackLink href="/entries" label="Entries" />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Edit entry</h1>
       <p style={styles.sub}>Update your term; changes are saved to the archive.</p>
