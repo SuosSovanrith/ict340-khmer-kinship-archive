@@ -23,6 +23,7 @@ export default function TagsEditor({ tags, onChange, error }) {
       {tags.map((tag, i) => (
         <div key={i} style={styles.tagRow}>
           <input
+            data-field="tags"
             style={styles.tagInput}
             value={tag}
             maxLength={32}
@@ -39,7 +40,7 @@ export default function TagsEditor({ tags, onChange, error }) {
         </div>
       ))}
       {tags.length < 8 && (
-        <button type="button" style={styles.smallButton} onClick={add}>
+        <button type="button" data-field="tags" style={styles.smallButton} onClick={add}>
           + Add tag
         </button>
       )}

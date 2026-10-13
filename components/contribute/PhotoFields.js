@@ -18,6 +18,7 @@ export default function PhotoFields({ form, errors, onChange, onPhotoFile, requi
         </label>
         <input
           id="photo"
+          data-field="photo"
           type="file"
           accept="image/jpeg,image/png,image/webp"
           style={{ ...styles.input, padding: 10 }}
@@ -33,6 +34,7 @@ export default function PhotoFields({ form, errors, onChange, onPhotoFile, requi
       <FormField
         label="PHOTO CAPTION"
         id="photo-caption"
+        field="photo_caption"
         hint="(optional, max 128)"
         value={form.photo_caption}
         onChange={(value) => onChange("photo_caption", value)}
@@ -41,6 +43,7 @@ export default function PhotoFields({ form, errors, onChange, onPhotoFile, requi
       <FormField
         label="PHOTO CREDIT"
         id="photo-credit"
+        field="photo_credit"
         hint="(optional, max 64)"
         value={form.photo_credit}
         onChange={(value) => onChange("photo_credit", value)}

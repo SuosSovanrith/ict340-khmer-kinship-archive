@@ -84,19 +84,19 @@ export default function ContributeForm({ entry }) {
   return (
     <main style={styles.wrap}>
       <form style={styles.form} onSubmit={handleSubmit}>
-        <FormField label="TERM IN KHMER" id="term-khmer" required value={form.term_khmer} onChange={(v) => setField("term_khmer", v)} error={errors.term_khmer} />
-        <FormField label="ROMANIZED" id="term-romanized" required value={form.term_romanized} onChange={(v) => setField("term_romanized", v)} error={errors.term_romanized} />
-        <FormField label="PRONUNCIATION" id="pronunciation" hint="(optional, max 32)" value={form.pronunciation} onChange={(v) => setField("pronunciation", v)} error={errors.pronunciation} />
-        <FormField label="CATEGORY" id="category" required as="select" value={form.category} onChange={(v) => setField("category", v)} error={errors.category}>
+        <FormField label="TERM IN KHMER" id="term-khmer" field="term_khmer" required value={form.term_khmer} onChange={(v) => setField("term_khmer", v)} error={errors.term_khmer} />
+        <FormField label="ROMANIZED" id="term-romanized" field="term_romanized" required value={form.term_romanized} onChange={(v) => setField("term_romanized", v)} error={errors.term_romanized} />
+        <FormField label="PRONUNCIATION" id="pronunciation" field="pronunciation" hint="(optional, max 32)" value={form.pronunciation} onChange={(v) => setField("pronunciation", v)} error={errors.pronunciation} />
+        <FormField label="CATEGORY" id="category" field="category" required as="select" value={form.category} onChange={(v) => setField("category", v)} error={errors.category}>
           <option value="">Choose a category…</option>
           {CATEGORIES.map((c) => (
             <option key={c} value={c}>{c}</option>
           ))}
         </FormField>
-        <FormField label="RELATION DESCRIBED" id="relation-described" required as="textarea" value={form.relation_described} onChange={(v) => setField("relation_described", v)} error={errors.relation_described} />
-        <FormField label="ALSO USED FOR NON-RELATIVES" id="also-used" hint="(optional, max 300)" as="textarea" value={form.also_used_for_non_relatives} onChange={(v) => setField("also_used_for_non_relatives", v)} error={errors.also_used_for_non_relatives} />
-        <FormField label="USAGE NOTES" id="usage-notes" hint="(optional, max 300)" as="textarea" value={form.usage_notes} onChange={(v) => setField("usage_notes", v)} error={errors.usage_notes} />
-        <FormField label="REGION OR FAMILY VARIATION" id="region-variation" hint="(optional, max 1000)" as="textarea" value={form.region_or_family_variation} onChange={(v) => setField("region_or_family_variation", v)} error={errors.region_or_family_variation} />
+        <FormField label="RELATION DESCRIBED" id="relation-described" field="relation_described" required as="textarea" value={form.relation_described} onChange={(v) => setField("relation_described", v)} error={errors.relation_described} />
+        <FormField label="ALSO USED FOR NON-RELATIVES" id="also-used" field="also_used_for_non_relatives" hint="(optional, max 300)" as="textarea" value={form.also_used_for_non_relatives} onChange={(v) => setField("also_used_for_non_relatives", v)} error={errors.also_used_for_non_relatives} />
+        <FormField label="USAGE NOTES" id="usage-notes" field="usage_notes" hint="(optional, max 300)" as="textarea" value={form.usage_notes} onChange={(v) => setField("usage_notes", v)} error={errors.usage_notes} />
+        <FormField label="REGION OR FAMILY VARIATION" id="region-variation" field="region_or_family_variation" hint="(optional, max 1000)" as="textarea" value={form.region_or_family_variation} onChange={(v) => setField("region_or_family_variation", v)} error={errors.region_or_family_variation} />
         <PhotoFields form={form} errors={errors} onChange={setField} onPhotoFile={setPhotoFile} required={!isEdit} />
 
         <div style={styles.section}>

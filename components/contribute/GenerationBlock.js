@@ -26,6 +26,7 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
         </label>
         <select
           id={`${genKey}-still-used`}
+          data-field={`generations.${genKey}.still_used`}
           style={controlStyle("still_used", styles.select)}
           value={gen.still_used}
           onChange={(e) => set("still_used", e.target.value)}
@@ -46,6 +47,7 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
         </label>
         <textarea
           id={`${genKey}-note`}
+          data-field={`generations.${genKey}.note`}
           style={controlStyle("note", styles.textarea)}
           value={gen.note}
           onChange={(e) => set("note", e.target.value)}
@@ -60,6 +62,7 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
           </label>
           <input
             id={`${genKey}-alternate`}
+            data-field={`generations.${genKey}.alternate_term`}
             style={controlStyle("alternate_term", styles.input)}
             value={gen.alternate_term}
             onChange={(e) => set("alternate_term", e.target.value)}
@@ -76,6 +79,7 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
         </label>
         <input
           id={`${genKey}-source-override`}
+          data-field={`generations.${genKey}.source_override`}
           style={styles.input}
           value={gen.source_override}
           onChange={(e) => set("source_override", e.target.value)}

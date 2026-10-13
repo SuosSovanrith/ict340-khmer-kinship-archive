@@ -10,6 +10,10 @@ import { styles } from "./ContributeStyles.js";
 export default function FormField({
   label,
   id,
+  // field names the error key this control can produce. It becomes data-field
+  // on the control, which the submit handler uses to find and focus the first
+  // invalid field in DOM (page) order — no guessing ids.
+  field = "",
   required,
   hint,
   as = "input",
@@ -30,6 +34,7 @@ export default function FormField({
     as === "textarea" ? (
       <textarea
         id={id}
+        data-field={field}
         style={controlStyle(base)}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -37,6 +42,7 @@ export default function FormField({
     ) : as === "select" ? (
       <select
         id={id}
+        data-field={field}
         style={controlStyle(base)}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -46,6 +52,7 @@ export default function FormField({
     ) : (
       <input
         id={id}
+        data-field={field}
         style={controlStyle(base)}
         value={value}
         onChange={(e) => onChange(e.target.value)}
