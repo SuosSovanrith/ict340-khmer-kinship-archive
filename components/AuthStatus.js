@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { createClient } from "../lib/supabase/client.js";
 import { colors, fonts } from "../lib/theme.js";
+import ContributeLink from "./ContributeLink.js";
 
 // One browser client shared by this component, so getSession,
 // onAuthStateChange, and signOut all see the same session.
@@ -35,6 +36,7 @@ const styles = {
 export default function AuthStatus() {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [known, setKnown] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
@@ -43,11 +45,13 @@ export default function AuthStatus() {
     const loadSession = async () => {
       const { data } = await supabase.auth.getSession();
       setUser(data.session ? data.session.user : null);
+      setKnown(true);
     };
     loadSession();
 
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session ? session.user : null);
+      setKnown(true);
     });
 
     return () => data.subscription.unsubscribe();
@@ -59,9 +63,12 @@ export default function AuthStatus() {
     router.push("/");
   }
 
+  if (!known) return null;
+
   if (user) {
     return (
       <div style={styles.bar}>
+        <ContributeLink authenticated />
         <span style={styles.email}>{user.email}</span>
         <button
           style={styles.button}
@@ -76,6 +83,7 @@ export default function AuthStatus() {
 
   return (
     <div style={styles.bar}>
+      <ContributeLink authenticated={false} />
       <Link style={styles.link} href="/login">Log in</Link>
       <span style={styles.sep}>·</span>
       <Link style={styles.link} href="/signup">Sign up</Link>
