@@ -53,6 +53,10 @@ const styles = {
     borderRadius: 8,
     fontFamily: fonts.sans,
     outline: "none",
+    // Dark color scheme makes the browser render its native password
+    // reveal eye icon light/white instead of black (which was invisible
+    // against this dark background).
+    colorScheme: "dark",
   },
   button: {
     padding: "14px 20px",
