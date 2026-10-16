@@ -12,13 +12,29 @@ import ContributeLink from "./ContributeLink.js";
 const supabase = createClient();
 
 const styles = {
-  bar: { display: "flex", alignItems: "center", gap: 12 },
-  email: { fontFamily: fonts.mono, fontSize: 13, color: colors.muted },
+  bar: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    flexWrap: "wrap",
+    justifyContent: "flex-end",
+    minWidth: 0,
+  },
+  email: {
+    fontFamily: fonts.mono,
+    fontSize: 13,
+    color: colors.muted,
+    minWidth: 0,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
   link: {
     fontFamily: fonts.mono,
     fontSize: 13,
     color: colors.gold,
     textDecoration: "none",
+    whiteSpace: "nowrap",
   },
   sep: { fontFamily: fonts.mono, fontSize: 13, color: colors.faint },
   button: {
@@ -30,6 +46,7 @@ const styles = {
     borderRadius: 6,
     padding: "6px 12px",
     cursor: "pointer",
+    whiteSpace: "nowrap",
   },
 };
 

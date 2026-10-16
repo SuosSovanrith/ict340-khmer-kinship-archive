@@ -8,7 +8,7 @@ const styles = {
     justifyContent: "flex-end",
     alignItems: "center",
     gap: 12,
-    padding: "12px 24px",
+    padding: "12px clamp(12px, 4vw, 24px)",
     borderBottom: `1px solid ${colors.border}`,
     backgroundColor: colors.surface,
   },

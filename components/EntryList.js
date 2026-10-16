@@ -68,7 +68,7 @@ export default function EntryList({ entries }) {
 
         @media (max-width: 700px) {
           .entry-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
           }
         }
       `}</style>

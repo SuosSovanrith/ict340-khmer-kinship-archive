@@ -10,12 +10,14 @@ const styles = {
     fontSize: 13,
     color: colors.gold,
     textDecoration: "none",
+    whiteSpace: "nowrap",
   },
   hint: {
     fontFamily: fonts.mono,
     fontSize: 13,
     color: colors.muted,
     textDecoration: "none",
+    whiteSpace: "nowrap",
   },
   active: {
     fontFamily: fonts.mono,
@@ -26,6 +28,7 @@ const styles = {
     borderRadius: 6,
     padding: "6px 12px",
     textDecoration: "none",
+    whiteSpace: "nowrap",
   },
 };
 

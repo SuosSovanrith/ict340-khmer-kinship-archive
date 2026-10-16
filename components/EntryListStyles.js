@@ -14,6 +14,7 @@ export const styles = {
   },
   searchInput: {
     width: "100%",
+    boxSizing: "border-box",
     padding: "14px 16px",
     fontSize: 16,
     color: colors.text,
