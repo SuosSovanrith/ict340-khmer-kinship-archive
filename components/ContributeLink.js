@@ -11,6 +11,7 @@ const styles = {
     color: colors.gold,
     textDecoration: "none",
     whiteSpace: "nowrap",
+    flexShrink: 0,
   },
   hint: {
     fontFamily: fonts.mono,
@@ -18,6 +19,7 @@ const styles = {
     color: colors.muted,
     textDecoration: "none",
     whiteSpace: "nowrap",
+    flexShrink: 0,
   },
   active: {
     fontFamily: fonts.mono,
@@ -29,6 +31,7 @@ const styles = {
     padding: "6px 12px",
     textDecoration: "none",
     whiteSpace: "nowrap",
+    flexShrink: 0,
   },
 };
 

@@ -4,7 +4,7 @@ import { styles } from "./EntryCardStyles.js";
 
 export default function EntryFacts({ entry, query = "" }) {
   return (
-    <dl style={styles.facts}>
+    <dl className="entry-facts" style={styles.facts}>
       <Fact
         label="Relation"
         value={<HighlightText text={entry.relation_described} query={query} />}

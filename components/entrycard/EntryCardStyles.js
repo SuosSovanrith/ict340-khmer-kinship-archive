@@ -6,7 +6,7 @@ export const styles = {
     backgroundColor: colors.surface,
     border: `1px solid ${colors.border}`,
     borderRadius: 12,
-    padding: 28,
+    padding: "clamp(16px, 5vw, 28px)",
     marginBottom: 24,
   },
   header: {
@@ -50,9 +50,6 @@ export const styles = {
     letterSpacing: 0.5,
   },
   facts: {
-    display: "grid",
-    gridTemplateColumns: "auto 1fr",
-    gap: "12px 16px",
     margin: "0 0 20px",
     padding: 0,
   },
@@ -73,16 +70,18 @@ export const styles = {
     margin: "4px 0 0",
     paddingLeft: 10,
     borderLeft: `1px solid ${colors.border}`,
+    overflowWrap: "anywhere",
   },
   usageNotes: {
     fontSize: 15,
     lineHeight: 1.6,
     color: colors.text,
     margin: "0 0 20px",
+    overflowWrap: "anywhere",
   },
   genExplorer: {
     margin: "0 0 20px",
-    padding: "18px 20px",
+    padding: "clamp(14px, 4vw, 18px) clamp(14px, 4vw, 20px)",
     backgroundColor: colors.surfaceAlt,
     borderRadius: 6,
     borderLeft: `3px solid ${colors.gold}`,
@@ -97,6 +96,7 @@ export const styles = {
   },
   genTabs: {
     display: "flex",
+    flexWrap: "wrap",
     gap: 8,
     marginBottom: 16,
   },
@@ -109,6 +109,7 @@ export const styles = {
     backgroundColor: "transparent",
     color: colors.muted,
     cursor: "pointer",
+    whiteSpace: "nowrap",
   },
  genTabActive: {
     border: `1px solid ${colors.gold}`,
@@ -153,11 +154,13 @@ export const styles = {
     color: colors.text,
     margin: "0 0 8px",
     fontStyle: "italic",
+    overflowWrap: "anywhere",
   },
   genSource: {
     fontSize: 13,
     color: colors.muted,
     margin: 0,
+    overflowWrap: "anywhere",
   },
   tags: {
     display: "flex",

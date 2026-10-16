@@ -15,8 +15,8 @@ const styles = {
   bar: {
     display: "flex",
     alignItems: "center",
-    gap: 12,
-    flexWrap: "wrap",
+    gap: "clamp(6px, 2.5vw, 12px)",
+    flexWrap: "nowrap",
     justifyContent: "flex-end",
     minWidth: 0,
   },
@@ -24,6 +24,7 @@ const styles = {
     fontFamily: fonts.mono,
     fontSize: 13,
     color: colors.muted,
+    flex: "0 1 auto",
     minWidth: 0,
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -35,8 +36,14 @@ const styles = {
     color: colors.gold,
     textDecoration: "none",
     whiteSpace: "nowrap",
+    flexShrink: 0,
   },
-  sep: { fontFamily: fonts.mono, fontSize: 13, color: colors.faint },
+  sep: {
+    fontFamily: fonts.mono,
+    fontSize: 13,
+    color: colors.faint,
+    flexShrink: 0,
+  },
   button: {
     fontFamily: fonts.mono,
     fontSize: 13,
@@ -47,6 +54,7 @@ const styles = {
     padding: "6px 12px",
     cursor: "pointer",
     whiteSpace: "nowrap",
+    flexShrink: 0,
   },
 };
 
