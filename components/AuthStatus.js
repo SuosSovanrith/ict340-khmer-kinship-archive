@@ -107,6 +107,12 @@ export default function AuthStatus() {
     loadSession();
 
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      // Clear any leftover "signing out" flag the moment the auth state
+      // changes (e.g. a fresh login after an earlier logout). Otherwise a
+      // logout on this tab leaves signingOut=true, and the button would stay
+      // permanently stuck on "Signing out…" after logging back in without a
+      // refresh.
+      setSigningOut(false);
       setUser(session ? session.user : null);
       setKnown(true);
     });
