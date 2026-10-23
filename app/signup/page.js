@@ -6,6 +6,11 @@ import Link from "next/link";
 import { createClient } from "../../lib/supabase/client.js";
 import BackLink from "../../components/BackLink.js";
 import { colors, fonts } from "../../lib/theme.js";
+import {
+  normalizeUsername,
+  validateUsername,
+  USERNAME_HINT,
+} from "../../lib/username.js";
 
 const styles = {
   wrap: {
@@ -70,6 +75,17 @@ const styles = {
     fontFamily: fonts.sans,
   },
   error: { color: colors.gold, fontSize: 14, margin: "0 0 20px" },
+  hint: {
+    color: colors.faint,
+    fontSize: 12,
+    margin: "6px 0 0",
+    lineHeight: 1.5,
+  },
+  fieldError: {
+    color: colors.gold,
+    fontSize: 13,
+    margin: "6px 0 0",
+  },
   footer: {
     marginTop: 64,
     paddingTop: 24,
@@ -81,6 +97,8 @@ const styles = {
 
 export default function Signup() {
   const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -89,14 +107,64 @@ export default function Signup() {
   async function handleSubmit(event) {
     event.preventDefault();
     setMessage("");
+    setUsernameError("");
     setSubmitting(true);
 
+    // Always submit the normalized value, never the raw input — the stored
+    // username is exactly what the rules validated.
+    const candidate = normalizeUsername(username);
+    const check = validateUsername(candidate);
+    if (check) {
+      setUsernameError(check);
+      setSubmitting(false);
+      return;
+    }
+
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({ email, password });
+    const { data, error: rpcError } = await supabase.rpc(
+      "username_available",
+      { candidate }
+    );
+
+    if (rpcError) {
+      // Availability is unknown — block rather than risk a collision; the
+      // details are for us, never for the user.
+      console.error({
+        status: rpcError.status,
+        code: rpcError.code,
+        message: rpcError.message,
+      });
+      setUsernameError("Could not check that username. Please try again.");
+      setSubmitting(false);
+      return;
+    }
+
+    // Only "exactly true" means it's free. false means taken; anything else
+    // (null/undefined) also means the check didn't come back clean.
+    if (data !== true) {
+      setUsernameError(
+        data === false
+          ? "That username is taken"
+          : "Could not check that username. Please try again."
+      );
+      setSubmitting(false);
+      return;
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { username: candidate } },
+    });
 
     if (error) {
       // Keep sign-up failures generic too — don't reveal that an email is
       // already registered.
+      console.error({
+        status: error.status,
+        code: error.code,
+        message: error.message,
+      });
       setMessage("Could not create your account.");
       setSubmitting(false);
       return;
@@ -115,6 +183,24 @@ export default function Signup() {
       </p>
 
       <form style={styles.form} onSubmit={handleSubmit}>
+        <div style={styles.field}>
+          <label style={styles.label} htmlFor="username">USERNAME</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            style={styles.input}
+            value={username}
+            onChange={(event) => {
+              setUsername(event.target.value);
+              setUsernameError("");
+            }}
+            required
+            autoComplete="nickname"
+          />
+          <p style={styles.hint}>{USERNAME_HINT}</p>
+          {usernameError && <p style={styles.fieldError}>{usernameError}</p>}
+        </div>
         <div style={styles.field}>
           <label style={styles.label} htmlFor="email">EMAIL</label>
           <input
