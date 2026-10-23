@@ -5,6 +5,7 @@ import EntryUsageNotes from "./EntryUsageNotes.js";
 import GenerationExplorer from "./GenerationExplorer.js";
 import EntryTags from "./EntryTags.js";
 import EntryPhoto from "./EntryPhoto.js";
+import EntryContributor from "./EntryContributor.js";
 import EntryOwnerActions from "./EntryOwnerActions.js";
 
 // Reusable card that displays a single kinship-term entry.
@@ -21,6 +22,7 @@ export default function EntryCard({ entry, query = "", currentUserId }) {
       <GenerationExplorer entry={entry} />
       <EntryTags entry={entry} query={query} />
       <EntryPhoto entry={entry} />
+      <EntryContributor name={entry.contributor_name} />
       {isOwner && <EntryOwnerActions entry={entry} />}
     </article>
   );

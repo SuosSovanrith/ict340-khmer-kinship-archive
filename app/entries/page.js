@@ -83,6 +83,35 @@ export default async function Entries() {
 
   const entries = error ? [] : (data || []);
 
+  // Collect the distinct owner ids so each card can show a "Contributed by"
+  // name. `owner` is a uuid referencing auth.users; the readable name lives in
+  // public.profiles. Entries with no owner (or no profile row) stay null.
+  const ownerIds = [...new Set(entries.map((e) => e.owner).filter(Boolean))];
+
+  // id -> username lookup for every profile owned by an entry owner.
+  let profilesById = new Map();
+  if (ownerIds.length > 0) {
+    const { data: profiles, error: profileError } = await supabase
+      .from("profiles")
+      .select("id, username")
+      .in("id", ownerIds);
+    // A missing profile (or RLS refusing the read) must never break the browse
+    // page — log it and render the cards without names.
+    if (profileError) {
+      console.error(
+        `Supabase /entries profiles query failed (${
+          profileError.code || "unknown"
+        }): ${profileError.message}.`
+      );
+    } else {
+      profilesById = new Map((profiles || []).map((p) => [p.id, p.username]));
+    }
+  }
+
+  for (const entry of entries) {
+    entry.contributor_name = profilesById.get(entry.owner) ?? null;
+  }
+
   return (
     <main style={styles.wrap}>
       <BackLink href="/" label="Home" />
