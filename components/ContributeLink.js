@@ -7,7 +7,7 @@ import { colors, fonts } from "../lib/theme.js";
 const styles = {
   link: {
     fontFamily: fonts.mono,
-    fontSize: 13,
+    fontSize: "clamp(11px, 2.5vw, 13px)",
     color: colors.gold,
     textDecoration: "none",
     whiteSpace: "nowrap",
@@ -15,7 +15,7 @@ const styles = {
   },
   hint: {
     fontFamily: fonts.mono,
-    fontSize: 13,
+    fontSize: "clamp(11px, 2.5vw, 13px)",
     color: colors.muted,
     textDecoration: "none",
     whiteSpace: "nowrap",
@@ -23,12 +23,12 @@ const styles = {
   },
   active: {
     fontFamily: fonts.mono,
-    fontSize: 13,
+    fontSize: "clamp(11px, 2.5vw, 13px)",
     color: colors.gold,
     backgroundColor: colors.surfaceAlt,
     border: `1px solid ${colors.gold}`,
     borderRadius: 6,
-    padding: "6px 12px",
+    padding: "clamp(4px, 1.5vw, 6px) clamp(6px, 2vw, 12px)",
     textDecoration: "none",
     whiteSpace: "nowrap",
     flexShrink: 0,

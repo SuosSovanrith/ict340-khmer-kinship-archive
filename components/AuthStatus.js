@@ -15,14 +15,14 @@ const styles = {
   bar: {
     display: "flex",
     alignItems: "center",
-    gap: "clamp(6px, 2.5vw, 12px)",
+    gap: "clamp(4px, 2vw, 12px)",
     flexWrap: "nowrap",
     justifyContent: "flex-end",
     minWidth: 0,
   },
   name: {
     fontFamily: fonts.mono,
-    fontSize: 13,
+    fontSize: "clamp(11px, 2.5vw, 13px)",
     color: colors.gold,
     textDecoration: "none",
     flex: "0 1 auto",
@@ -32,15 +32,15 @@ const styles = {
     whiteSpace: "nowrap",
   },
   // Same truncating link, but rendered as a pill (matching ContributeLink's
-  // active state) while the user is on the account page.
+  // active state) while the user is on the account page or the my entries page.
   nameActive: {
     fontFamily: fonts.mono,
-    fontSize: 13,
+    fontSize: "clamp(11px, 2.5vw, 13px)",
     color: colors.gold,
     backgroundColor: colors.surfaceAlt,
     border: `1px solid ${colors.gold}`,
     borderRadius: 6,
-    padding: "6px 12px",
+    padding: "clamp(4px, 1.5vw, 6px) clamp(6px, 2vw, 12px)",
     textDecoration: "none",
     flex: "0 1 auto",
     minWidth: 0,
@@ -48,8 +48,8 @@ const styles = {
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
   },
-  // A slim vertical divider separating the Contribute and username links so the
-  // two header actions read as distinct.
+  // A slim vertical divider: one between Contribute and My entries, one between
+  // My entries and the username, so the individual actions read as distinct.
   vsep: {
     width: 1,
     alignSelf: "stretch",
@@ -72,12 +72,12 @@ const styles = {
   },
   button: {
     fontFamily: fonts.mono,
-    fontSize: 13,
+    fontSize: "clamp(11px, 2.5vw, 13px)",
     color: colors.text,
     backgroundColor: colors.surfaceAlt,
     border: `1px solid ${colors.border}`,
     borderRadius: 6,
-    padding: "6px 12px",
+    padding: "clamp(4px, 1.5vw, 6px) clamp(6px, 2vw, 12px)",
     cursor: "pointer",
     whiteSpace: "nowrap",
     flexShrink: 0,
@@ -170,14 +170,19 @@ export default function AuthStatus() {
   if (!known) return null;
 
   if (user) {
+    const myEntriesActive = pathname.startsWith("/my-entries");
     const accountActive = pathname.startsWith("/account");
     return (
       <div style={styles.bar}>
         <ContributeLink authenticated />
         <span style={styles.vsep} aria-hidden="true" />
-        <Link style={styles.name} href="/my-entries">
+        <Link
+          style={myEntriesActive ? styles.nameActive : styles.name}
+          href="/my-entries"
+        >
           My entries
         </Link>
+        <span style={styles.vsep} aria-hidden="true" />
         {username && (
           <Link
             style={accountActive ? styles.nameActive : styles.name}

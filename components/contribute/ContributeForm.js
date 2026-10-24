@@ -8,6 +8,7 @@ import FormField from "./FormField.js";
 import PhotoFields from "./PhotoFields.js";
 import GenerationBlock from "./GenerationBlock.js";
 import TagsEditor from "./TagsEditor.js";
+import SubmittedNotice from "./SubmittedNotice.js";
 import { styles } from "./ContributeStyles.js";
 
 const initialForm = {
@@ -65,7 +66,7 @@ export default function ContributeForm({ entry }) {
   const isEdit = Boolean(entry);
   const [form, setForm] = useState(() => (entry ? formFromEntry(entry) : initialForm));
   const [photoFile, setPhotoFile] = useState(null);
-  const { errors, message, submitting, handleSubmit } = useContributeSubmit(form, photoFile, {
+  const { errors, message, submitting, submitted, handleSubmit } = useContributeSubmit(form, photoFile, {
     entryId: entry?.id,
     existingPhotoUrl: entry?.photo_url,
   });
@@ -83,7 +84,10 @@ export default function ContributeForm({ entry }) {
   }
   return (
     <main style={styles.wrap}>
-      <form style={styles.form} onSubmit={handleSubmit}>
+      {submitted ? (
+        <SubmittedNotice />
+      ) : (
+        <form style={styles.form} onSubmit={handleSubmit}>
         <FormField label="TERM IN KHMER" id="term-khmer" field="term_khmer" required value={form.term_khmer} onChange={(v) => setField("term_khmer", v)} error={errors.term_khmer} />
         <FormField label="ROMANIZED" id="term-romanized" field="term_romanized" required value={form.term_romanized} onChange={(v) => setField("term_romanized", v)} error={errors.term_romanized} />
         <FormField label="PRONUNCIATION" id="pronunciation" field="pronunciation" hint="(optional, max 32)" value={form.pronunciation} onChange={(v) => setField("pronunciation", v)} error={errors.pronunciation} />
@@ -119,7 +123,8 @@ export default function ContributeForm({ entry }) {
         <button type="submit" style={{ ...styles.button, ...(submitting ? styles.buttonDisabled : {}) }} disabled={submitting}>
           {submitting ? "Saving…" : (isEdit ? "Save changes" : "Save entry")}
         </button>
-      </form>
+        </form>
+      )}
     </main>
   );
 }
