@@ -175,6 +175,9 @@ export default function AuthStatus() {
       <div style={styles.bar}>
         <ContributeLink authenticated />
         <span style={styles.vsep} aria-hidden="true" />
+        <Link style={styles.name} href="/my-entries">
+          My entries
+        </Link>
         {username && (
           <Link
             style={accountActive ? styles.nameActive : styles.name}

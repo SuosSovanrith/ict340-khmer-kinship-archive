@@ -68,6 +68,7 @@ export default async function Entries() {
   const { data, error } = await supabase
     .from("entries")
     .select("*")
+    .eq("status", "published")
     .order("created_at", { ascending: false });
 
   // Log a real outage server-side so it doesn't look identical to "the archive
