@@ -1,7 +1,9 @@
 import EntryList from "../../components/EntryList.js";
 import BackLink from "../../components/BackLink.js";
+import Bi from "../../components/Bi.js";
 import { createClient } from "../../lib/supabase/server.js";
 import { colors, fonts } from "../../lib/theme.js";
+import { bi } from "../../lib/uiText.js";
 
 // Wide container so the two-card grid actually grows on large screens.
 // The landing page keeps its own narrow maxWidth.
@@ -115,9 +117,11 @@ export default async function Entries() {
 
   return (
     <main style={styles.wrap}>
-      <BackLink href="/" label="Home" />
+      <BackLink href="/" label={bi("backHome")} />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
-      <h1 style={styles.title}>Browse the terms</h1>
+      <h1 style={styles.title}>
+        <Bi k="browseTitle" />
+      </h1>
       <p style={styles.sub}>
         Each card is one Khmer kinship term. Use the tabs to see how it&apos;s
         used across generations.
@@ -125,7 +129,9 @@ export default async function Entries() {
 
       {entries.length === 0 ? (
         <div style={styles.emptyBlock}>
-          <p style={styles.emptyTitle}>No terms in the archive yet</p>
+          <p style={styles.emptyTitle}>
+            <Bi k="noTermsYet" />
+          </p>
           <p style={styles.emptyBody}>
             Every card here is gathered by hand from real speakers, one term at
             a time — this living archive is still under construction. Check back

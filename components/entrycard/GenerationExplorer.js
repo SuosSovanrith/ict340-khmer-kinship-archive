@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import sources from "../../sources.config.js";
+import Bi from "../Bi.js";
 import { GENERATION_ORDER, GENERATION_LABELS } from "../../lib/generations.js";
 import GenerationPanel from "./GenerationPanel.js";
 import { styles } from "./EntryCardStyles.js";
@@ -28,7 +29,7 @@ export default function GenerationExplorer({ entry }) {
   return (
     <div style={styles.genExplorer}>
       <p style={styles.genExplorerLabel}>
-        How this word changes across generations
+        <Bi k="sectionGenerations" />
       </p>
       <div style={styles.genTabs}>
         {GENERATION_ORDER.map((genKey) => (

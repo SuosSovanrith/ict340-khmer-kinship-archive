@@ -1,4 +1,5 @@
 import { colors, fonts } from "../../lib/theme.js";
+import Bi from "../../components/Bi.js";
 
 // Shown automatically by Next.js while the /entries Server Component's
 // Supabase query is pending. Same container and dark-theme tokens as page.js.
@@ -33,7 +34,9 @@ export default function Loading() {
     <main style={styles.wrap}>
       <div style={styles.card}>
         <p style={styles.label}>KHMER LIVING ARCHIVE</p>
-        <p style={styles.text}>Loading the terms…</p>
+        <p style={styles.text}>
+          <Bi k="loadingTerms" />
+        </p>
       </div>
     </main>
   );
