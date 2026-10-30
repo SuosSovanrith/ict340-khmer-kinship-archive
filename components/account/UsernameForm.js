@@ -9,6 +9,7 @@ import {
   USERNAME_HINT,
 } from "../../lib/username.js";
 import { bi } from "../../lib/uiText.js";
+import Bi from "../Bi.js";
 import { colors, fonts } from "../../lib/theme.js";
 
 const styles = {
@@ -162,7 +163,7 @@ export default function UsernameForm({ userId, initialUsername }) {
   return (
     <form style={styles.form} onSubmit={handleSubmit}>
       <div style={styles.field}>
-        <label style={styles.label} htmlFor="username">USERNAME</label>
+        <label style={styles.label} htmlFor="username"><Bi k="username" /></label>
         <input
           id="username"
           name="username"

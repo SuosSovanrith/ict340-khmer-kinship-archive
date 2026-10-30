@@ -204,7 +204,7 @@ export default function Signup() {
           {usernameError && <p style={styles.fieldError}>{usernameError}</p>}
         </div>
         <div style={styles.field}>
-          <label style={styles.label} htmlFor="email">EMAIL</label>
+          <label style={styles.label} htmlFor="email"><Bi k="email" /></label>
           <input
             id="email"
             type="email"
@@ -216,7 +216,7 @@ export default function Signup() {
           />
         </div>
         <div style={styles.field}>
-          <label style={styles.label} htmlFor="password">PASSWORD</label>
+          <label style={styles.label} htmlFor="password"><Bi k="password" /></label>
           <input
             id="password"
             type="password"

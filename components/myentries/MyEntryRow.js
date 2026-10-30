@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Bi from "../Bi.js";
 import { colors, fonts } from "../../lib/theme.js";
 import { STATUS_TEXT } from "../../lib/entryStatus.js";
 
@@ -61,7 +62,7 @@ export default function MyEntryRow({ entry }) {
       <p style={styles.statusEn}>{status.en}</p>
       <p style={styles.statusKm}>{status.km}</p>
       <Link style={styles.edit} href={`/entries/${entry.id}/edit`}>
-        Edit
+        <Bi k="edit" />
       </Link>
     </article>
   );

@@ -3,6 +3,8 @@ import collection from "../../collection.config.js";
 import { createClient } from "../../lib/supabase/server.js";
 import BackLink from "../../components/BackLink.js";
 import UsernameForm from "../../components/account/UsernameForm.js";
+import Bi from "../../components/Bi.js";
+import { bi } from "../../lib/uiText.js";
 import { colors, fonts } from "../../lib/theme.js";
 
 const styles = {
@@ -69,10 +71,12 @@ export default async function AccountPage() {
 
   return (
     <main style={styles.wrap}>
-      <BackLink href="/" label="Home" />
+      <BackLink href="/" label={bi("backHome")} />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
-      <h1 style={styles.title}>Account</h1>
-      <p style={styles.sub}>Manage the name shown beside your entries.</p>
+      <h1 style={styles.title}><Bi k="account" /></h1>
+      <p style={styles.sub}>
+        <Bi k="accountSub" separator={<br />} />
+      </p>
       <p style={styles.signedIn}>Signed in as {user.email}</p>
 
       <UsernameForm userId={user.id} initialUsername={profile?.username || ""} />

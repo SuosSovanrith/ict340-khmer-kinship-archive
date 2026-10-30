@@ -114,7 +114,9 @@ export default function Login() {
       <BackLink href="/" label={bi("backHome")} />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}><Bi k="logIn" /></h1>
-      <p style={styles.sub}>Sign in to manage your contributed terms.</p>
+      <p style={styles.sub}>
+        <Bi k="loginIntro" separator={<br />} />
+      </p>
 
       <form style={styles.form} onSubmit={handleSubmit}>
         <div style={styles.field}>
