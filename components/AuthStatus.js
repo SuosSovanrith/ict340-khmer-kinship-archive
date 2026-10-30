@@ -15,18 +15,18 @@ const styles = {
   bar: {
     display: "flex",
     alignItems: "center",
-    gap: "clamp(4px, 2vw, 12px)",
+    gap: "clamp(3px, 1.5vw, 10px)",
     flexWrap: "nowrap",
     justifyContent: "flex-end",
     minWidth: 0,
   },
   name: {
     fontFamily: fonts.mono,
-    fontSize: "clamp(11px, 2.5vw, 13px)",
+    fontSize: "clamp(10px, 2.4vw, 13px)",
     color: colors.gold,
     textDecoration: "none",
     flex: "0 1 auto",
-    minWidth: 0,
+    minWidth: "2.5ch",
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
@@ -35,18 +35,42 @@ const styles = {
   // active state) while the user is on the account page or the my entries page.
   nameActive: {
     fontFamily: fonts.mono,
-    fontSize: "clamp(11px, 2.5vw, 13px)",
+    fontSize: "clamp(10px, 2.4vw, 13px)",
     color: colors.gold,
     backgroundColor: colors.surfaceAlt,
     border: `1px solid ${colors.gold}`,
     borderRadius: 6,
-    padding: "clamp(4px, 1.5vw, 6px) clamp(6px, 2vw, 12px)",
+    padding: "clamp(3px, 1.2vw, 6px) clamp(5px, 1.6vw, 12px)",
     textDecoration: "none",
     flex: "0 1 auto",
-    minWidth: 0,
+    minWidth: "2.5ch",
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+  },
+  // The "My entries" and reviewer-only "Review" links never truncate: full
+  // label, nowrap, flexShrink 0 — only the username is allowed to shrink.
+  navLink: {
+    fontFamily: fonts.mono,
+    fontSize: "clamp(10px, 2.4vw, 13px)",
+    color: colors.gold,
+    textDecoration: "none",
+    whiteSpace: "nowrap",
+    flexShrink: 0,
+  },
+  // The active-pill variant of navLink, matching the username's and
+  // Contribute's active pills while the current page is that link's route.
+  navActive: {
+    fontFamily: fonts.mono,
+    fontSize: "clamp(10px, 2.4vw, 13px)",
+    color: colors.gold,
+    textDecoration: "none",
+    whiteSpace: "nowrap",
+    flexShrink: 0,
+    backgroundColor: colors.surfaceAlt,
+    border: `1px solid ${colors.gold}`,
+    borderRadius: 6,
+    padding: "clamp(3px, 1.2vw, 6px) clamp(5px, 1.6vw, 12px)",
   },
   // A slim vertical divider: one between Contribute and My entries, one between
   // My entries and the username, so the individual actions read as distinct.
@@ -72,12 +96,12 @@ const styles = {
   },
   button: {
     fontFamily: fonts.mono,
-    fontSize: "clamp(11px, 2.5vw, 13px)",
+    fontSize: "clamp(10px, 2.4vw, 13px)",
     color: colors.text,
     backgroundColor: colors.surfaceAlt,
     border: `1px solid ${colors.border}`,
     borderRadius: 6,
-    padding: "clamp(4px, 1.5vw, 6px) clamp(6px, 2vw, 12px)",
+    padding: "clamp(3px, 1.2vw, 6px) clamp(5px, 1.6vw, 12px)",
     cursor: "pointer",
     whiteSpace: "nowrap",
     flexShrink: 0,
@@ -89,6 +113,7 @@ export default function AuthStatus() {
   const pathname = usePathname();
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState(null);
+  const [isReviewer, setIsReviewer] = useState(false);
   const [known, setKnown] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
 
@@ -161,6 +186,39 @@ export default function AuthStatus() {
     };
   }, [user]);
 
+  // Check whether the signed-in user is a reviewer, reloaded whenever the
+  // user changes (which also covers the initial mount once the session
+  // resolves). It is deliberately its OWN effect — never inside
+  // onAuthStateChange, which runs while the auth client holds its lock and
+  // could deadlock on a supabase.rpc(...) call, exactly like the
+  // supabase.from(...) caveat above. The flag is only strict true when the
+  // RPC says true: an error, null, or false all mean "not a reviewer", and
+  // the link stays hidden whenever the flag is anything but true.
+  useEffect(() => {
+    if (!user) {
+      setIsReviewer(false);
+      return;
+    }
+    let cancelled = false;
+
+    const loadReviewerState = async () => {
+      const { data, error } = await supabase.rpc("is_reviewer");
+      if (cancelled) return;
+
+      if (error) {
+        console.error(`Failed to check reviewer status: ${error.message}`);
+        setIsReviewer(false);
+        return;
+      }
+      setIsReviewer(data === true);
+    };
+    loadReviewerState();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
+
   async function handleLogout() {
     setSigningOut(true);
     await supabase.auth.signOut();
@@ -171,18 +229,30 @@ export default function AuthStatus() {
 
   if (user) {
     const myEntriesActive = pathname.startsWith("/my-entries");
+    const reviewActive = pathname.startsWith("/review");
     const accountActive = pathname.startsWith("/account");
     return (
       <div style={styles.bar}>
         <ContributeLink authenticated />
         <span style={styles.vsep} aria-hidden="true" />
         <Link
-          style={myEntriesActive ? styles.nameActive : styles.name}
+          style={myEntriesActive ? styles.navActive : styles.navLink}
           href="/my-entries"
         >
           My entries
         </Link>
         <span style={styles.vsep} aria-hidden="true" />
+        {isReviewer && (
+          <>
+            <Link
+              style={reviewActive ? styles.navActive : styles.navLink}
+              href="/review"
+            >
+              Review
+            </Link>
+            <span style={styles.vsep} aria-hidden="true" />
+          </>
+        )}
         {username && (
           <Link
             style={accountActive ? styles.nameActive : styles.name}
