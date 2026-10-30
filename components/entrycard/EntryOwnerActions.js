@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../lib/supabase/client.js";
 import { colors, fonts } from "../../lib/theme.js";
+import { bi } from "../../lib/uiText.js";
 
 const supabase = createClient();
 
@@ -48,7 +49,7 @@ export default function EntryOwnerActions({ entry }) {
   const [deleting, setDeleting] = useState(false);
 
   async function handleDelete() {
-    if (!confirm(`Delete "${entry.term_khmer}" from the archive? This can't be undone.`)) {
+    if (!confirm(bi("deleteConfirm", { term: entry.term_khmer }))) {
       return;
     }
     setDeleting(true);
@@ -62,7 +63,7 @@ export default function EntryOwnerActions({ entry }) {
     // the delete was refused, so we check it explicitly.
     if (error || !data || data.length === 0) {
       console.error("Delete: no row returned", { entryId: entry.id, data, error });
-      setMessage("That change wasn't saved");
+      setMessage(bi("notSaved"));
       setDeleting(false);
       return;
     }
@@ -73,10 +74,10 @@ export default function EntryOwnerActions({ entry }) {
     <div style={styles.bar}>
       <div style={styles.actions}>
         <Link style={styles.edit} href={`/entries/${entry.id}/edit`}>
-          Edit
+          {bi("edit")}
         </Link>
         <button type="button" style={styles.delete} onClick={handleDelete} disabled={deleting}>
-          {deleting ? "Deleting…" : "Delete"}
+          {deleting ? bi("deleting") : bi("delete")}
         </button>
       </div>
       {message && <p style={styles.message}>{message}</p>}
