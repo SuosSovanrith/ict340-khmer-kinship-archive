@@ -4,6 +4,7 @@ import { createClient } from "../../lib/supabase/server.js";
 import ContributeForm from "../../components/contribute/ContributeForm.js";
 import BackLink from "../../components/BackLink.js";
 import { styles } from "../../components/contribute/ContributeStyles.js";
+import Bi from "../../components/Bi.js";
 
 export const metadata = {
   title: `Contribute — ${collection.name}`,
@@ -22,26 +23,25 @@ export default async function ContributePage() {
     <main style={styles.wrap}>
       <BackLink href="/entries" label="Entries" />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
-      <h1 style={styles.title}>Contribute a term</h1>
+      <h1 style={styles.title}><Bi k="contributeTitle" /></h1>
       <p style={styles.sub}>
-        Add a kinship term you have gathered from a real conversation. Every
-        entry is yours — curated by {collection.curator}.
+        <Bi k="contributeIntro" vars={{ curator: collection.curator }} separator={<br />} />
       </p>
 
       {user ? (
         <ContributeForm />
       ) : (
         <div style={styles.loginPrompt}>
-          <p style={styles.loginTitle}>Log in to contribute</p>
+          <p style={styles.loginTitle}><Bi k="loginToContribute" /></p>
           <p style={styles.loginBody}>
-            Only signed-in contributors can add an entry to {collection.name}.
+            <Bi k="loginToContributeBody" vars={{ collection: collection.name }} separator={<br />} />
           </p>
           <div style={styles.linkRow}>
             <Link style={styles.link} href="/login">
-              Log in
+              <Bi k="logIn" />
             </Link>
             <Link style={styles.link} href="/signup">
-              Sign up
+              <Bi k="signUp" />
             </Link>
           </div>
         </div>

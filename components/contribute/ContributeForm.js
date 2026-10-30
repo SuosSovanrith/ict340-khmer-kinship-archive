@@ -10,6 +10,8 @@ import GenerationBlock from "./GenerationBlock.js";
 import TagsEditor from "./TagsEditor.js";
 import SubmittedNotice from "./SubmittedNotice.js";
 import { styles } from "./ContributeStyles.js";
+import Bi from "../../components/Bi.js";
+import { bi, labelFor, CATEGORY_KEYS } from "../../lib/uiText.js";
 
 const initialForm = {
   term_khmer: "",
@@ -88,23 +90,23 @@ export default function ContributeForm({ entry }) {
         <SubmittedNotice />
       ) : (
         <form style={styles.form} onSubmit={handleSubmit}>
-        <FormField label="TERM IN KHMER" id="term-khmer" field="term_khmer" required value={form.term_khmer} onChange={(v) => setField("term_khmer", v)} error={errors.term_khmer} />
-        <FormField label="ROMANIZED" id="term-romanized" field="term_romanized" required value={form.term_romanized} onChange={(v) => setField("term_romanized", v)} error={errors.term_romanized} />
-        <FormField label="PRONUNCIATION" id="pronunciation" field="pronunciation" hint="(optional, max 32)" value={form.pronunciation} onChange={(v) => setField("pronunciation", v)} error={errors.pronunciation} />
-        <FormField label="CATEGORY" id="category" field="category" required as="select" value={form.category} onChange={(v) => setField("category", v)} error={errors.category}>
-          <option value="">Choose a category…</option>
+        <FormField label={<Bi k="termKhmer" />} id="term-khmer" field="term_khmer" required value={form.term_khmer} onChange={(v) => setField("term_khmer", v)} error={errors.term_khmer} />
+        <FormField label={<Bi k="romanized" />} id="term-romanized" field="term_romanized" required value={form.term_romanized} onChange={(v) => setField("term_romanized", v)} error={errors.term_romanized} />
+        <FormField label={<Bi k="pronunciation" />} id="pronunciation" field="pronunciation" hint={<Bi k="hintOptionalMax" vars={{ max: 32 }} />} value={form.pronunciation} onChange={(v) => setField("pronunciation", v)} error={errors.pronunciation} />
+        <FormField label={<Bi k="category" />} id="category" field="category" required as="select" value={form.category} onChange={(v) => setField("category", v)} error={errors.category}>
+          <option value="">{bi("chooseCategoryPlaceholder")}</option>
           {CATEGORIES.map((c) => (
-            <option key={c} value={c}>{c}</option>
+            <option key={c} value={c}>{labelFor(CATEGORY_KEYS, c)}</option>
           ))}
         </FormField>
-        <FormField label="RELATION DESCRIBED" id="relation-described" field="relation_described" required as="textarea" value={form.relation_described} onChange={(v) => setField("relation_described", v)} error={errors.relation_described} />
-        <FormField label="ALSO USED FOR NON-RELATIVES" id="also-used" field="also_used_for_non_relatives" hint="(optional, max 300)" as="textarea" value={form.also_used_for_non_relatives} onChange={(v) => setField("also_used_for_non_relatives", v)} error={errors.also_used_for_non_relatives} />
-        <FormField label="USAGE NOTES" id="usage-notes" field="usage_notes" hint="(optional, max 300)" as="textarea" value={form.usage_notes} onChange={(v) => setField("usage_notes", v)} error={errors.usage_notes} />
-        <FormField label="REGION OR FAMILY VARIATION" id="region-variation" field="region_or_family_variation" hint="(optional, max 1000)" as="textarea" value={form.region_or_family_variation} onChange={(v) => setField("region_or_family_variation", v)} error={errors.region_or_family_variation} />
+        <FormField label={<Bi k="relationDescribed" />} id="relation-described" field="relation_described" required as="textarea" value={form.relation_described} onChange={(v) => setField("relation_described", v)} error={errors.relation_described} />
+        <FormField label={<Bi k="alsoUsedForNonRelatives" />} id="also-used" field="also_used_for_non_relatives" hint={<Bi k="hintOptionalMax" vars={{ max: 300 }} />} as="textarea" value={form.also_used_for_non_relatives} onChange={(v) => setField("also_used_for_non_relatives", v)} error={errors.also_used_for_non_relatives} />
+        <FormField label={<Bi k="usageNotes" />} id="usage-notes" field="usage_notes" hint={<Bi k="hintOptionalMax" vars={{ max: 300 }} />} as="textarea" value={form.usage_notes} onChange={(v) => setField("usage_notes", v)} error={errors.usage_notes} />
+        <FormField label={<Bi k="regionOrFamilyVariation" />} id="region-variation" field="region_or_family_variation" hint={<Bi k="hintOptionalMax" vars={{ max: 1000 }} />} as="textarea" value={form.region_or_family_variation} onChange={(v) => setField("region_or_family_variation", v)} error={errors.region_or_family_variation} />
         <PhotoFields form={form} errors={errors} onChange={setField} onPhotoFile={setPhotoFile} required={!isEdit} />
 
         <div style={styles.section}>
-          <p style={styles.sectionLabel}>How this word changes across generations</p>
+          <p style={styles.sectionLabel}><Bi k="sectionGenerations" /></p>
           {GENERATION_ORDER.map((genKey) => (
             <GenerationBlock
               key={genKey}
@@ -116,12 +118,12 @@ export default function ContributeForm({ entry }) {
           ))}
         </div>
         <div style={styles.section}>
-          <p style={styles.sectionLabel}>Tags</p>
+          <p style={styles.sectionLabel}><Bi k="sectionTags" /></p>
           <TagsEditor tags={form.tags} onChange={(tags) => setField("tags", tags)} error={errors.tags} />
         </div>
         {message && <p style={styles.message}>{message}</p>}
         <button type="submit" style={{ ...styles.button, ...(submitting ? styles.buttonDisabled : {}) }} disabled={submitting}>
-          {submitting ? "Saving…" : (isEdit ? "Save changes" : "Save entry")}
+          {submitting ? bi("saving") : (isEdit ? bi("saveChanges") : bi("saveEntry"))}
         </button>
         </form>
       )}

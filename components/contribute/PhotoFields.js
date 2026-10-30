@@ -7,14 +7,15 @@
 // null) for the upload.
 import FormField from "./FormField.js";
 import { styles } from "./ContributeStyles.js";
+import Bi from "../../components/Bi.js";
 
 export default function PhotoFields({ form, errors, onChange, onPhotoFile, required = true }) {
   return (
     <div style={styles.section}>
-      <p style={styles.sectionLabel}>Photo</p>
+      <p style={styles.sectionLabel}><Bi k="sectionPhoto" /></p>
       <div style={styles.field}>
         <label style={styles.label} htmlFor="photo">
-          PHOTO {required ? <span style={styles.required}>*</span> : <span style={styles.hint}>(optional, keep current unless you pick a new one)</span>}
+          <Bi k="photo" /> {required ? <span style={styles.required}>*</span> : <span style={styles.hint}><Bi k="hintPhotoKeepCurrent" /></span>}
         </label>
         <input
           id="photo"
@@ -26,25 +27,23 @@ export default function PhotoFields({ form, errors, onChange, onPhotoFile, requi
         />
         {errors?.photo && <p style={styles.errorText}>{errors.photo}</p>}
         <p style={styles.hint}>
-          JPEG, PNG, or WebP, max 5 MB. Never an identifiable portrait — this
-          archive&apos;s policy is a photo of the word&apos;s handwriting by
-          default.
+          <Bi k="photoPolicy" separator={<br />} />
         </p>
       </div>
       <FormField
-        label="PHOTO CAPTION"
+        label={<Bi k="photoCaption" />}
         id="photo-caption"
         field="photo_caption"
-        hint="(optional, max 128)"
+        hint={<Bi k="hintOptionalMax" vars={{ max: 128 }} />}
         value={form.photo_caption}
         onChange={(value) => onChange("photo_caption", value)}
         error={errors?.photo_caption}
       />
       <FormField
-        label="PHOTO CREDIT"
+        label={<Bi k="photoCredit" />}
         id="photo-credit"
         field="photo_credit"
-        hint="(optional, max 64)"
+        hint={<Bi k="hintOptionalMax" vars={{ max: 64 }} />}
         value={form.photo_credit}
         onChange={(value) => onChange("photo_credit", value)}
         error={errors?.photo_credit}

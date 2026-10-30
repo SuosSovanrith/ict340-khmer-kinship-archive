@@ -1,7 +1,9 @@
 "use client";
 
-import { GENERATION_LABELS, STATUS_STYLE } from "../../lib/generations.js";
+import { STATUS_STYLE } from "../../lib/generations.js";
 import { styles } from "./ContributeStyles.js";
+import Bi from "../../components/Bi.js";
+import { bi, labelFor, STATUS_KEYS, COHORT_KEYS } from "../../lib/uiText.js";
 
 // still_used options come straight from STATUS_STYLE's keys — no second copy.
 const STATUS_CHOICES = Object.keys(STATUS_STYLE);
@@ -18,11 +20,11 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
 
   return (
     <div style={styles.genBlock}>
-      <p style={styles.genBlockTitle}>{GENERATION_LABELS[genKey]}</p>
+      <p style={styles.genBlockTitle}><Bi k={COHORT_KEYS[genKey]} /></p>
 
       <div style={styles.field}>
         <label style={styles.label} htmlFor={`${genKey}-still-used`}>
-          STILL USED <span style={styles.required}>*</span>
+          <Bi k="stillUsed" /> <span style={styles.required}>*</span>
         </label>
         <select
           id={`${genKey}-still-used`}
@@ -31,10 +33,10 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
           value={gen.still_used}
           onChange={(e) => set("still_used", e.target.value)}
         >
-          <option value="">Choose…</option>
+          <option value="">{bi("choosePlaceholder")}</option>
           {STATUS_CHOICES.map((s) => (
             <option key={s} value={s}>
-              {s}
+              {labelFor(STATUS_KEYS, s)}
             </option>
           ))}
         </select>
@@ -43,7 +45,7 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
 
       <div style={styles.field}>
         <label style={styles.label} htmlFor={`${genKey}-note`}>
-          NOTE <span style={styles.required}>*</span>
+          <Bi k="note" /> <span style={styles.required}>*</span>
         </label>
         <textarea
           id={`${genKey}-note`}
@@ -58,7 +60,7 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
       {gen.still_used === "Replaced" && (
         <div style={styles.field}>
           <label style={styles.label} htmlFor={`${genKey}-alternate`}>
-            ALTERNATE TERM <span style={styles.required}>*</span>
+            <Bi k="alternateTerm" /> <span style={styles.required}>*</span>
           </label>
           <input
             id={`${genKey}-alternate`}
