@@ -5,6 +5,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { createClient } from "../../lib/supabase/client.js";
 import BackLink from "../../components/BackLink.js";
+import Bi from "../../components/Bi.js";
+import { bi } from "../../lib/uiText.js";
 import { colors, fonts } from "../../lib/theme.js";
 import {
   normalizeUsername,
@@ -134,7 +136,7 @@ export default function Signup() {
         code: rpcError.code,
         message: rpcError.message,
       });
-      setUsernameError("Could not check that username. Please try again.");
+      setUsernameError(bi("usernameCheckFailed"));
       setSubmitting(false);
       return;
     }
@@ -144,8 +146,8 @@ export default function Signup() {
     if (data !== true) {
       setUsernameError(
         data === false
-          ? "That username is taken"
-          : "Could not check that username. Please try again."
+          ? bi("usernameTaken")
+          : bi("usernameCheckFailed")
       );
       setSubmitting(false);
       return;
@@ -165,7 +167,7 @@ export default function Signup() {
         code: error.code,
         message: error.message,
       });
-      setMessage("Could not create your account.");
+      setMessage(bi("createAccountFailed"));
       setSubmitting(false);
       return;
     }
@@ -175,16 +177,16 @@ export default function Signup() {
 
   return (
     <main style={styles.wrap}>
-      <BackLink href="/" label="Home" />
+      <BackLink href="/" label={bi("backHome")} />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
-      <h1 style={styles.title}>Sign up</h1>
+      <h1 style={styles.title}><Bi k="signUp" /></h1>
       <p style={styles.sub}>
-        Create an account so you can contribute your own kinship terms.
+        <Bi k="signupIntro" separator={<br />} />
       </p>
 
       <form style={styles.form} onSubmit={handleSubmit}>
         <div style={styles.field}>
-          <label style={styles.label} htmlFor="username">USERNAME</label>
+          <label style={styles.label} htmlFor="username"><Bi k="username" /></label>
           <input
             id="username"
             name="username"
@@ -229,10 +231,13 @@ export default function Signup() {
         {message && <p style={styles.error}>{message}</p>}
 
         <button type="submit" style={styles.button} disabled={submitting}>
-          {submitting ? "Creating account…" : "Sign up"}
+          {submitting ? bi("creatingAccount") : bi("signUp")}
         </button>
         <p style={styles.sub}>
-          Already have an account? <Link href="/login">Log in</Link>
+          <Bi k="haveAccount" separator=" " /> {" "}
+          <Link href="/login">
+            <Bi k="logIn" />
+          </Link>
         </p>
       </form>
 

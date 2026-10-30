@@ -5,6 +5,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { createClient } from "../../lib/supabase/client.js";
 import BackLink from "../../components/BackLink.js";
+import Bi from "../../components/Bi.js";
+import { bi } from "../../lib/uiText.js";
 import { colors, fonts } from "../../lib/theme.js";
 
 const styles = {
@@ -99,7 +101,7 @@ export default function Login() {
 
     if (error) {
       // Never reveal WHY login failed (wrong password vs. unknown email).
-      setMessage("Invalid email or password");
+      setMessage(bi("invalidLogin"));
       setSubmitting(false);
       return;
     }
@@ -109,14 +111,14 @@ export default function Login() {
 
   return (
     <main style={styles.wrap}>
-      <BackLink href="/" label="Home" />
+      <BackLink href="/" label={bi("backHome")} />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
-      <h1 style={styles.title}>Log in</h1>
+      <h1 style={styles.title}><Bi k="logIn" /></h1>
       <p style={styles.sub}>Sign in to manage your contributed terms.</p>
 
       <form style={styles.form} onSubmit={handleSubmit}>
         <div style={styles.field}>
-          <label style={styles.label} htmlFor="email">EMAIL</label>
+          <label style={styles.label} htmlFor="email"><Bi k="email" /></label>
           <input
             id="email"
             type="email"
@@ -128,7 +130,7 @@ export default function Login() {
           />
         </div>
         <div style={styles.field}>
-          <label style={styles.label} htmlFor="password">PASSWORD</label>
+          <label style={styles.label} htmlFor="password"><Bi k="password" /></label>
           <input
             id="password"
             type="password"
@@ -143,10 +145,13 @@ export default function Login() {
         {message && <p style={styles.error}>{message}</p>}
 
         <button type="submit" style={styles.button} disabled={submitting}>
-          {submitting ? "Signing in…" : "Log in"}
+          {submitting ? bi("signingIn") : bi("logIn")}
         </button>
         <p style={styles.sub}>
-          No account? <Link href="/signup">Sign up</Link>
+          <Bi k="noAccount" separator=" " /> {" "}
+          <Link href="/signup">
+            <Bi k="signUp" />
+          </Link>
         </p>
       </form>
 

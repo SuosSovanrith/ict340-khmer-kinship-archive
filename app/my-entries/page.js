@@ -2,7 +2,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import collection from "../../collection.config.js";
 import { createClient } from "../../lib/supabase/server.js";
+import Bi from "../../components/Bi.js";
 import BackLink from "../../components/BackLink.js";
+import { bi } from "../../lib/uiText.js";
 import MyEntryRow from "../../components/myentries/MyEntryRow.js";
 import { colors, fonts } from "../../lib/theme.js";
 
@@ -108,22 +110,23 @@ export default async function MyEntriesPage() {
 
   return (
     <main style={styles.wrap}>
-      <BackLink href="/entries" label="Entries" />
+      <BackLink href="/entries" label={bi("backEntries")} />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
-      <h1 style={styles.title}>My entries</h1>
+      <h1 style={styles.title}><Bi k="myEntries" /></h1>
       <p style={styles.sub}>Your own terms and their review status.</p>
 
       {entries === null ? (
-        <p style={styles.errorMessage}>Could not load your entries.</p>
+        <p style={styles.errorMessage}>{bi("loadEntriesFailed")}</p>
       ) : entries.length === 0 ? (
         <div style={styles.emptyBlock}>
-          <p style={styles.emptyTitle}>No entries yet</p>
+          <p style={styles.emptyTitle}>
+            <Bi k="noEntriesTitle" />
+          </p>
           <p style={styles.emptyBody}>
-            You haven&apos;t contributed any terms to the archive. Add your first
-            one and it will appear here.
+            <Bi k="noEntriesBody" separator={<br />} />
           </p>
           <Link style={styles.emptyLink} href="/contribute">
-            Contribute a term
+            <Bi k="contributeTitle" />
           </Link>
         </div>
       ) : (

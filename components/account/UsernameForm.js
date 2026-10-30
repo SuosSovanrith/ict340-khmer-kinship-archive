@@ -8,6 +8,7 @@ import {
   validateUsername,
   USERNAME_HINT,
 } from "../../lib/username.js";
+import { bi } from "../../lib/uiText.js";
 import { colors, fonts } from "../../lib/theme.js";
 
 const styles = {
@@ -110,13 +111,13 @@ export default function UsernameForm({ userId, initialUsername }) {
           code: rpcError.code,
           message: rpcError.message,
         });
-        setUsernameError("Could not check that username. Please try again.");
+        setUsernameError(bi("usernameCheckFailed"));
         setSaving(false);
         return;
       }
 
       if (data !== true) {
-        setUsernameError("That username is taken");
+        setUsernameError(bi("usernameTaken"));
         setSaving(false);
         return;
       }
@@ -134,8 +135,8 @@ export default function UsernameForm({ userId, initialUsername }) {
       console.error({ code: error.code, message: error.message });
       setUsernameError(
         error.code === "23505"
-          ? "That username is taken"
-          : "Could not save your username. Please try again."
+          ? bi("usernameTaken")
+          : bi("usernameSaveFailed")
       );
       setSaving(false);
       return;
@@ -145,7 +146,7 @@ export default function UsernameForm({ userId, initialUsername }) {
     // array means nothing was actually written.
     if (!data || data.length === 0) {
       console.error("Username update returned no row", { userId });
-      setMessage("That change wasn't saved");
+      setMessage(bi("notSaved"));
       setMessageTone("error");
       setSaving(false);
       return;
@@ -190,7 +191,7 @@ export default function UsernameForm({ userId, initialUsername }) {
         style={{ ...styles.button, ...(saving ? styles.buttonDisabled : {}) }}
         disabled={saving}
       >
-        {saving ? "Saving…" : "Save changes"}
+        {saving ? bi("saving") : bi("saveChanges")}
       </button>
     </form>
   );
