@@ -42,6 +42,6 @@ export const styles = {
   noteTextarea: { ...control, minHeight: 80, resize: "vertical", lineHeight: 1.5 },
   noteButtons: { display: "flex", gap: 10, marginTop: 12 },
   sendBack: { fontFamily: fonts.sans, fontSize: 13, fontWeight: 700, color: colors.bg, backgroundColor: colors.emerald, border: "none", borderRadius: 6, padding: "8px 16px", cursor: "pointer" },
-  cancel: { fontFamily: fonts.mono, fontSize: 13, color: colors.faint, backgroundColor: "transparent", border: `1px solid ${colors.border}`, borderRadius: 6, padding: "8px 16px", cursor: "pointer" },
+  cancel: { fontFamily: fonts.sans, fontSize: 13, fontWeight: 600, color: colors.text, backgroundColor: "transparent", border: `1px solid ${colors.muted}`, borderRadius: 6, padding: "8px 16px", cursor: "pointer" },
   message: { marginTop: 12, padding: "10px 12px", backgroundColor: colors.surfaceAlt, border: `1px solid ${colors.border}`, borderRadius: 6, color: colors.gold, fontSize: 13, lineHeight: 1.5 },
 };

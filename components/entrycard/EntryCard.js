@@ -1,4 +1,5 @@
 import { styles } from "./EntryCardStyles.js";
+import EntryFactsStyles from "./EntryFactsStyles.js";
 import EntryHeader from "./EntryHeader.js";
 import EntryFacts from "./EntryFacts.js";
 import EntryUsageNotes from "./EntryUsageNotes.js";
@@ -16,6 +17,7 @@ export default function EntryCard({ entry, query = "", currentUserId }) {
   const isOwner = Boolean(currentUserId) && entry.owner === currentUserId;
   return (
     <article style={styles.card}>
+      <EntryFactsStyles />
       <EntryHeader entry={entry} query={query} />
       <EntryFacts entry={entry} query={query} />
       <EntryUsageNotes entry={entry} />
