@@ -44,4 +44,17 @@ export const styles = {
   sendBack: { fontFamily: fonts.sans, fontSize: 13, fontWeight: 700, color: colors.bg, backgroundColor: colors.emerald, border: "none", borderRadius: 6, padding: "8px 16px", cursor: "pointer" },
   cancel: { fontFamily: fonts.sans, fontSize: 13, fontWeight: 600, color: colors.text, backgroundColor: "transparent", border: `1px solid ${colors.muted}`, borderRadius: 6, padding: "8px 16px", cursor: "pointer" },
   message: { marginTop: 12, padding: "10px 12px", backgroundColor: colors.surfaceAlt, border: `1px solid ${colors.border}`, borderRadius: 6, color: colors.gold, fontSize: 13, lineHeight: 1.5 },
+
+  // --- status tabs + sort links (rows that wrap on phones, no h-scroll) ---
+  tabsRow: { display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 },
+  tab: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.text, border: `1px solid ${colors.muted}` },
+  tabActive: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.gold, border: `1px solid ${colors.gold}`, backgroundColor: colors.surfaceAlt, fontWeight: 700 },
+  sortRow: { display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 },
+  sortLink: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.text, border: `1px solid ${colors.muted}` },
+  sortActive: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.gold, border: `1px solid ${colors.gold}`, backgroundColor: colors.surfaceAlt, fontWeight: 700 },
+
+  // --- reviewer's note on a returned entry (like noteBlock + emerald edge) ---
+  noteBox: { marginTop: 16, padding: 16, backgroundColor: colors.surfaceAlt, border: `1px solid ${colors.border}`, borderLeft: `4px solid ${colors.emerald}`, borderRadius: 8 },
+  noteBoxLabel: { display: "block", fontFamily: fonts.mono, fontSize: 12, color: colors.muted, margin: "0 0 8px" },
+  noteBoxText: { fontSize: 14, color: colors.text, lineHeight: 1.6, margin: 0, whiteSpace: "pre-wrap" },
 };
