@@ -37,6 +37,29 @@ const styles = {
     lineHeight: 1.5,
     margin: 0,
   },
+  noteBox: {
+    marginTop: 14,
+    padding: "12px 14px",
+    backgroundColor: colors.surfaceAlt,
+    border: `1px solid ${colors.border}`,
+    borderLeft: `3px solid ${colors.emerald}`,
+    borderRadius: 6,
+  },
+  noteLabel: {
+    fontFamily: fonts.mono,
+    fontSize: 12,
+    color: colors.muted,
+    margin: "0 0 6px",
+  },
+  noteText: {
+    fontFamily: fonts.sans,
+    fontSize: 14,
+    color: colors.text,
+    lineHeight: 1.6,
+    margin: 0,
+    whiteSpace: "pre-wrap",
+    wordBreak: "break-word",
+  },
   edit: {
     display: "inline-block",
     marginTop: 16,
@@ -55,12 +78,24 @@ const styles = {
 // the "pending" text if the stored status isn't one of the known keys.
 export default function MyEntryRow({ entry }) {
   const status = STATUS_TEXT[entry.status] ?? STATUS_TEXT.pending;
+  const showNote =
+    entry.status === "returned" &&
+    typeof entry.review_note === "string" &&
+    entry.review_note.trim() !== "";
   return (
     <article style={styles.row}>
       <h2 style={styles.khmer}>{entry.term_khmer}</h2>
       <p style={styles.romanized}>{entry.term_romanized}</p>
       <p style={styles.statusEn}>{status.en}</p>
       <p style={styles.statusKm}>{status.km}</p>
+      {showNote && (
+        <div style={styles.noteBox}>
+          <p style={styles.noteLabel}>
+            <Bi k="reviewerNote" />
+          </p>
+          <p style={styles.noteText}>{entry.review_note}</p>
+        </div>
+      )}
       <Link style={styles.edit} href={`/entries/${entry.id}/edit`}>
         <Bi k="edit" />
       </Link>
