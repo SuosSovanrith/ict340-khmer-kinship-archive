@@ -70,6 +70,7 @@ export default function ContributeForm({ entry }) {
   const [photoFile, setPhotoFile] = useState(null);
   const { errors, message, submitting, submitted, handleSubmit } = useContributeSubmit(form, photoFile, {
     entryId: entry?.id,
+    entryStatus: entry?.status,
     existingPhotoUrl: entry?.photo_url,
   });
   function setField(field, value) {
