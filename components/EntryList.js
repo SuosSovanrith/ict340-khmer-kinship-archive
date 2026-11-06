@@ -66,7 +66,7 @@ export default function EntryList({ entries }) {
           gap: 24px;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
           .entry-grid {
             grid-template-columns: minmax(0, 1fr);
           }

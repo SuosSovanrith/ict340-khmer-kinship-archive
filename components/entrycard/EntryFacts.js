@@ -7,14 +7,14 @@ export default function EntryFacts({ entry, query = "" }) {
   return (
     <dl className="entry-facts" style={styles.facts}>
       <Fact
-        label={<Bi k="factRelation" />}
+        label={<Bi k="factRelation" separator={<br />} />}
         value={<HighlightText text={entry.relation_described} query={query} />}
       />
       {entry.also_used_for_non_relatives && (
-        <Fact label={<Bi k="factNonRelatives" />} value={entry.also_used_for_non_relatives} />
+        <Fact label={<Bi k="factNonRelatives" separator={<br />} />} value={entry.also_used_for_non_relatives} />
       )}
       {entry.region_or_family_variation && (
-        <Fact label={<Bi k="factVariation" />} value={entry.region_or_family_variation} />
+        <Fact label={<Bi k="factVariation" separator={<br />} />} value={entry.region_or_family_variation} />
       )}
     </dl>
   );
