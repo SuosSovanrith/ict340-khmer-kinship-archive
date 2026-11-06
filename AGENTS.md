@@ -39,9 +39,3 @@ Everything else in the hard rules stands, especially rule 3:
 no keys, tokens, or passwords in any committed file, ever.
 Auth configuration lives in .env.local and in Vercel
 environment variables.
-
-**Read `PROJECT_CONTEXT.md` first.** It covers this specific archive's
-collection, the design decisions already made and why, and what's real
-data vs. placeholder. This file only covers coding rules that apply
-regardless of any of that — it doesn't change as the project evolves;
-`PROJECT_CONTEXT.md` does.
