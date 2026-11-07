@@ -23,7 +23,7 @@ export default async function ContributePage() {
   return (
     <main style={styles.wrap}>
       <BackLink href="/entries" label={bi("backEntries")} />
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p style={styles.kicker}><Bi k="kicker" /></p>
       <h1 style={styles.title}><Bi k="contributeTitle" /></h1>
       <p style={styles.sub}>
         <Bi k="contributeIntro" vars={{ curator: collection.curator }} separator={<br />} />

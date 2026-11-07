@@ -34,7 +34,7 @@ export default async function EditEntryPage({ params }) {
   return (
     <main style={styles.wrap}>
       <BackLink href="/entries" label={bi("backEntries")} />
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p style={styles.kicker}><Bi k="kicker" /></p>
       <h1 style={styles.title}><Bi k="editEntry" /></h1>
       <p style={styles.sub}>Update your term; changes are saved to the archive.</p>
 

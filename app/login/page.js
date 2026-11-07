@@ -112,7 +112,7 @@ export default function Login() {
   return (
     <main style={styles.wrap}>
       <BackLink href="/" label={bi("backHome")} />
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p style={styles.kicker}><Bi k="kicker" /></p>
       <h1 style={styles.title}><Bi k="logIn" /></h1>
       <p style={styles.sub}>
         <Bi k="loginIntro" separator={<br />} />

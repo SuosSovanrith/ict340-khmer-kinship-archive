@@ -33,7 +33,7 @@ export default function Loading() {
   return (
     <main style={styles.wrap}>
       <div style={styles.card}>
-        <p style={styles.label}>KHMER LIVING ARCHIVE</p>
+        <p style={styles.label}><Bi k="kicker" /></p>
         <p style={styles.text}>
           <Bi k="loadingTerms" />
         </p>

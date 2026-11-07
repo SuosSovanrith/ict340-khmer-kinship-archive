@@ -1,6 +1,7 @@
 import Link from "next/link";
 import collection from "../collection.config.js";
 import { colors, fonts } from "../lib/theme.js";
+import Bi from "../components/Bi.js";
 
 const styles = {
   wrap: {
@@ -65,7 +66,7 @@ const styles = {
 export default function Home() {
   return (
     <main style={styles.wrap}>
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p style={styles.kicker}><Bi k="kicker" /></p>
       <h1 style={styles.title}>{collection.name}</h1>
       <p style={styles.description}>{collection.description}</p>
 

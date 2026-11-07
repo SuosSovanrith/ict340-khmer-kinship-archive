@@ -111,7 +111,7 @@ export default async function MyEntriesPage() {
   return (
     <main style={styles.wrap}>
       <BackLink href="/entries" label={bi("backEntries")} />
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p style={styles.kicker}><Bi k="kicker" /></p>
       <h1 style={styles.title}><Bi k="myEntries" /></h1>
       <p style={styles.sub}>
         <Bi k="myEntriesSub" separator={<br />} />
