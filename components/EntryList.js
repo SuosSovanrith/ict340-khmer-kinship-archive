@@ -5,6 +5,7 @@ import EntryCard from "./entrycard/EntryCard.js";
 import { entryMatches } from "../lib/searchEntries.js";
 import EntrySearchInput from "./EntrySearchInput.js";
 import EntrySearchEmptyState from "./EntrySearchEmptyState.js";
+import Bi from "./Bi.js";
 import { createClient } from "../lib/supabase/client.js";
 import { styles } from "./EntryListStyles.js";
 
@@ -39,7 +40,7 @@ export default function EntryList({ entries }) {
   return (
     <>
       <p style={styles.entryCount}>
-        {visible.length} of {entries.length} entries
+        <Bi k="entryCount" vars={{ shown: visible.length, total: entries.length }} />
       </p>
       <EntrySearchInput value={query} onChange={(e) => setQuery(e.target.value)} />
 

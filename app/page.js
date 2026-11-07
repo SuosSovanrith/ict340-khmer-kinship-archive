@@ -67,20 +67,38 @@ export default function Home() {
   return (
     <main style={styles.wrap}>
       <p style={styles.kicker}><Bi k="kicker" /></p>
-      <h1 style={styles.title}>{collection.name}</h1>
-      <p style={styles.description}>{collection.description}</p>
+      <h1 style={styles.title}>
+        {collection.name}
+        <br />
+        <span lang="km" style={{ fontFamily: fonts.khmer }}>
+          {collection.nameKm}
+        </span>
+      </h1>
+      <p style={styles.description}>
+        {collection.description}
+        <br />
+        <span lang="km" style={{ fontFamily: fonts.khmer }}>
+          {collection.descriptionKm}
+        </span>
+      </p>
 
       <div style={styles.card}>
-        <p style={styles.cardLabel}>CURATED BY</p>
+        <p style={styles.cardLabel}><Bi k="homeCuratedBy" /></p>
         <p style={styles.cardValue}>{collection.curator}</p>
       </div>
       <div style={styles.card}>
-        <p style={styles.cardLabel}>SOURCE</p>
-        <p style={styles.cardValue}>{collection.source}</p>
+        <p style={styles.cardLabel}><Bi k="homeSource" /></p>
+        <p style={styles.cardValue}>
+          {collection.source}
+          <br />
+          <span lang="km" style={{ fontFamily: fonts.khmer }}>
+            {collection.sourceKm}
+          </span>
+        </p>
       </div>
 
       <Link style={styles.browseLink} href="/entries">
-        Browse the terms →
+        <Bi k="browseTitle" /> →
       </Link>
 
       <footer style={styles.footer}>

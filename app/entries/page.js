@@ -123,8 +123,7 @@ export default async function Entries() {
         <Bi k="browseTitle" />
       </h1>
       <p style={styles.sub}>
-        Each card is one Khmer kinship term. Use the tabs to see how it&apos;s
-        used across generations.
+        <Bi k="entriesSub" separator={<br />} />
       </p>
 
       {entries.length === 0 ? (
@@ -133,9 +132,7 @@ export default async function Entries() {
             <Bi k="noTermsYet" />
           </p>
           <p style={styles.emptyBody}>
-            Every card here is gathered by hand from real speakers, one term at
-            a time — this living archive is still under construction. Check back
-            soon.
+            <Bi k="entriesEmptyBody" separator={<br />} />
           </p>
         </div>
       ) : (

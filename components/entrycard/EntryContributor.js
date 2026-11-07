@@ -1,4 +1,5 @@
 import { colors, fonts } from "../../lib/theme.js";
+import Bi from "../Bi.js";
 
 const styles = {
   contributor: {
@@ -14,5 +15,9 @@ const styles = {
 // no contributor (e.g. anonymous/older entries) — the card just omits the line.
 export default function EntryContributor({ name }) {
   if (!name) return null;
-  return <p style={styles.contributor}>Contributed by {name}</p>;
+  return (
+    <p style={styles.contributor}>
+      <Bi k="contributedBy" vars={{ name }} />
+    </p>
+  );
 }
