@@ -157,6 +157,7 @@ export default function HeaderStyles() {
       }
       .hdr-menu {
         display: none;
+        position: relative;
       }
       @media (max-width: 1024px) {
         .hdr-inline {
