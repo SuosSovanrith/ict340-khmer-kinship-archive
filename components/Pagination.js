@@ -35,20 +35,20 @@ function Control({ target, disabled, rel, hrefFor, onChange, children }) {
   if (disabled) {
     return (
       <span aria-disabled="true" style={{ ...base, ...disabledStyle }}>
-        {children}
+        <span>{children}</span>
       </span>
     );
   }
   if (hrefFor) {
     return (
       <Link href={hrefFor(target)} rel={rel} style={base}>
-        {children}
+        <span>{children}</span>
       </Link>
     );
   }
   return (
     <button type="button" onClick={() => onChange(target)} style={base}>
-      {children}
+      <span>{children}</span>
     </button>
   );
 }
