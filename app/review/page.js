@@ -1,12 +1,14 @@
 import { redirect } from "next/navigation";
 import BackLink from "../../components/BackLink.js";
 import Bi from "../../components/Bi.js";
+import Pagination from "../../components/Pagination.js";
 import ReviewItem from "../../components/review/ReviewItem.js";
 import ReviewTabs from "../../components/review/ReviewTabs.js";
 import ReviewSort from "../../components/review/ReviewSort.js";
 import { createClient } from "../../lib/supabase/server.js";
 import { bi } from "../../lib/uiText.js";
 import { styles } from "../../components/review/ReviewStyles.js";
+import { pageCount, PAGE_SIZES } from "../../lib/pagination.js";
 import {
   parseReviewParams,
   fetchReviewCounts,
@@ -40,12 +42,30 @@ export default async function ReviewPage({ searchParams }) {
   }
 
   const params = await searchParams;
-  const { status, sort } = parseReviewParams(params);
+  const { status, sort, page } = parseReviewParams(params);
   const counts = await fetchReviewCounts(supabase);
+
+  // Counts can fail (each returns null). Only compute pages when the count is a
+  // real number; otherwise no pagination is rendered and the entries fetch (the
+  // one thing that still works without the count) still runs.
+  const total = counts[status];
+  let pages = null;
+  if (typeof total === "number") {
+    pages = pageCount(total, PAGE_SIZES.review);
+    // A requested page past the last one is out of range: bounce to the last
+    // page of the same tab and sort, omitting ?page= when there is only one.
+    if (page > pages) {
+      redirect(
+        `/review?status=${status}&sort=${sort}${pages > 1 ? `&page=${pages}` : ""}`
+      );
+    }
+  }
+
   const { entries, contributorsById, loadFailed } = await fetchReviewEntries(
     supabase,
     status,
-    sort
+    sort,
+    page
   );
 
   return (
@@ -79,6 +99,16 @@ export default async function ReviewPage({ searchParams }) {
             contributorName={contributorsById.get(entry.owner) ?? null}
           />
         ))
+      )}
+
+      {typeof total === "number" && (
+        <Pagination
+          page={page}
+          totalPages={pages}
+          hrefFor={(p) =>
+            `/review?status=${status}&sort=${sort}${p > 1 ? `&page=${p}` : ""}`
+          }
+        />
       )}
     </main>
   );
