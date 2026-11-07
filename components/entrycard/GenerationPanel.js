@@ -1,4 +1,6 @@
+import Bi from "../Bi.js";
 import { STATUS_STYLE, resolveGenerationSource } from "../../lib/generations.js";
+import { labelFor, STATUS_KEYS } from "../../lib/uiText.js";
 import { styles } from "./EntryCardStyles.js";
 
 // One generation's answer inside GenerationExplorer. `visible` drives the
@@ -29,13 +31,13 @@ export default function GenerationPanel({ entry, genKey, sources, visible }) {
           />
         </div>
         <span style={{ ...styles.genStatusLabel, color: status.color }}>
-          {gen.still_used}
+          {labelFor(STATUS_KEYS, gen.still_used)}
         </span>
       </div>
 
       {gen.alternate_term && (
         <p style={styles.genAlternate}>
-          Word used instead: {gen.alternate_term}
+          <Bi k="wordUsedInstead" /> {gen.alternate_term}
         </p>
       )}
 

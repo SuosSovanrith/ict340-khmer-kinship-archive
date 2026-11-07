@@ -3,7 +3,8 @@
 import { useState } from "react";
 import sources from "../../sources.config.js";
 import Bi from "../Bi.js";
-import { GENERATION_ORDER, GENERATION_LABELS } from "../../lib/generations.js";
+import { GENERATION_ORDER } from "../../lib/generations.js";
+import { COHORT_KEYS } from "../../lib/uiText.js";
 import GenerationPanel from "./GenerationPanel.js";
 import { styles } from "./EntryCardStyles.js";
 
@@ -39,10 +40,11 @@ export default function GenerationExplorer({ entry }) {
             onClick={() => selectGeneration(genKey)}
             style={{
               ...styles.genTab,
+              textAlign: "center",
               ...(genKey === activeGen ? styles.genTabActive : {}),
             }}
           >
-            {GENERATION_LABELS[genKey]}
+            <Bi k={COHORT_KEYS[genKey]} separator={<br />} />
           </button>
         ))}
       </div>
