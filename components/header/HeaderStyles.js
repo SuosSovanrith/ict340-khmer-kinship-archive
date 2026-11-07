@@ -110,11 +110,16 @@ export const styles = {
   },
   // One vertical row (Link or logout button): full width, 44px touch target,
   // left aligned, ellipsis so a long username never blows out the panel.
+  // Deliberately a plain block (NOT a flex container): if the row were
+  // display:flex, the English, separator, and Khmer fragments from <Bi> would
+  // become separate flex items, and each flex item trims its edge whitespace —
+  // which would swallow the space between the "·" and the Khmer label.
+  // line-height + padding centers the single line vertically.
   menuRow: {
-    display: "flex",
-    alignItems: "center",
+    display: "block",
     width: "100%",
     minHeight: 44,
+    lineHeight: "44px",
     padding: "0 16px",
     boxSizing: "border-box",
     fontFamily: fonts.mono,
