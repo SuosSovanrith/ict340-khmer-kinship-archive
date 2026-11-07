@@ -6,6 +6,8 @@ import Bi from "../../components/Bi.js";
 import BackLink from "../../components/BackLink.js";
 import { bi } from "../../lib/uiText.js";
 import MyEntryRow from "../../components/myentries/MyEntryRow.js";
+import Pagination from "../../components/Pagination.js";
+import { parsePage, pageCount, rangeFor, PAGE_SIZES } from "../../lib/pagination.js";
 import { colors, fonts } from "../../lib/theme.js";
 
 const styles = {
@@ -85,18 +87,24 @@ export const metadata = {
 // Signed-in-only route listing everything the current user owns, newest first.
 // Not logged in, redirect straight to /login — the page is meaningless without
 // a session. Only this user's rows are requested; RLS stays the real guard.
-export default async function MyEntriesPage() {
+export default async function MyEntriesPage({ searchParams }) {
+  const params = await searchParams;
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
-  const { data, error } = await supabase
+  const page = parsePage(params?.page);
+  const size = PAGE_SIZES.myEntries;
+  const { from, to } = rangeFor(page, size);
+
+  const { data, count, error } = await supabase
     .from("entries")
-    .select("*")
+    .select("*", { count: "exact" })
     .eq("owner", user.id)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
   // Log a real outage server-side so it doesn't look identical to "you have no
   // entries yet" in the UI — surface the code and message so the log is useful.
@@ -107,6 +115,14 @@ export default async function MyEntriesPage() {
   }
 
   const entries = error ? null : (data || []);
+  const total = error ? null : (count || 0);
+  const pages = pageCount(total, size);
+
+  // A requested page past the last one is out of range: bounce to the last
+  // page, omitting ?page= when there is only one.
+  if (page > pages) {
+    redirect(`/my-entries${pages > 1 ? `?page=${pages}` : ""}`);
+  }
 
   return (
     <main style={styles.wrap}>
@@ -134,6 +150,12 @@ export default async function MyEntriesPage() {
       ) : (
         entries.map((entry) => <MyEntryRow key={entry.id} entry={entry} />)
       )}
+
+      <Pagination
+        page={page}
+        totalPages={pages}
+        hrefFor={(p) => `/my-entries${p > 1 ? `?page=${p}` : ""}`}
+      />
 
       <footer style={styles.footer}>
         Built in ICT 340 — Vibe Coding, American University of Phnom Penh, Fall
