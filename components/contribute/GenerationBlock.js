@@ -77,7 +77,7 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
 
       <div style={styles.field}>
         <label style={styles.label} htmlFor={`${genKey}-source-override`}>
-          SOURCE OVERRIDE <span style={styles.hint}>(optional)</span>
+          <Bi k="sourceOverride" /> <Bi k="optional" />
         </label>
         <input
           id={`${genKey}-source-override`}

@@ -1,6 +1,7 @@
 "use client";
 
 import { styles } from "./ContributeStyles.js";
+import Bi from "../../components/Bi.js";
 
 // Repeatable tag inputs. `tags` is an array of strings (one blank row = one
 // editable tag); duplicates/empties/max are enforced by validateContribute on
@@ -41,7 +42,7 @@ export default function TagsEditor({ tags, onChange, error }) {
       ))}
       {tags.length < 8 && (
         <button type="button" data-field="tags" style={styles.smallButton} onClick={add}>
-          + Add tag
+          <Bi k="addTag" />
         </button>
       )}
       {error && <p style={styles.errorText}>{error}</p>}
