@@ -15,6 +15,7 @@ export default function Bi({ k, vars, separator = " · " }) {
         lang="km"
         style={{ fontFamily: fonts.khmer, textTransform: "none", letterSpacing: "normal" }}
       >
+        {" "}
         {fill(t.km, vars)}
       </span>
     </>
