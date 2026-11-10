@@ -20,6 +20,15 @@ export default async function ContributePage() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // Non-reviewers must name a source per generation; reviewers keep the field
+  // optional. Anything other than exactly true means sources are required —
+  // false, null, or an RPC error all fail closed to "required".
+  let requireSources = true;
+  if (user) {
+    const { data: isReviewer } = await supabase.rpc("is_reviewer");
+    requireSources = isReviewer !== true;
+  }
+
   return (
     <main style={styles.wrap}>
       <BackLink href="/entries" label={bi("backEntries")} />
@@ -30,7 +39,7 @@ export default async function ContributePage() {
       </p>
 
       {user ? (
-        <ContributeForm />
+        <ContributeForm requireSources={requireSources} />
       ) : (
         <div style={styles.loginPrompt}>
           <p style={styles.loginTitle}><Bi k="loginToContribute" /></p>

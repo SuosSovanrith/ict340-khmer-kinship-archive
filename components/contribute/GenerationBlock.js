@@ -10,7 +10,7 @@ const STATUS_CHOICES = Object.keys(STATUS_STYLE);
 
 // One age cohort's section of the contribute form. `errors` is the flat
 // { fieldKey: message } map from validateContribute; genKey is elder/middle/peer.
-export default function GenerationBlock({ genKey, gen, errors, onChange }) {
+export default function GenerationBlock({ genKey, gen, errors, onChange, requireSources }) {
   function set(field, value) {
     onChange(genKey, field, value);
   }
@@ -76,9 +76,20 @@ export default function GenerationBlock({ genKey, gen, errors, onChange }) {
       )}
 
       <div style={styles.field}>
-        <label style={styles.label} htmlFor={`${genKey}-source-override`}>
-          <Bi k="sourceOverride" /> <Bi k="optional" />
-        </label>
+        {requireSources ? (
+          <>
+            <label style={styles.label} htmlFor={`${genKey}-source-override`}>
+              <Bi k="sourceWho" /> <span style={styles.required}>*</span>
+            </label>
+            <p style={styles.hint}>
+              <Bi k="sourceWhoHint" separator={<br />} />
+            </p>
+          </>
+        ) : (
+          <label style={styles.label} htmlFor={`${genKey}-source-override`}>
+            <Bi k="sourceOverride" /> <Bi k="optional" />
+          </label>
+        )}
         <input
           id={`${genKey}-source-override`}
           data-field={`generations.${genKey}.source_override`}

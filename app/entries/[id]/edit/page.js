@@ -31,6 +31,12 @@ export default async function EditEntryPage({ params }) {
 
   if (!entry || entry.owner !== user.id) redirect("/entries");
 
+  // Reviewers keep the per-generation source optional; anyone else must name a
+  // source. Anything but exactly true (error, null, false) fails closed to
+  // "required".
+  const { data: isReviewer } = await supabase.rpc("is_reviewer");
+  const requireSources = isReviewer !== true;
+
   return (
     <main style={styles.wrap}>
       <BackLink href="/entries" label={bi("backEntries")} />
@@ -38,7 +44,7 @@ export default async function EditEntryPage({ params }) {
       <h1 style={styles.title}><Bi k="editEntry" /></h1>
       <p style={styles.sub}>Update your term; changes are saved to the archive.</p>
 
-      <ContributeForm entry={entry} />
+      <ContributeForm entry={entry} requireSources={requireSources} />
 
       <footer style={styles.footer}>
         Built in ICT 340 — Vibe Coding, American University of Phnom Penh, Fall

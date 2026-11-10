@@ -64,7 +64,7 @@ function formFromEntry(entry) {
 // `entry` is optional: when present the same form runs in edit mode (pre-filled
 // from the row, update instead of insert); when absent it's the blank create
 // form used by /contribute. All fields/validation are shared either way.
-export default function ContributeForm({ entry }) {
+export default function ContributeForm({ entry, requireSources = true }) {
   const isEdit = Boolean(entry);
   const [form, setForm] = useState(() => (entry ? formFromEntry(entry) : initialForm));
   const [photoFile, setPhotoFile] = useState(null);
@@ -72,6 +72,7 @@ export default function ContributeForm({ entry }) {
     entryId: entry?.id,
     entryStatus: entry?.status,
     existingPhotoUrl: entry?.photo_url,
+    requireSources,
   });
   function setField(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -115,6 +116,7 @@ export default function ContributeForm({ entry }) {
               gen={form.generations[genKey]}
               errors={errors}
               onChange={setGenerations}
+              requireSources={requireSources}
             />
           ))}
         </div>
