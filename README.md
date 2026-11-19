@@ -16,7 +16,7 @@ The 11 published entries come from interviews on 2 September 2026 with three of 
 
 ## 2. Who it's for
 
-The archive is for two groups of people in Cambodia: Cambodians who want to see how their family words are used across generations, and foreigners living in Cambodia who want to learn how Khmer people address their relatives. [YOU: one sentence in your own words about why you chose this collection.]
+The archive is for two groups of people in Cambodia: Cambodians who want to see how their family words are used across generations, and foreigners living in Cambodia who want to learn how Khmer people address their relatives.
 
 What I did because of who the users are:
 
@@ -149,7 +149,7 @@ Two behaviours worth knowing: a blocked `UPDATE` or `DELETE` on someone else's r
 
 Validation is layered: JavaScript in the forms gives helpful messages, CHECK constraints and triggers hold the line if the form is bypassed, and RLS decides ownership.
 
-All of the SQL (the tables, policies, constraints, functions and triggers from all three sprints) was run in the Supabase SQL Editor and is not kept as files in this repository. This section was written from a live query of the database on [DATE], so it describes what is actually running.
+All of the SQL (the tables, policies, constraints, functions and triggers from all three sprints) was run in the Supabase SQL Editor and is not kept as files in this repository. This section was written from a live query of the database on 20/11/2026, so it describes what is actually running.
 
 ## 4. Security decisions
 
@@ -207,35 +207,80 @@ Because `review_entry` refuses by returning `false` without an error, the Publis
 - There is one reviewer, listed only in SQL, and no email notifications. The browse page downloads all published entries and searches and pages them in the browser, which is fine at this size but wouldn't be at hundreds. Usernames can imitate each other with look-alike letters.
 - Search assumes one Latin spelling per Khmer word. Four terms from my interviews (Kmek, Khmoay, Pdei, Propun) were sketched but not added, because their sources disagree or I hadn't verified them.
 
-**Attack testing.** I tested the gate as a stranger from the browser console, with a control on every attack so a refusal couldn't be mistaken for a broken test: insert as published, update my own entry to published, call `review_entry` on my own and on someone else's entry, insert myself into `reviewers`, read unpublished entries while logged out, edit and delete another user's entry, and insert or edit without a source. Every attack was refused. Dates: [DATE].
+**Attack testing.** I tested the gate as a stranger from the browser console, with a control on every attack so a refusal couldn't be mistaken for a broken test: insert as published, update my own entry to published, call `review_entry` on my own and on someone else's entry, insert myself into `reviewers`, read unpublished entries while logged out, edit and delete another user's entry, and insert or edit without a source. Every attack was refused. Dates: 20/11/2026.
 
 ## 5. AI use
-
-I used AI for most of the code, and I checked it by reading it, running it, and attacking it.
-
-| Model | Used for | What I did with it |
-|---|---|---|
-| `z-ai/glm-5.2:free` (in Cline, Plan mode) | Early Sprint 1: the implementation plan and how to use the mock data | Kept nearly all of it |
-| `nvidia/nemotron-3-super-120b-a12b:free` (in Cline, Act mode) | Early Sprint 1: the first components and a review-and-fix pass | Rewrote what got flagged and left the rest |
-| `deepseek/deepseek-v4-flash-0731` (in Cline, Plan and Act) | Late Sprint 1 to now: nearly all of the application code (Supabase queries, forms, the review queue, pagination, the header menu, the bilingual text wiring) | Read every diff before pushing. Rejected or sent back changes that touched files I hadn't named. Kept the rest |
-| Claude (Anthropic), in the claude.ai chat: Claude Sonnet 5 & 5.5 | Writing the scoped prompts for Cline, running the SQL against a throwaway local Postgres before it touched my database, reviewing diffs, drafting the Khmer interface text, planning, and helping write this README | See below |
-
-### What I kept and what I changed
-
-- **SQL.** The Sprint 3 gate (`status`, `reviewers`, `is_reviewer`, `review_entry`, the policies) came from my professor's lab and I ran it as written. The reviewer's reason (`review_note` and the new `review_entry`) and the required-source trigger were written with Claude and tested on a throwaway local Postgres first (more than 20 accept and reject cases each), then run on my database, then attacked from the console.
-- **Khmer text.** Claude drafted the Khmer for the interface. I am a Khmer speaker, so I reviewed all of it. I rewrote seven of the first batch of field labels myself (the romanized label, pronunciation, relation, usage notes, variation, still-used and "used for non-relatives") and approved the rest after reading it. [YOU: add anything else you corrected.]
-- **Code.** I kept nearly all of Cline's code after reading the diff. I had it remove things I hadn't asked for.
-
-### How I checked their work
-
-For every Cline change: read the diff, ran my standing review questions (did it touch files I didn't name, did it invent a value, did it add a dependency), then cloned the pushed repo fresh and ran `next build`, and grepped for risky patterns (direct `.update(` calls in the review code, `dangerouslySetInnerHTML`, new packages, English text left behind). For SQL: tested on a throwaway Postgres, then attacked the real site from a second "stranger" account with a control on every attempt. My review partner then tried to break it with the course checklist.
-
-### Where the AI got it wrong
-
-- **Cline's plan for `/review`** included a footer I never asked for, hard-coded in English. I had it removed before it wrote any code. Its self-audit marked every check as passing, so I confirmed the code myself.
-- **A reviewer who edited their own returned entry got stuck.** The rule "an edit goes back to review unless the editor is a reviewer" was implemented exactly as written, and nobody considered a reviewer editing their own *returned* entry, which stayed returned forever. My review partner found it on review day, not me. The fix limits the reviewer exception to entries that are currently published.
-- **Cline's first attempts at a header bug did nothing.** The collapsing menu showed no space after the "·" before the Khmer text. Its first diagnosis (a missing `position: relative`) and its first fix (adding a space in `Bi.js`, which I then had it revert) changed nothing. The next attempt found the real cause: `display: flex` turned the English, the dot and the Khmer into separate items that each lost their edge spaces. I tested each fix in the browser before accepting it. The same mistake later appeared in the pagination buttons, which Claude had written, and the same one-span fix solved it.
-- **Missed text.** When Claude and I made the interface bilingual, some strings were missed (the signup labels, the search box, a few card labels), and I only found them by scanning the code afterwards.
+ 
+I used AI heavily in this project. This section says exactly what it did, what I did myself, how I directed it, and how I checked it, so that nothing here is a surprise. It replaces the Prompt Journal for the final.
+ 
+### 5.1 The rules I set for the AI
+ 
+- **`AGENTS.md`** (provided by the course, amended once by me for the sign-in packages): exactly two extra packages (`@supabase/supabase-js` and `@supabase/ssr`), no keys or tokens ever written into files, and never invent interview or source data.
+- **Plan first** for any change touching more than one file. I read and approved the plan before any code was written.
+- **Every prompt named the exact files it could touch** and said what it must not touch (SQL, policies, packages). I embedded literal values, such as exact Khmer strings and class names, instead of saying "go read the docs".
+- **One task per session.** If a prompt used "and" more than twice, I split it.
+- **Every commit with AI help ends `[AI-Assisted]`**.
+### 5.2 Models
+ 
+| Model | Where | Tasks | Verdict |
+|---|---|---|---|
+| `z-ai/glm-5.2:free` | Cline, Plan mode | Early Sprint 1: the implementation plan and how to use the mock data | Kept nearly all of it. Would use again |
+| `nvidia/nemotron-3-super-120b-a12b:free` | Cline, Act mode | Early Sprint 1: the first components and a review-and-fix pass | Rewrote what got flagged, left the rest. Would use again |
+| `deepseek/deepseek-v4-flash-0731` | Cline, Plan and Act | Late Sprint 1 to the final: most of the application code (Supabase queries, forms, edit and delete, the review queue, pagination, the header menu, the bilingual wiring) | Kept most after reading each diff, and sent back changes that touched files I hadn't named. I switched to this to use a paid model instead of the free one for a stronger but also cleap model.|
+| Claude Sonnet 5 and 5.5 (Anthropic) | claude.ai chat | Wrote the prompts for Cline, wrote and tested SQL on a throwaway local Postgres, reviewed diffs, drafted the Khmer interface text, wrote the pagination helpers and component, drafted this README | Used as planner, tester and reviewer. I ran everything myself, and nothing it wrote touched my database before it was tested |
+ 
+### 5.3 What the AI wrote, and what I did
+ 
+| Area | Who wrote it | What I did | How I checked it |
+|---|---|---|---|
+| **The collection itself**: all entry content, the Khmer terms, the generation notes, the sources and the photo credits | **Me**, from my interviews on 2 Sept 2026 | The AI never wrote or invented entry content. Four terms I couldn't verify (Kmek, Khmoay, Pdei, Propun) were not added | Compared against my interview notes [YOU: confirm] |
+| Browse, entry cards and search (Sprint 1) | The three Cline models above | Kept the plan, rewrote flagged parts, chose how the three generations are shown | Read the diffs, ran it locally, searched in Khmer and in English |
+| Accounts, contribute form, edit and delete (Sprint 2) | `deepseek` in Cline, from prompts written with Claude | Chose that the photo is required on create and optional on edit | Fresh clone and `next build`, then a two-account attack: another user's edit and delete returned 0 rows |
+| Tables, constraints, profiles and usernames (Sprint 2) | SQL written with Claude | Ran it only after it passed accept and reject cases on a throwaway Postgres | Console attacks from the browser, each with a control |
+| The review gate: `status`, `reviewers`, `is_reviewer`, `review_entry`, the policies (Sprint 3) | My professor's lab SQL | Ran it as written, did not write it | 5 console attacks as a stranger |
+| The reviewer's reason (`review_note`, the new `review_entry`) and the required-source trigger | SQL written with Claude | Decided both rules and approved the design | 21 and about 25 accept/reject cases on a throwaway Postgres, then console attacks on the live site |
+| Submit, edit, My entries, the review queue, tabs, sort | `deepseek` in Cline, from prompts written with Claude | Plan first, then read every diff | Fresh clone and build, grep for direct table updates, the full round trip, stranger attacks |
+| Bilingual English and Khmer text | Claude drafted the Khmer, Cline wired it in | I am a Khmer speaker and reviewed every string. I rewrote 7 of the first batch of field labels myself and approved the rest after reading | Searched the files for the exact strings, scanned for English I'd missed |
+| Header menu, pagination, layout polish | `deepseek` in Cline. Claude wrote the pagination helpers and component | Chose the breakpoints (900 px for the cards, 1024 px for the header) | Tested at phone and desktop widths in the browser |
+| **This README** | Claude drafted it from the repo and a live query of my database | I checked every claim against the code and the database, and wrote the sections about my sources and my decisions | Spot-checked each statement in the repo |
+| **Every decision**: what to build, what to refuse, what a returned entry says, the rule that strangers must name a source | **Me** | | |
+ 
+### 5.4 How I directed the AI
+ 
+I used these techniques deliberately:
+ 
+- **Step by step, plan first.** For anything across several files, Cline gave a plan and I reviewed it before it wrote code.
+- **Contextual prompting with stated constraints.** Each prompt listed the files it could change and what it must never do. For the review buttons, for example: *"NEVER call supabase.from("entries").update(...)"* and *"SUCCESS means exactly `data === true && !error`."*
+- **Literal values.** I pasted the exact Khmer text and style values, so the AI could not reword them. I then searched the files to confirm they were unchanged.
+- **Splitting and firming up** when the AI did not comply: I asked for a diagnosis first with no changes, then wrote a stricter prompt.
+- **A strict-reviewer prompt** after every diff: *which files did it touch that I didn't authorize, did it invent a value, did it add a dependency?*
+### 5.5 How I checked the AI's work
+ 
+- Read every diff before pushing.
+- Cloned the pushed repo fresh and ran `next build`, so I wasn't trusting my own machine.
+- Searched the code for risky patterns: direct `.update(` or `.delete(` calls in the review code, `dangerouslySetInnerHTML`, new packages, English text left behind.
+- Tested SQL on a throwaway local Postgres before it touched my database: 21 cases for `review_entry` and about 25 for the required-source rule, covering strangers, reviewers, whitespace-only values, wrong types and my own maintenance.
+- Attacked the live site from a second "stranger" account in the browser console, with a **control on every attack** so a refusal could not be mistaken for a broken test.
+- Had my review partner try to break it with the course checklist.
+### 5.6 Where the AI got it wrong, and how I caught it
+ 
+| What went wrong | Where | How I caught it | What I did |
+|---|---|---|---|
+| The plan for `/review` added a footer I never asked for, hard-coded in English, and its self-audit marked every check as passing | Cline | Read the plan before approving it | Had it removed, and confirmed the real code myself |
+| A reviewer editing their own *returned* entry left it stuck, because the rule "unless the editor is a reviewer" was implemented literally | Cline, from the lab's rule | **My review partner**, not me | Limited the reviewer exception to entries that are currently published |
+| The header menu lost the space after the "·" before the Khmer text. The first diagnosis and first fix did nothing | Cline | Tested each fix in the browser | The real cause was `display: flex` splitting the label into items that each lost their edge spaces |
+| The same space bug in the pagination buttons | Claude | Tested in the browser | Wrapped the label in a single element |
+| Strings missed when making the site bilingual (signup labels, the search box, a few card labels) | Claude's prompts and my review | Scanned the code for English afterwards | Added them in a second round |
+| A follow-up header prompt changed a file I hadn't named (`ContributeLink.js`) | Cline | Read the diff | Accepted it because I had asked for the header change, and noted it |
+| The review cards showed labels stacked, because the CSS lived inside `EntryList.js`, which only the browse page uses | Cline | Looking at the page | Moved the CSS into the card itself |
+| A test script I was given copied a real entry (Mak) into a pending duplicate | Claude | Looked at the data | Deleted it, and never published it |
+| A relative import path copied from a nearby file broke `/contribute` | Cline | A fresh `next build` | Fixed the path, and made a fresh build part of my routine |
+| Generated INSERT statements copied duplicate photos and a wrong caption faithfully from my own data | Cline | Parsed the SQL with a real parser [YOU: confirm the sprint] | Fixed the data |
+ 
+ 
+### 5.7 Limits
+ 
+- The project has no automated test suite. My verification is manual: reading diffs, building, local SQL tests and console attacks.
 
 ## 6. Sources and credits
 
@@ -249,7 +294,7 @@ For every Cline change: read the diff, ran my standing review questions (did it 
 
 **Photos.** The photos of the written words on the 11 published entries are credited on each card to ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង, a Buddhist monk, author, and compiler known for his work in preserving Khmer calligraphy and Buddhist literature.
 
-**Contributors.** Entries added by other people are credited by their public username on the card, and each generation shows the source the contributor named. [YOU: keep or remove this sentence depending on whether your classmate's entry is published by submission time.]
+**Contributors.** Entries added by other people are credited by their public username on the card, and each generation shows the source the contributor named. 
 
 **Tools and fonts.** Khmer text uses the Noto Serif Khmer font from Google Fonts. Next.js, React and Supabase are open-source and hosted services used under their terms.
 
@@ -284,18 +329,18 @@ A fresh Supabase project also needs the tables, policies, functions and triggers
 ## 8. Submission checklist
 
 - Live URL loads logged out and shows published entries only: yes, https://ict340-khmer-kinship-archive.vercel.app
-- A stranger cannot publish their own entry through the page or the console: yes, tested 17/11/2026 (Section 4; policies `owners add their own entries` and `owners edit their own entries`, function `review_entry`)
-- Logged out, the API returns nothing pending or returned: yes, tested 17/11/2026 (policy `anyone can read published entries`)
-- Contributors can edit and delete only their own entries: yes, tested 17/11/2026 (policies on `entries`; `app/entries/[id]/edit/page.js`)
-- No secrets anywhere in the repo history: yes, checked with `git grep` across every commit for secret keys, JWTs, tokens, private keys and email addresses on 17/11/2026
+- A stranger cannot publish their own entry through the page or the console: yes, tested 20/11/2026 (Section 4; policies `owners add their own entries` and `owners edit their own entries`, function `review_entry`)
+- Logged out, the API returns nothing pending or returned: yes, tested 20/11/2026 (policy `anyone can read published entries`)
+- Contributors can edit and delete only their own entries: yes, tested 20/11/2026 (policies on `entries`; `app/entries/[id]/edit/page.js`)
+- No secrets anywhere in the repo history: yes, checked with `git grep` across every commit for secret keys, JWTs, tokens, private keys and email addresses on 20/11/2026
 - At least eight real entries, each with a credited source: yes, 11
 - Khmer renders on every screen a user meets, including the queue: yes (`lib/uiText.js`, `components/Bi.js`)
 - Works at phone width: yes, tested on 360px
 - No test entries, lorem ipsum or TODO comments in shipped pages: yes
-- No console errors on the main pages: yes, checked on 17/11/2026
+- No console errors on the main pages: yes, checked on 20/11/2026
 - jesseorndorff is a collaborator on this repo: yes
-- Supabase project restored and awake on 17/11/2026
+- Supabase project restored and awake on 20/11/2026
 - Demo video link opens in a private window: yes, [LINK]
 - Reflection pasted in the Canvas submission: yes
 - Posted in the Show Your Archive discussion: yes
-- Q&A slot booked for [DATE and TIME]
+- Q&A slot booked for 01/Dec/2026 15:10 - 15:15
