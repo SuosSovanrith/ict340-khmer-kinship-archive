@@ -1,0 +1,13 @@
+/* /review filter buttons — the status tabs and sort links keep their look via
+   inline style objects in ReviewStyles.js, which cannot express breakpoints.
+   At 435px and below each button breaks onto its own line and stretches to the
+   full width of the page column. Inline styles still own padding/border/colors;
+   this class only overrides layout for the narrow screen.
+   Scope: only .review-filter-button is affected. */
+@media (max-width: 435px) {
+  .review-filter-button {
+    flex: 1 0 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+}

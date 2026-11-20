@@ -14,6 +14,7 @@ export default function ReviewSort({ status, sort }) {
       <div style={styles.sortRow} role="group" aria-label="Sort order">
       <Link
         href={`/review?status=${status}&sort=oldest`}
+        className="review-filter-button"
         style={sort === "oldest" ? styles.sortActive : styles.sortLink}
         aria-current={sort === "oldest" ? "true" : undefined}
       >
@@ -21,6 +22,7 @@ export default function ReviewSort({ status, sort }) {
       </Link>
       <Link
         href={`/review?status=${status}&sort=newest`}
+        className="review-filter-button"
         style={sort === "newest" ? styles.sortActive : styles.sortLink}
         aria-current={sort === "newest" ? "true" : undefined}
       >

@@ -26,6 +26,7 @@ export default function ReviewTabs({ status, counts }) {
           <Link
             key={s}
             href={`/review?status=${s}`}
+            className="review-filter-button"
             style={active ? styles.tabActive : styles.tab}
             aria-current={active ? "page" : undefined}
           >

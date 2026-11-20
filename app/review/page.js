@@ -5,6 +5,7 @@ import Pagination from "../../components/Pagination.js";
 import ReviewItem from "../../components/review/ReviewItem.js";
 import ReviewTabs from "../../components/review/ReviewTabs.js";
 import ReviewSort from "../../components/review/ReviewSort.js";
+import "../../components/review/ReviewFilters.css";
 import { createClient } from "../../lib/supabase/server.js";
 import { bi } from "../../lib/uiText.js";
 import { styles } from "../../components/review/ReviewStyles.js";
