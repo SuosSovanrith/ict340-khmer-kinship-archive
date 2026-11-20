@@ -18,6 +18,9 @@ const control = {
 
 export const styles = {
   wrap: { maxWidth: 760, margin: "0 auto", padding: "80px 24px" },
+  // The form is already nested inside the page's `wrap`, so its own wrapper
+  // keeps only the horizontal padding for alignment — no extra 80px top gap.
+  formWrap: { maxWidth: 760, margin: "0 auto", padding: "0 24px" },
   kicker: { fontFamily: fonts.mono, color: colors.emerald, fontSize: 14, letterSpacing: 1 },
   title: {
     fontFamily: fonts.serif,
@@ -27,7 +30,7 @@ export const styles = {
     margin: "16px 0 12px",
     lineHeight: 1.1,
   },
-  sub: { fontSize: 16, color: colors.muted, lineHeight: 1.6, margin: "0 0 40px" },
+  sub: { fontSize: 16, color: colors.muted, lineHeight: 1.6, margin: "0 0 24px" },
 
   form: { display: "block", margin: 0 },
   field: { margin: "0 0 20px" },

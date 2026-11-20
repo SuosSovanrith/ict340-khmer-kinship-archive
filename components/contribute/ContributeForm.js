@@ -87,7 +87,7 @@ export default function ContributeForm({ entry, requireSources = true }) {
     }));
   }
   return (
-    <main style={styles.wrap}>
+    <main style={styles.formWrap}>
       {submitted ? (
         <SubmittedNotice />
       ) : (
