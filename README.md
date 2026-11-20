@@ -211,7 +211,7 @@ Because `review_entry` refuses by returning `false` without an error, the Publis
 
 ## 5. AI use
  
-I used AI heavily in this project. This section says exactly what it did, what I did myself, how I directed it, and how I checked it, so that nothing here is a surprise. It replaces the Prompt Journal for the final.
+I used AI heavily in this project. This section says exactly what it did, what I did myself, how I directed it, and how I checked it, so that nothing here is a surprise. It replaces the Prompt Journal for the final. Some commits aren’t as marked AI-Assisted because most are minor changes, data, and photo updates I made by hand and a few early Sprint 1 commits had AI help before I settled the habit of marking, and I did not rewrite history.
  
 ### 5.1 The rules I set for the AI
  
@@ -233,7 +233,7 @@ I used AI heavily in this project. This section says exactly what it did, what I
  
 | Area | Who wrote it | What I did | How I checked it |
 |---|---|---|---|
-| **The collection itself**: all entry content, the Khmer terms, the generation notes, the sources and the photo credits | **Me**, from my interviews on 2 Sept 2026 | The AI never wrote or invented entry content. Four terms I couldn't verify (Kmek, Khmoay, Pdei, Propun) were not added | Compared against my interview notes [YOU: confirm] |
+| **The collection itself**: all entry content, the Khmer terms, the generation notes, the sources and the photo credits | **Me**, from my interviews on 2 Sept 2026 | The AI never wrote or invented entry content. Four terms I couldn't verify (Kmek, Khmoay, Pdei, Propun) were not added | Compared against my interview notes |
 | Browse, entry cards and search (Sprint 1) | The three Cline models above | Kept the plan, rewrote flagged parts, chose how the three generations are shown | Read the diffs, ran it locally, searched in Khmer and in English |
 | Accounts, contribute form, edit and delete (Sprint 2) | `deepseek` in Cline, from prompts written with Claude | Chose that the photo is required on create and optional on edit | Fresh clone and `next build`, then a two-account attack: another user's edit and delete returned 0 rows |
 | Tables, constraints, profiles and usernames (Sprint 2) | SQL written with Claude | Ran it only after it passed accept and reject cases on a throwaway Postgres | Console attacks from the browser, each with a control |
@@ -275,7 +275,7 @@ I used these techniques deliberately:
 | The review cards showed labels stacked, because the CSS lived inside `EntryList.js`, which only the browse page uses | Cline | Looking at the page | Moved the CSS into the card itself |
 | A test script I was given copied a real entry (Mak) into a pending duplicate | Claude | Looked at the data | Deleted it, and never published it |
 | A relative import path copied from a nearby file broke `/contribute` | Cline | A fresh `next build` | Fixed the path, and made a fresh build part of my routine |
-| Generated INSERT statements copied duplicate photos and a wrong caption faithfully from my own data | Cline | Parsed the SQL with a real parser [YOU: confirm the sprint] | Fixed the data |
+| Generated INSERT statements copied duplicate photos and a wrong caption faithfully from my own data | Cline | Parsed the SQL with a real parser with Claude Sonnet 5.5| Fixed the data |
  
  
 ### 5.7 Limits
@@ -292,7 +292,7 @@ I used these techniques deliberately:
 | Chea Sotheavy | My mother | Kampong Chhnang | Parent-age |
 | Suos Sopheasur | My older sister | Phnom Penh | My generation |
 
-**Photos.** The photos of the written words on the 11 published entries are credited on each card to ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង, a Buddhist monk, author, and compiler known for his work in preserving Khmer calligraphy and Buddhist literature.
+**Photos.** The photos of the written words on the 11 published entries are credited on each card to ភិក្ខុ ថេរានុរក្ខិតោ ថាច់ សើង, a Buddhist monk, author, and compiler known for his work in preserving Khmer calligraphy and Buddhist literature. His work are for public to access and use, and I used them by cropping individual letter and vowel and put them together to form a full khmer word, then credited him by full name.
 
 **Contributors.** Entries added by other people are credited by their public username on the card, and each generation shows the source the contributor named. 
 
