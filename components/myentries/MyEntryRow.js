@@ -2,6 +2,7 @@ import Link from "next/link";
 import Bi from "../Bi.js";
 import { colors, fonts } from "../../lib/theme.js";
 import { STATUS_TEXT } from "../../lib/entryStatus.js";
+import "./MyEntryRow.css";
 
 const styles = {
   row: {
@@ -84,10 +85,27 @@ export default function MyEntryRow({ entry }) {
     entry.review_note.trim() !== "";
   return (
     <article style={styles.row}>
-      <h2 style={styles.khmer}>{entry.term_khmer}</h2>
-      <p style={styles.romanized}>{entry.term_romanized}</p>
-      <p style={styles.statusEn}>{status.en}</p>
-      <p style={styles.statusKm}>{status.km}</p>
+      <div className="mer-rowContent">
+        <div className="mer-title">
+          <h2 style={styles.khmer}>{entry.term_khmer}</h2>
+          <p style={styles.romanized}>{entry.term_romanized}</p>
+        </div>
+        <span className="mer-divider" aria-hidden="true">
+          |
+        </span>
+        <div className="mer-status">
+          <p style={styles.statusEn}>{status.en}</p>
+          <p style={styles.statusKm}>{status.km}</p>
+        </div>
+        <span className="mer-divider" aria-hidden="true">
+          |
+        </span>
+        <div className="mer-action">
+          <Link style={styles.edit} href={`/entries/${entry.id}/edit`}>
+            <Bi k="edit" />
+          </Link>
+        </div>
+      </div>
       {showNote && (
         <div style={styles.noteBox}>
           <p style={styles.noteLabel}>
@@ -96,9 +114,6 @@ export default function MyEntryRow({ entry }) {
           <p style={styles.noteText}>{entry.review_note}</p>
         </div>
       )}
-      <Link style={styles.edit} href={`/entries/${entry.id}/edit`}>
-        <Bi k="edit" />
-      </Link>
     </article>
   );
 }

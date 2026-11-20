@@ -1,0 +1,48 @@
+/* MyEntryRow.js — responsive row for one of the contributor's own entries.
+   On wide screens the title, status and edit button sit left-to-right with a
+   "|" divider between them. When the screen is too narrow to fit all three
+   (below 700px) it collapses back to the original top-to-bottom stack. */
+
+.mer-rowContent {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Each of the three blocks (title, status, button) takes an equal share of
+   the card so nothing runs away from a long title, and its content is centred
+   inside that share. */
+.mer-title,
+.mer-status,
+.mer-action {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}
+
+.mer-divider {
+  flex: 0 0 auto;
+  color: #2E3644; /* theme colors.border */
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+  user-select: none;
+}
+
+@media (max-width: 700px) {
+  /* Collapse back to the original top-to-bottom card layout. */
+  .mer-rowContent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .mer-title,
+  .mer-status,
+  .mer-action {
+    flex: none;
+    text-align: left;
+  }
+  .mer-divider {
+    display: none;
+  }
+}
