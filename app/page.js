@@ -27,6 +27,7 @@ const styles = {
     flexWrap: "wrap", // pill wraps instead of overflowing at 320px
     justifyContent: "center",
     alignItems: "center",
+    gap: 8, // restore the spaces lost around the "·" separator in flex layout
     fontFamily: fonts.mono,
     color: colors.emerald,
     border: `1px solid ${colors.emeraldDeep}`,
