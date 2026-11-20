@@ -4,6 +4,8 @@ import { colors, fonts } from "../lib/theme.js";
 import Bi from "../components/Bi.js";
 import GenerationStrip from "../components/home/GenerationStrip.js";
 import HomeStyles from "../components/home/HomeStyles.js";
+import TypingTitle from "../components/home/TypingTitle.js";
+import HeroVisual from "../components/home/HeroVisual.js";
 
 // Hero, generation strip, info row. Only translucent gold/emerald glows sit
 // outside the token palette.
@@ -38,11 +40,11 @@ const styles = {
     lineHeight: 1.6,
     margin: 0,
   },
-  title: { fontFamily: fonts.serif, fontWeight: 700, color: colors.gold, fontSize: "clamp(40px, 7vw, 76px)", lineHeight: 1.08, margin: "20px 0 24px", overflowWrap: "break-word" },
-  titleKm: { display: "block", fontFamily: fonts.khmer, color: colors.goldSoft, fontSize: "clamp(32px, 6vw, 60px)", lineHeight: 1.5, overflowWrap: "break-word" },
+  title: { fontFamily: fonts.serif, fontWeight: 700, color: colors.gold, fontSize: "clamp(34px, 4.6vw, 62px)", lineHeight: 1.08, margin: "20px 0 24px", overflowWrap: "break-word" },
+  titleKm: { display: "block", fontFamily: fonts.khmer, color: colors.goldSoft, fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.5, overflowWrap: "break-word" },
   descriptionWrap: { maxWidth: "64ch", borderLeft: `3px solid ${colors.goldSoft}`, paddingLeft: 20 },
-  description: { margin: 0, color: colors.muted, fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.7 },
-  descriptionKm: { margin: "12px 0 0", color: colors.text, fontFamily: fonts.khmer, lineHeight: 1.9 },
+  description: { margin: 0, color: colors.muted, fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.7, textAlign: "justify", hyphens: "auto", textWrap: "pretty" },
+  descriptionKm: { margin: "12px 0 0", color: colors.text, fontFamily: fonts.khmer, lineHeight: 1.9, textAlign: "justify" },
   cta: {
     display: "inline-flex",
     flexWrap: "wrap", // lets the button wrap to two lines on narrow screens
@@ -79,42 +81,42 @@ export default function Home() {
       <HomeStyles />
 
       <section aria-labelledby="home-title" style={styles.hero}>
-        <div style={styles.heroInner}>
-          <p
-            className="home-rise"
-            style={{ ...styles.kicker, animationDelay: "0ms" }}
-          >
-            <Bi k="kicker" />
-          </p>
-          <h1
-            id="home-title"
-            className="home-rise"
-            style={{ ...styles.title, animationDelay: "80ms" }}
-          >
-            {collection.name}
-            <span lang="km" style={styles.titleKm}>
-              {collection.nameKm}
-            </span>
-          </h1>
-          <div
-            className="home-rise"
-            style={{ ...styles.descriptionWrap, animationDelay: "160ms" }}
-          >
-            <p style={styles.description}>{collection.description}</p>
-            <p lang="km" style={styles.descriptionKm}>
-              <span lang="km" style={{ fontFamily: fonts.khmer }}>
-                {collection.descriptionKm}
-              </span>
+        <div style={styles.heroInner} className="home-hero-grid">
+          <div className="home-hero-copy">
+            <p
+              className="home-rise"
+              style={{ ...styles.kicker, animationDelay: "0ms" }}
+            >
+              <Bi k="kicker" />
             </p>
+            <TypingTitle
+              id="home-title"
+              en={collection.name}
+              km={collection.nameKm}
+              style={styles.title}
+              kmStyle={styles.titleKm}
+            />
+            <div
+              className="home-rise"
+              style={{ ...styles.descriptionWrap, animationDelay: "160ms" }}
+            >
+              <p style={styles.description}>{collection.description}</p>
+              <p lang="km" style={styles.descriptionKm}>
+                <span lang="km" style={{ fontFamily: fonts.khmer }}>
+                  {collection.descriptionKm}
+                </span>
+              </p>
+            </div>
+            <Link
+              href="/entries"
+              className="home-cta home-rise"
+              style={{ ...styles.cta, animationDelay: "240ms" }}
+            >
+              <Bi k="browseTitle" />
+              <span className="home-cta-arrow" aria-hidden="true">→</span>
+            </Link>
           </div>
-          <Link
-            href="/entries"
-            className="home-cta home-rise"
-            style={{ ...styles.cta, animationDelay: "240ms" }}
-          >
-            <Bi k="browseTitle" />
-            <span className="home-cta-arrow" aria-hidden="true">→</span>
-          </Link>
+          <HeroVisual />
         </div>
       </section>
 
