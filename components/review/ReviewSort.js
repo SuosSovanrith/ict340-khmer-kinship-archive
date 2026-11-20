@@ -7,7 +7,11 @@ import { styles } from "./ReviewStyles.js";
 
 export default function ReviewSort({ status, sort }) {
   return (
-    <div style={styles.sortRow} role="group" aria-label="Sort order">
+    <section style={styles.sortGroup}>
+      <span style={styles.filterLabel}>
+        <Bi k="orderBy" />
+      </span>
+      <div style={styles.sortRow} role="group" aria-label="Sort order">
       <Link
         href={`/review?status=${status}&sort=oldest`}
         style={sort === "oldest" ? styles.sortActive : styles.sortLink}
@@ -22,6 +26,7 @@ export default function ReviewSort({ status, sort }) {
       >
         <Bi k="sortNewest" />
       </Link>
-    </div>
+      </div>
+    </section>
   );
 }

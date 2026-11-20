@@ -45,11 +45,15 @@ export const styles = {
   cancel: { fontFamily: fonts.sans, fontSize: 13, fontWeight: 600, color: colors.text, backgroundColor: "transparent", border: `1px solid ${colors.muted}`, borderRadius: 6, padding: "8px 16px", cursor: "pointer" },
   message: { marginTop: 12, padding: "10px 12px", backgroundColor: colors.surfaceAlt, border: `1px solid ${colors.border}`, borderRadius: 6, color: colors.gold, fontSize: 13, lineHeight: 1.5 },
 
-  // --- status tabs + sort links (rows that wrap on phones, no h-scroll) ---
-  tabsRow: { display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 },
+  // --- filter groups: a bilingual label above each row, and a top border on
+  // the sort group that acts as the divider between the two filter types ---
+  filterLabel: { display: "block", fontFamily: fonts.mono, fontSize: 12, color: colors.muted, margin: "0 0 8px" },
+  statusGroup: { marginBottom: 16 },
+  sortGroup: { borderTop: `1px solid ${colors.border}`, paddingTop: 16, marginBottom: 24 },
+  tabsRow: { display: "flex", flexWrap: "wrap", gap: 8 },
   tab: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.text, border: `1px solid ${colors.muted}` },
   tabActive: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.gold, border: `1px solid ${colors.gold}`, backgroundColor: colors.surfaceAlt, fontWeight: 700 },
-  sortRow: { display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 },
+  sortRow: { display: "flex", flexWrap: "wrap", gap: 8 },
   sortLink: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.text, border: `1px solid ${colors.muted}` },
   sortActive: { padding: "8px 14px", borderRadius: 6, textDecoration: "none", fontFamily: fonts.sans, fontSize: 13, color: colors.gold, border: `1px solid ${colors.gold}`, backgroundColor: colors.surfaceAlt, fontWeight: 700 },
 

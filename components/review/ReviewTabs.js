@@ -14,7 +14,11 @@ const TAB_KEYS = {
 
 export default function ReviewTabs({ status, counts }) {
   return (
-    <nav style={styles.tabsRow} aria-label="Review queue status">
+    <section style={styles.statusGroup}>
+      <span style={styles.filterLabel}>
+        <Bi k="filterByStatus" />
+      </span>
+      <nav style={styles.tabsRow} aria-label="Review queue status">
       {REVIEW_STATUSES.map((s) => {
         const active = s === status;
         const count = counts[s];
@@ -30,6 +34,7 @@ export default function ReviewTabs({ status, counts }) {
           </Link>
         );
       })}
-    </nav>
+      </nav>
+    </section>
   );
 }
