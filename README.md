@@ -25,6 +25,7 @@ What I did because of who the users are:
 - **Photos show writing, not people.** The archive's photo policy is a photo of the written word, never an identifiable portrait (`entry-sketch.md`).
 - **Sources are named, with permission.** Each generation's note is credited to the person it came from, with their relation and place. Contributors who are not the curator must name who told them (see Section 4), so one person's knowledge is never credited to someone else.
 - **Showing it to my sources.** I showed the archive to the three relatives I interviewed. They were happy with it, and they said they felt honoured to see their own names in it.
+- The only picture of people is the cartoon illustration on the home page. It is AI-generated and does not show anyone real.
 
 ## 3. How it works
 
@@ -52,7 +53,7 @@ flowchart LR
 
 | Route | What it does |
 |---|---|
-| `/` | Home: the collection, the curator and the source |
+| `/` | Home: an animated English and Khmer title, a three-generation overview, the curator and the source, and an illustration of three generations talking |
 | `/entries` | Browse and search published entries, 6 per page (search runs over all published entries in the browser, then pages the result) |
 | `/signup`, `/login` | Create an account with a public username; sign in |
 | `/account` | Change my public username |
@@ -228,6 +229,7 @@ I used AI heavily in this project. This section says exactly what it did, what I
 | `nvidia/nemotron-3-super-120b-a12b:free` | Cline, Act mode | Early Sprint 1: the first components and a review-and-fix pass | Rewrote what got flagged, left the rest. Would use again |
 | `deepseek/deepseek-v4-flash-0731` | Cline, Plan and Act | Late Sprint 1 to the final: most of the application code (Supabase queries, forms, edit and delete, the review queue, pagination, the header menu, the bilingual wiring) | Kept most after reading each diff, and sent back changes that touched files I hadn't named. I switched to this to use a paid model instead of the free one for a stronger but also cleap model.|
 | Claude Sonnet 5 and 5.5 (Anthropic) | claude.ai chat | Wrote the prompts for Cline, wrote and tested SQL on a throwaway local Postgres, reviewed diffs, drafted the Khmer interface text, wrote the pagination helpers and component, drafted this README | Used as planner, tester and reviewer. I ran everything myself, and nothing it wrote touched my database before it was tested |
+| Gemini (Google), free tier: Hydrogen | Image generator | The home-page illustration: three family members in a loose circle, drawn as white line art. My prompt forbade any text, because image tools cannot spell Khmer | Used one image. The Khmer words in the speech bubbles are real text on top of it, not part of the image |
  
 ### 5.3 What the AI wrote, and what I did
  
@@ -242,6 +244,7 @@ I used AI heavily in this project. This section says exactly what it did, what I
 | Submit, edit, My entries, the review queue, tabs, sort | `deepseek` in Cline, from prompts written with Claude | Plan first, then read every diff | Fresh clone and build, grep for direct table updates, the full round trip, stranger attacks |
 | Bilingual English and Khmer text | Claude drafted the Khmer, Cline wired it in | I am a Khmer speaker and reviewed every string. I rewrote 7 of the first batch of field labels myself and approved the rest after reading | Searched the files for the exact strings, scanned for English I'd missed |
 | Header menu, pagination, layout polish | `deepseek` in Cline. Claude wrote the pagination helpers and component | Chose the breakpoints (900 px for the cards, 1024 px for the header) | Tested at phone and desktop widths in the browser |
+| Home page: typing title, two-column hero, speech bubbles | Claude wrote and tested the typing logic (`lib/khmerClusters.js`, `components/home/TypingTitle.js`). `deepseek` in Cline wired the layout and styles. The picture is AI-generated (Gemini) | I chose the design and adjusted it after looking at it on my screen. The Khmer words in the bubbles are real entries from the archive | The typing logic was tested with real timers before I used it. I checked the page by eye at phone and desktop widths |
 | **This README** | Claude drafted it from the repo and a live query of my database | I checked every claim against the code and the database, and wrote the sections about my sources and my decisions | Spot-checked each statement in the repo |
 | **Every decision**: what to build, what to refuse, what a returned entry says, the rule that strangers must name a source | **Me** | | |
  
@@ -276,6 +279,7 @@ I used these techniques deliberately:
 | A test script I was given copied a real entry (Mak) into a pending duplicate | Claude | Looked at the data | Deleted it, and never published it |
 | A relative import path copied from a nearby file broke `/contribute` | Cline | A fresh `next build` | Fixed the path, and made a fresh build part of my routine |
 | Generated INSERT statements copied duplicate photos and a wrong caption faithfully from my own data | Cline | Parsed the SQL with a real parser with Claude Sonnet 5.5| Fixed the data |
+| I expected browsers to break Khmer when it is typed out one character at a time, and to split it wrongly even when typed by syllable. A test showed the character-by-character version really does break, but the browser's own segmenter keeps syllables together | Claude (half wrong) | Tested my title and all 161 Khmer strings on the site before building it | Kept a small written-out syllable splitter, because browsers differ, and checked it gives the same result as the engine on every string |
  
  
 ### 5.7 Limits
@@ -296,7 +300,7 @@ I used these techniques deliberately:
 
 **Contributors.** Entries added by other people are credited by their public username on the card, and each generation shows the source the contributor named. 
 
-**Tools and fonts.** Khmer text uses the Noto Serif Khmer font from Google Fonts. Next.js, React and Supabase are open-source and hosted services used under their terms.
+**Tools and fonts.** Khmer text uses the Noto Serif Khmer font from Google Fonts. Next.js, React and Supabase are open-source and hosted services used under their terms. Home-page illustration: AI-generated with Gemini (Google). The Khmer words in its speech bubbles (យាយ Yay, ពូ Pou, អូន Oun) are real text from the archive's entries.
 
 ## 7. Running it locally
 
