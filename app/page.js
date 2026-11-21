@@ -20,7 +20,7 @@ const styles = {
   },
   heroInner: {
     position: "relative",
-    maxWidth: 1100,
+    maxWidth: 1280,
     margin: "0 auto",
     padding: "clamp(40px, 8vw, 96px) clamp(16px, 4vw, 32px)",
   },
@@ -40,9 +40,9 @@ const styles = {
     lineHeight: 1.6,
     margin: 0,
   },
-  title: { fontFamily: fonts.serif, fontWeight: 700, color: colors.gold, fontSize: "clamp(34px, 4.6vw, 62px)", lineHeight: 1.08, margin: "20px 0 24px", overflowWrap: "break-word" },
-  titleKm: { display: "block", fontFamily: fonts.khmer, color: colors.goldSoft, fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.5, overflowWrap: "break-word" },
-  descriptionWrap: { maxWidth: "64ch", borderLeft: `3px solid ${colors.goldSoft}`, paddingLeft: 20 },
+  title: { fontFamily: fonts.serif, fontWeight: 700, color: colors.gold, fontSize: "var(--home-title)", lineHeight: 1.08, margin: "20px 0 24px", overflowWrap: "break-word" },
+  titleKm: { display: "block", fontFamily: fonts.khmer, color: colors.goldSoft, fontSize: "var(--home-title-km)", lineHeight: 1.5, overflowWrap: "break-word" },
+  descriptionWrap: { borderLeft: `3px solid ${colors.goldSoft}`, paddingLeft: 20 },
   description: { margin: 0, color: colors.muted, fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.7, textAlign: "justify", hyphens: "auto", textWrap: "pretty" },
   descriptionKm: { margin: "12px 0 0", color: colors.text, fontFamily: fonts.khmer, lineHeight: 1.9, textAlign: "justify" },
   cta: {
@@ -64,15 +64,15 @@ const styles = {
     textDecoration: "none",
     marginTop: 36,
   },
-  divider: { display: "flex", alignItems: "center", gap: 18, maxWidth: 1100, margin: "0 auto clamp(8px, 2vw, 24px)", padding: "0 clamp(16px, 4vw, 32px)" },
+  divider: { display: "flex", alignItems: "center", gap: 18, maxWidth: 1280, margin: "0 auto clamp(8px, 2vw, 24px)", padding: "0 clamp(16px, 4vw, 32px)" },
   dividerLine: { flex: 1, height: 1, backgroundColor: colors.border },
   diamond: { width: 10, height: 10, flexShrink: 0, transform: "rotate(45deg)", backgroundColor: colors.gold },
-  infoRow: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, maxWidth: 1100, margin: "0 auto", padding: "clamp(8px, 2vw, 24px) clamp(16px, 4vw, 32px) clamp(40px, 6vw, 64px)" },
+  infoRow: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, maxWidth: 1280, margin: "0 auto", padding: "clamp(8px, 2vw, 24px) clamp(16px, 4vw, 32px) clamp(40px, 6vw, 64px)" },
   card: { backgroundColor: colors.surface, border: `1px solid ${colors.border}`, borderRadius: 12, padding: 24 },
   cardLabel: { fontFamily: fonts.mono, fontSize: 12, color: colors.muted, letterSpacing: 1, margin: 0 },
   cardValue: { fontSize: 17, color: colors.text, margin: "8px 0 0", lineHeight: 1.6 },
   cardValueKm: { fontFamily: fonts.khmer, lineHeight: 1.8, overflowWrap: "break-word" },
-  footer: { maxWidth: 1100, margin: "24px auto 0", padding: "24px clamp(16px, 4vw, 32px) clamp(40px, 6vw, 64px)", borderTop: `1px solid ${colors.border}`, color: colors.faint, fontSize: 13, lineHeight: 1.6 },
+  footer: { maxWidth: 1280, margin: "24px auto 0", padding: "24px clamp(16px, 4vw, 32px) clamp(40px, 6vw, 64px)", borderTop: `1px solid ${colors.border}`, color: colors.faint, fontSize: 13, lineHeight: 1.6 },
 };
 
 export default function Home() {

@@ -14,7 +14,7 @@ const CARD_ACCENT = {
 
 const styles = {
   strip: {
-    maxWidth: 1100,
+    maxWidth: 1280,
     margin: "0 auto",
     padding: "clamp(32px, 6vw, 64px) clamp(16px, 4vw, 32px)",
   },
